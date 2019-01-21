@@ -28,7 +28,7 @@ private:
 	Robot* robot;
 public:
 	AutoAim(Robot* robot);
-	bool checkAutoAim(bool isSidePos, bool doAmpTest = false);
+	bool checkAutoAim();
 
 };
 

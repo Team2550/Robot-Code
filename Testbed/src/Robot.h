@@ -29,6 +29,7 @@ public:
 	void AutonomousPeriodic();
 	void TeleopInit();
 	void TeleopPeriodic();
+	void autoAimOn();
 	void UpdatePreferences();
 //private:
 	float speedNormal;
@@ -40,6 +41,7 @@ public:
 	int axisTankRight;
 	int buttonBoost;
 	int buttonTurtle;
+	int buttonAutoAim;
 
 	float boostPressTime;
 
@@ -47,8 +49,13 @@ public:
 	float autoDelay;
 	//frc::SendableChooser<const AutoController::PositionOptions*> autoStrategyChooser;
 	//const AutoController::InstructionSet* selectedAutoStrategy;
+
+	//std::unique_ptr<frc::Command> autoAimCommand;
+	//frc::SendableChooser<frc::Command*> autoAimChooser;
+
 	bool autoStrategyCompleted;
 	bool autoStartedBackup;
+	bool autoAimToggle;
 	PowerDistributionPanel pdp;
 
 	Joystick driveController;

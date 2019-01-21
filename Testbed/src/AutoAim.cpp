@@ -12,10 +12,11 @@ AutoAim::AutoAim(Robot* robot_) : robot(robot_)//driveBase(0, 1, 0, 1, 2, 3, 6.0
 {
 	baseSpeed = .4f;
 }
-bool AutoAim::checkAutoAim(bool isSidePos, bool doAmpTest)
+bool AutoAim::checkAutoAim()
 {
 	// Backup value of reversal to restore when finished. Set motor reversal to true (front = camera)
 	bool wasReversed = robot->driveBase.getReversed();
+	bool doAmpTest = false
 	robot->driveBase.setReversed(true);
 
 	// Get amps for checking if against wall
@@ -25,7 +26,7 @@ bool AutoAim::checkAutoAim(bool isSidePos, bool doAmpTest)
 
 	// Initialize base speed
 #ifndef PRACTICE_2017_ROBOT
-	float baseSpeed = isSidePos ? 0.25 : 0.2;
+	//float baseSpeed = isSidePos ? 0.25 : 0.2;
 #else
 	float baseSpeed = 0.4;
 #endif
@@ -156,6 +157,11 @@ bool AutoAim::checkAutoAim(bool isSidePos, bool doAmpTest)
 
 	return atTarget;
 }
+
+//void autoAimOn(){
+	//autoAimTog = true;
+
+//}
 
 
 
