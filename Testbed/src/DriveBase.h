@@ -23,6 +23,10 @@ public:
 	double GetLeftDistance();
 	double GetRightDistance();
 	void SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim);
+	//float DriveBase(PowerDistributionPanel& pdp);
+	float getAmps(PowerDistributionPanel& pdp);
+	void setReversed(bool reverse);
+	bool getReversed();
 
 private:
 	Victor leftMotor;
@@ -35,6 +39,18 @@ private:
 	float rightForwardTrim;
 	float leftReverseTrim;
 	float rightReverseTrim;
+
+
+	int rightMotorPortValue;
+	int leftMotorPortValue;
+	int leftEncoderPortAValue;
+	int leftEncoderPortBValue;
+	int rightEncoderPortAValue;
+	int rightEncoderPortBValue;
+	double wheelCircumferenceValue;
+	int encoderPulsesPerRotationValue;
+
+	bool isReversed;
 
 };
 

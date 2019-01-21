@@ -5,7 +5,9 @@
 // driver: (int) xBox controller number
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
-Robot::Robot() : driveController(0), perifController(1),
+
+Robot::Robot() : autoAim(this), driveController(0), perifController(1),
+				 udpReceiver(),
 				 autoController(&driveBase, &gyroscope),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(0, 1, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
@@ -17,6 +19,9 @@ Robot::Robot() : driveController(0), perifController(1),
 
 
 	boostPressTime = -999;
+
+	std::unique_ptr<frc::Command> autoAimCommand;
+	frc::SendableChooser<frc::Command*> chooser;
 
 	UpdatePreferences();
 }
@@ -49,7 +54,18 @@ void Robot::AutonomousInit()
 
 void Robot::AutonomousPeriodic()
 {
+	/* ========== udpReceiver ========== */
+	udpReceiver.checkUDP();
+	udpReceiver.clearUDPSocket();
 
+	float data[UDP::DataCount];
+	udpReceiver.getUDPData(data);
+
+	printf("X Angle:");
+	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
+	printf(", Dist:");
+	printf(std::to_string(data[UDP::Index::Distance]).c_str());
+	printf("\n");
 }
 
 void Robot::TeleopInit()
@@ -69,6 +85,19 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
+	/* ========== udpReceiver ========== */
+	udpReceiver.checkUDP();
+	udpReceiver.clearUDPSocket();
+
+	float data[UDP::DataCount];
+	udpReceiver.getUDPData(data);
+
+	printf("X Angle:");
+	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
+	printf(", Dist:");
+	printf(std::to_string(data[UDP::Index::Distance]).c_str());
+	printf("\n");
+
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
 	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
 			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
@@ -161,4 +190,7 @@ void Robot::UpdatePreferences()
 
 
 }
+// Returns true if at target
+
+
 START_ROBOT_CLASS(Robot)
