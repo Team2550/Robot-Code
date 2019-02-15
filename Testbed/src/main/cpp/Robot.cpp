@@ -8,15 +8,22 @@
 
 Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 udpReceiver(),
-				 autoController(&driveBase, &gyroscope),
+				 autoController(&driveBase, &gyroscope, this), //+
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
-				 driveBase(0, 1, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+				 winch(2)
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
 	buttonBoost = xbox::btn::rb;
 	buttonTurtle = xbox::btn::lb;
 	buttonAutoAim = xbox::btn::a;
+	autoAimToggle = &autoAimOn;
+	buttonWinchForwards = xbox::btn::rb;
+	buttonWinchBackwards = xbox::btn::lb;
+	buttonGrabber = xbox::btn::a;
+	buttonGrabberRelease = xbox::btn::b;
+
 
 
 	boostPressTime = -999;
@@ -33,10 +40,14 @@ void Robot::RobotInit()
 {
 	std::cout << "Calibrating gyro..." << std::endl;
 	gyroscope.Calibrate();
-	std::cout << "Gyro calibrated" << std::endl;
+	std::cout << "Gyro calibrated.... This message gets sent regardless of if the Gyro was calibrated or not. I hope it doesn't fail :)" << std::endl;
 
 	//autoAimChooser.AddDefault("Default Auto", new );
+	autoAimChooser.AddDefault("Auto Aim On", &autoAimOn);
+	autoAimChooser.AddObject("Auto Aim Off", &autoAimOff);
+	SmartDashboard::PutData("Auto Aim Toggle", &autoAimChooser);
 
+	driveBase.setReversed(true);
 
 	// Start Video Stream
 	CameraServer::GetInstance()->StartAutomaticCapture();
@@ -50,7 +61,19 @@ void Robot::AutonomousInit()
 
 	timer.Reset();
 	timer.Start();
-
+	
+	//+
+	if (selectedAutoStrategy != NULL)
+	{
+		std::cout << "Initializing autonomous" << std::endl;
+		autoController.Init(*selectedAutoStrategy);
+		autoStrategyCompleted = false;
+	}
+	else
+	{
+		std::cout << "Selected strategy is blank" << std::endl;
+		autoStrategyCompleted = true;
+	}
 }
 
 void Robot::AutonomousPeriodic()
@@ -67,6 +90,8 @@ void Robot::AutonomousPeriodic()
 	printf(", Dist:");
 	printf(std::to_string(data[UDP::Index::Distance]).c_str());
 	printf("\n");
+
+	
 }
 
 void Robot::TeleopInit()
@@ -106,7 +131,7 @@ void Robot::TeleopPeriodic()
 	// Drivebase
 	// Use D-pad of controller to drive in basic directions
 
-	if(buttonAutoAim){
+	if(driveController.GetRawButton(buttonAutoAim)){
 		autoAim.checkAutoAim();
 	}
 	else{
@@ -165,6 +190,20 @@ void Robot::TeleopPeriodic()
 							rightSpeed * baseSpeed);
 		}
 
+		if(perifController.GetRawButton(buttonWinchForwards)){
+			//printf("climbing up!");
+			winch.climb(.8);
+		}
+		if(perifController.GetRawButton(buttonWinchBackwards)){
+			//printf("climbing down!");
+			winch.climb(-.8);
+		}
+		if(perifController.GetRawButton(buttonGrabber)){
+			grabber.setGrabberSolenoid(true);
+		}
+		if(perifController.GetRawButton(buttonGrabberRelease)){
+			grabber.setGrabberSolenoid(false);
+		}
 
 	}
 
@@ -175,25 +214,26 @@ void Robot::UpdatePreferences()
 {
 	prefs = Preferences::GetInstance();
 
-	driveBase.SetTrim(prefs->GetDouble("LeftForwardTrim", 1.0),
+	driveBase.SetTrim(prefs->GetDouble("LeftForwardTrim", 0.82),
 					  prefs->GetDouble("RightForwardTrim", 1.0),
 					  prefs->GetDouble("LeftReverseTrim", 1.0),
 					  prefs->GetDouble("RightReverseTrim", 1.0));
 
-	speedNormal = prefs->GetFloat("SpeedNormal", 0.5f);
-	speedTurtle = prefs->GetFloat("SpeedTurtle", 0.25f);
+	speedNormal = prefs->GetFloat("SpeedNormal", 0.6f);
+	speedTurtle = prefs->GetFloat("SpeedTurtle", 0.35f);
 	speedBoost = prefs->GetFloat("SpeedBoost", 1.0f);
 	boostDecelerationTime = prefs->GetFloat("BoostDecelTime", 0.5f);
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
 
+
 	// Setup autonomous strategy chooser
-	//autoStrategyChooser.AddObject("R Exchange", &AUTO_STRATEGIES::RIGHT_EXCHANGE_OPTIONS);
-	//autoStrategyChooser.AddObject("L Exchange", &AUTO_STRATEGIES::LEFT_EXCHANGE_OPTIONS);
+	autoStrategyChooser.AddDefault("Nothing", &AUTO_STRATEGIES::NOTHING_OPTIONS); //+
+	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN_OPTIONS); //+
 	//autoStrategyChooser.AddObject("R Inner Switch", &AUTO_STRATEGIES::RIGHT_SWITCH_INNER_OPTIONS);
 	//autoStrategyChooser.AddObject("L Inner Switch", &AUTO_STRATEGIES::LEFT_SWITCH_INNER_OPTIONS);
-	//frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser);
+	frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser); //+
 
 	// Determine switch setup to select strategy.
 

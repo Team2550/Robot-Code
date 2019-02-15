@@ -1,7 +1,7 @@
 #ifndef LIMIT_SWITCH_H
 #define LIMIT_SWITCH_H
 
-#include <WPILib.h>
+#include <frc/WPILib.h>
 #include <math.h>
 #include "Utility.h"
 

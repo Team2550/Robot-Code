@@ -1,9 +1,11 @@
 #ifndef AUTONOMOUS_H
 #define AUTONOMOUS_H
 
-#include <WPILib.h>
+#include <frc/WPILib.h>
 #include <iostream>
 #include "DriveBase.h"
+
+class Robot;
 
 class AutoController
 {
@@ -20,7 +22,7 @@ public:
 	// RETRACT:			Begins retracting the bulldozer.
 	// KICK:			Activates the kicker piston on top of the bulldozer.
 	// 		Note: DRIVE_TO, DRIVE_DIST, ROTATE_TO, and ROTATE_DEG slow down on approach to target if 'stopAtTarget' is true.
-	enum InstructionType { WAIT_UNTIL, WAIT_TIME, DRIVE_TO, DRIVE_DIST, ROTATE_TO, ROTATE_DEG, RESET_DIST_0, EXTEND, RETRACT, KICK }; //, RESET_DIST_ULTRA  };
+	enum InstructionType { WAIT_UNTIL, WAIT_TIME, DRIVE_TO, DRIVE_DIST, ROTATE_TO, ROTATE_DEG, RESET_DIST_0, DRIVE_UNTIL, EXTEND, RETRACT, KICK }; //, RESET_DIST_ULTRA  };
 
 	struct Instruction
 	{
@@ -43,7 +45,7 @@ public:
 		const InstructionSet* rightOption;
 	};
 
-	AutoController(DriveBase* driveBase, Gyro* gyroscope);
+	AutoController(DriveBase* driveBase, Gyro* gyroscope, Robot* robot);
 	~AutoController();
 
 	// Name:	Execute
@@ -59,7 +61,7 @@ public:
 private:
 	DriveBase* driveBase;
 	Gyro* gyroscope;
-
+	Robot* robot;
 	Timer timer;
 
 	InstructionSet instructionSet;
@@ -70,6 +72,7 @@ private:
 	double instructionStartAngle;
 	double instructionTargetAngle;
 	bool bulldozerKicking;
+	bool doAmpTest = false;
 
 	bool AutoDriveToDist( double leftSpeed, double rightSpeed, double targetDistance, double targetAngle, bool stopAtTarget );
 	bool AutoRotateToAngle( double leftSpeed, double rightSpeed, double targetAngle, bool stopAtTarget );

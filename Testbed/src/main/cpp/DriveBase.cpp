@@ -45,9 +45,9 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 double DriveBase::GetLeftSpeed()
 {
 	if (leftMotor.GetInverted())
-		return -leftMotor.Get();
-	else
 		return leftMotor.Get();
+	else
+		return -leftMotor.Get();
 }
 
 double DriveBase::GetRightSpeed()
@@ -60,6 +60,9 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
+	printf("%f",leftSpeed);
+	printf(",");
+	printf("%f",rightSpeed);
 	if (leftSpeed > 0)
 		leftMotor.Set(leftSpeed * leftForwardTrim);
 	else

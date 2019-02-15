@@ -1,10 +1,10 @@
-#include <AutoController.h>
-
+#include "AutoController.h"
+#include "Robot.h"
 const float AUTO_STEER_STRENGTH = 1.3;
 const float STRAIGHT_DECEL_MULT = 90;
 const float ROTATE_DECEL_MULT = 100;
 
-AutoController::AutoController(DriveBase* driveBase, Gyro* gyroscope)
+AutoController::AutoController(DriveBase* driveBase, Gyro* gyroscope, Robot* robot_) : robot(robot_)
 {
 	this->driveBase = driveBase;
 	this->gyroscope = gyroscope;
@@ -74,6 +74,7 @@ bool AutoController::Execute()
 		inst.target += instructionTargetAngle;
 	case ROTATE_TO:
 		std::cout << "Rotating to " << inst.target << std::endl;
+		//printf("ADDHSJDHDSJKSGHFDSLKGJHKJDFJGDFHKGJKLDFHGDSF;LGJHDSJFK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		instructionCompleted = AutoRotateToAngle( inst.leftSpeed, inst.rightSpeed, inst.target, inst.stopAtTarget );
 		break;
 
@@ -82,6 +83,17 @@ bool AutoController::Execute()
 		std::cout << "Reset dist" << std::endl;
 		instructionCompleted = true;
 		break;
+
+	case DRIVE_UNTIL:
+		if (doAmpTest && driveBase->getAmps(robot->pdp) > Autonomous::AmpLimit)
+			{
+				printf("Amps too high! Stopping...\n");
+				robot->driveBase.Stop();
+			}
+			else
+			{
+				robot->driveBase.Drive(.25f,.25f);
+			}
 
 	//case RESET_DIST_ULTRA:
 	//	driveBase->ResetDistance(); // TODO: Add a way to reset the distance to the current ultrasonic reading
@@ -171,6 +183,7 @@ bool AutoController::AutoDriveToDist( double leftSpeed, double rightSpeed, doubl
 
 bool AutoController::AutoRotateToAngle( double leftSpeed, double rightSpeed, double targetAngle, bool stopAtTarget )
 {
+	//printf("rotating!!!");
 	// If left and right speeds are equal, assume directions are meant to be opposite
 	if (leftSpeed == rightSpeed)
 		rightSpeed *= -1;

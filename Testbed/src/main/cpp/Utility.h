@@ -1,11 +1,13 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include <WPILib.h>
+#include <frc/WPILib.h>
 #include <math.h>
 #include <vector>
 #include <string>
 #include "xBox.h"
+
+using namespace frc;
 
 namespace Utility
 {

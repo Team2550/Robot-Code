@@ -16,7 +16,7 @@ bool AutoAim::checkAutoAim()
 {
 	// Backup value of reversal to restore when finished. Set motor reversal to true (front = camera)
 	bool wasReversed = robot->driveBase.getReversed();
-	bool doAmpTest = false
+	bool doAmpTest = false;
 	robot->driveBase.setReversed(true);
 
 	// Get amps for checking if against wall
@@ -158,10 +158,6 @@ bool AutoAim::checkAutoAim()
 	return atTarget;
 }
 
-//void autoAimOn(){
-	//autoAimTog = true;
-
-//}
 
 
 
