@@ -5,6 +5,7 @@
 // driver: (int) xBox controller number
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
+Robot robot;
 
 Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 udpReceiver(),
@@ -191,11 +192,9 @@ void Robot::TeleopPeriodic()
 		}
 
 		if(perifController.GetRawButton(buttonWinchForwards)){
-			//printf("climbing up!");
 			winch.climb(.8);
 		}
 		if(perifController.GetRawButton(buttonWinchBackwards)){
-			//printf("climbing down!");
 			winch.climb(-.8);
 		}
 		if(perifController.GetRawButton(buttonGrabber)){
@@ -229,11 +228,11 @@ void Robot::UpdatePreferences()
 
 
 	// Setup autonomous strategy chooser
-	autoStrategyChooser.AddDefault("Nothing", &AUTO_STRATEGIES::NOTHING_OPTIONS); //+
-	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN_OPTIONS); //+
+	autoStrategyChooser.AddDefault("Nothing", &AUTO_STRATEGIES::NOTHING_OPTIONS);
+	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN_OPTIONS);
 	//autoStrategyChooser.AddObject("R Inner Switch", &AUTO_STRATEGIES::RIGHT_SWITCH_INNER_OPTIONS);
 	//autoStrategyChooser.AddObject("L Inner Switch", &AUTO_STRATEGIES::LEFT_SWITCH_INNER_OPTIONS);
-	frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser); //+
+	frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser);
 
 	// Determine switch setup to select strategy.
 
