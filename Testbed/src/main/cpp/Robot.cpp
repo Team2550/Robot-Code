@@ -5,14 +5,14 @@
 // driver: (int) xBox controller number
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
-Robot robot;
 
 Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 udpReceiver(),
 				 autoController(&driveBase, &gyroscope, this), //+
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
-				 winch(2)
+				 winch(2),
+				 grabber(2,3,4,5)
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
@@ -22,9 +22,10 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 	autoAimToggle = &autoAimOn;
 	buttonWinchForwards = xbox::btn::rb;
 	buttonWinchBackwards = xbox::btn::lb;
-	buttonGrabber = xbox::btn::a;
-	buttonGrabberRelease = xbox::btn::b;
-
+	buttonArmGrab = xbox::btn::a;
+	buttonArmRelease = xbox::btn::b;
+	buttonHandGrab = xbox::btn::x;
+	buttonHandRelease = xbox::btn::y;
 
 
 	boostPressTime = -999;
@@ -190,18 +191,30 @@ void Robot::TeleopPeriodic()
 			driveBase.Drive(leftSpeed * baseSpeed,
 							rightSpeed * baseSpeed);
 		}
-
 		if(perifController.GetRawButton(buttonWinchForwards)){
-			winch.climb(.8);
+			printf("foward!");
+			winch.climb(true, false);
 		}
-		if(perifController.GetRawButton(buttonWinchBackwards)){
-			winch.climb(-.8);
+		else if(perifController.GetRawButton(buttonWinchBackwards)){
+			printf("backward!");
+			winch.climb(false, true);
 		}
-		if(perifController.GetRawButton(buttonGrabber)){
-			grabber.setGrabberSolenoid(true);
+		else
+		{
+			winch.climb(false, false);
 		}
-		if(perifController.GetRawButton(buttonGrabberRelease)){
-			grabber.setGrabberSolenoid(false);
+		//Grabber
+		if(perifController.GetRawButton(buttonArmGrab)){
+			grabber.ArmGrab();
+		}
+		if(perifController.GetRawButton(buttonArmRelease)){
+			grabber.ArmRelease();
+		}
+		if(perifController.GetRawButton(buttonHandGrab)){
+			grabber.handGrab();
+		}
+		if(perifController.GetRawButton(buttonHandRelease)){
+			grabber.handRelease();
 		}
 
 	}

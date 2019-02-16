@@ -5,11 +5,18 @@
 
 class Grabber
 {
-private:
-    bool defaultSolenoidPosition = false;
-    frc::Solenoid grabberSolenoid {1};
 public:
-    Grabber();
-    void setGrabberSolenoid(bool solenoidPosition);
+    Grabber(int armRetractPort, int armExtendPort, int handRetractPort, int handExtendPort);
+    void ArmGrab();
+    void ArmRelease();
+
+    void handGrab();
+    void handRelease();
+    
+private:
+    enum State { UNKOWN, RETRACT, EXTEND };
+    frc::DoubleSolenoid arm; //2,3
+    frc::DoubleSolenoid hand; //4,5
+
 };
 #endif

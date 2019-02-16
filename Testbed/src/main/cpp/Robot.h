@@ -47,8 +47,10 @@ public:
 	int buttonAutoAim;
 	int buttonWinchForwards;
 	int buttonWinchBackwards;
-	int buttonGrabber;
-	int buttonGrabberRelease;
+	int buttonArmGrab;
+	int buttonArmRelease;
+	int buttonHandGrab;
+	int buttonHandRelease;
 
 	float boostPressTime;
 

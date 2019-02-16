@@ -74,7 +74,6 @@ bool AutoController::Execute()
 		inst.target += instructionTargetAngle;
 	case ROTATE_TO:
 		std::cout << "Rotating to " << inst.target << std::endl;
-		//printf("ADDHSJDHDSJKSGHFDSLKGJHKJDFJGDFHKGJKLDFHGDSF;LGJHDSJFK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		instructionCompleted = AutoRotateToAngle( inst.leftSpeed, inst.rightSpeed, inst.target, inst.stopAtTarget );
 		break;
 

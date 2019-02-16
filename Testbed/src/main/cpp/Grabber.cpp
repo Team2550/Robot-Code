@@ -1,11 +1,28 @@
 #include "Grabber.h"
 
-Grabber::Grabber()
+Grabber::Grabber(int armRetractPort, int armExtendPort, int handRetractPort, int handExtendPort) :
+    arm(armRetractPort, armExtendPort) , hand(handRetractPort, handExtendPort)
 {
-    grabberSolenoid.Set(defaultSolenoidPosition);
+    //grabberSolenoid.Set(defaultSolenoidPosition);
+    arm.Set(frc::DoubleSolenoid::kForward);
+    hand.Set(frc::DoubleSolenoid::kForward);
 }
 
-void Grabber::setGrabberSolenoid(bool solenoidPosition)
+void Grabber::ArmGrab()
 {
-    grabberSolenoid.Set(solenoidPosition);
+    arm.Set(frc::DoubleSolenoid::kForward);
 }
+void Grabber::ArmRelease()
+{
+    arm.Set(frc::DoubleSolenoid::kReverse);
+}
+
+void Grabber::handGrab()
+{
+    hand.Set(frc::DoubleSolenoid::kForward);
+}
+void Grabber::handRelease()
+{
+    hand.Set(frc::DoubleSolenoid::kReverse);
+}
+

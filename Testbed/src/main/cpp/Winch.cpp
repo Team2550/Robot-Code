@@ -6,9 +6,13 @@ Winch::Winch(int winchMotorPort) : winchMotor(winchMotorPort)
     climbMotorPort = winchMotorPort;
 }
 
-void Winch::climb(double climbSpeed)
+void Winch::climb(bool climb, bool drop)
 {
-    printf("climbing ,");
-    printf("%f", climbSpeed);
-    winchMotor.Set(climbSpeed);
+    if(climb)
+        winchMotor.Set(1);
+    else if(drop)
+        winchMotor.Set(-1);
+    else 
+        winchMotor.Set(0);
+
 }

@@ -9,7 +9,7 @@ class Winch
 {
 public:
     Winch(int winchMotorPort);
-    void climb(double climbSpeed);
+    void climb(bool climb, bool drop);
 
 private:
     Victor winchMotor;
