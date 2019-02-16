@@ -18,6 +18,7 @@
 #include "Grabber.h"
 #include "Winch.h"
 #include "DriveBase.h"
+#include "Manipulator.h"
 
 class Robot: public IterativeRobot
 {
@@ -47,10 +48,10 @@ public:
 	int buttonAutoAim;
 	int buttonWinchForwards;
 	int buttonWinchBackwards;
-	int buttonArmGrab;
-	int buttonArmRelease;
-	int buttonHandGrab;
-	int buttonHandRelease;
+	int buttonClimberGrab;
+	int buttonClimberRelease;
+	int buttonGrabHatch;
+	int buttonReleaseHatch;
 
 	float boostPressTime;
 
@@ -82,6 +83,7 @@ public:
 	//AutoController autoController;
 	Winch winch;
 	Grabber grabber;
+	Manipulator manipulator;
 };
 
 #endif

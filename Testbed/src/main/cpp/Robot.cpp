@@ -12,7 +12,8 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 				 winch(2),
-				 grabber(2,3,4,5)
+				 grabber(2,3,4,5),
+				 manipulator(2,3,4,5)
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
@@ -22,11 +23,10 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 	autoAimToggle = &autoAimOn;
 	buttonWinchForwards = xbox::btn::rb;
 	buttonWinchBackwards = xbox::btn::lb;
-	buttonArmGrab = xbox::btn::a;
-	buttonArmRelease = xbox::btn::b;
-	buttonHandGrab = xbox::btn::x;
-	buttonHandRelease = xbox::btn::y;
-
+	buttonClimberGrab = xbox::btn::rightPush;
+	buttonClimberRelease = xbox::btn::leftPush;
+	buttonGrabHatch = xbox::btn::a;
+	buttonReleaseHatch = xbox::btn::x;
 
 	boostPressTime = -999;
 
@@ -52,6 +52,7 @@ void Robot::RobotInit()
 	driveBase.setReversed(true);
 
 	// Start Video Stream
+	// URL is "http://10.25.50.94:8080/"
 	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
@@ -63,6 +64,7 @@ void Robot::AutonomousInit()
 
 	timer.Reset();
 	timer.Start();
+
 	
 	//+
 	if (selectedAutoStrategy != NULL)
@@ -191,12 +193,13 @@ void Robot::TeleopPeriodic()
 			driveBase.Drive(leftSpeed * baseSpeed,
 							rightSpeed * baseSpeed);
 		}
-		if(perifController.GetRawButton(buttonWinchForwards)){
-			printf("foward!");
+		//Winch
+		if(perifController.GetRawButton(buttonWinchForwards))
+		{
 			winch.climb(true, false);
 		}
-		else if(perifController.GetRawButton(buttonWinchBackwards)){
-			printf("backward!");
+		else if(perifController.GetRawButton(buttonWinchBackwards))
+		{
 			winch.climb(false, true);
 		}
 		else
@@ -204,19 +207,25 @@ void Robot::TeleopPeriodic()
 			winch.climb(false, false);
 		}
 		//Grabber
-		if(perifController.GetRawButton(buttonArmGrab)){
-			grabber.ArmGrab();
-		}
-		if(perifController.GetRawButton(buttonArmRelease)){
-			grabber.ArmRelease();
-		}
-		if(perifController.GetRawButton(buttonHandGrab)){
+		if(perifController.GetRawButton(buttonClimberGrab))
+		{
+			grabber.armGrab();
 			grabber.handGrab();
 		}
-		if(perifController.GetRawButton(buttonHandRelease)){
+		if(perifController.GetRawButton(buttonClimberRelease))
+		{
+			grabber.armRelease();
 			grabber.handRelease();
 		}
-
+		//Manipulator
+		if(perifController.GetRawButton(buttonGrabHatch))
+		{
+			manipulator.grabHatch(.5);
+		}
+		if(perifController.GetRawButton(buttonReleaseHatch))
+		{
+			manipulator.hatchKickerExtend();
+		}
 	}
 
 

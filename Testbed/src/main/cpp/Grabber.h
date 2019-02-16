@@ -7,8 +7,8 @@ class Grabber
 {
 public:
     Grabber(int armRetractPort, int armExtendPort, int handRetractPort, int handExtendPort);
-    void ArmGrab();
-    void ArmRelease();
+    void armGrab();
+    void armRelease();
 
     void handGrab();
     void handRelease();

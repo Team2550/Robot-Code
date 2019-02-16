@@ -8,11 +8,11 @@ Grabber::Grabber(int armRetractPort, int armExtendPort, int handRetractPort, int
     hand.Set(frc::DoubleSolenoid::kForward);
 }
 
-void Grabber::ArmGrab()
+void Grabber::armGrab()
 {
     arm.Set(frc::DoubleSolenoid::kForward);
 }
-void Grabber::ArmRelease()
+void Grabber::armRelease()
 {
     arm.Set(frc::DoubleSolenoid::kReverse);
 }
