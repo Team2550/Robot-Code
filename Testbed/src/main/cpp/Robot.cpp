@@ -8,7 +8,7 @@
 
 Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 udpReceiver(),
-				 autoController(&driveBase, &gyroscope, this), //+
+				 autoController(this), //+
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 				 winch(2),
@@ -44,7 +44,6 @@ void Robot::RobotInit()
 	gyroscope.Calibrate();
 	std::cout << "Gyro calibrated.... This message gets sent regardless of if the Gyro was calibrated or not. I hope it doesn't fail :)" << std::endl;
 
-	//autoAimChooser.AddDefault("Default Auto", new );
 	autoAimChooser.AddDefault("Auto Aim On", &autoAimOn);
 	autoAimChooser.AddObject("Auto Aim Off", &autoAimOff);
 	SmartDashboard::PutData("Auto Aim Toggle", &autoAimChooser);
@@ -71,6 +70,7 @@ void Robot::AutonomousInit()
 	{
 		std::cout << "Initializing autonomous" << std::endl;
 		autoController.Init(*selectedAutoStrategy);
+		autoController.Execute();
 		autoStrategyCompleted = false;
 	}
 	else
@@ -89,11 +89,13 @@ void Robot::AutonomousPeriodic()
 	float data[UDP::DataCount];
 	udpReceiver.getUDPData(data);
 
-	printf("X Angle:");
+	/**printf("X Angle:");
 	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
 	printf(", Dist:");
 	printf(std::to_string(data[UDP::Index::Distance]).c_str());
-	printf("\n");
+	printf("\n");**/
+
+	printf("...");
 
 	
 }
@@ -250,15 +252,11 @@ void Robot::UpdatePreferences()
 
 
 	// Setup autonomous strategy chooser
-	autoStrategyChooser.AddDefault("Nothing", &AUTO_STRATEGIES::NOTHING_OPTIONS);
-	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN_OPTIONS);
-	//autoStrategyChooser.AddObject("R Inner Switch", &AUTO_STRATEGIES::RIGHT_SWITCH_INNER_OPTIONS);
-	//autoStrategyChooser.AddObject("L Inner Switch", &AUTO_STRATEGIES::LEFT_SWITCH_INNER_OPTIONS);
+	autoStrategyChooser.AddDefault("Left Platform", &AUTO_STRATEGIES::LEFT_PLATFORM);
+	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN);
+	autoStrategyChooser.AddObject("Nothing", &AUTO_STRATEGIES::NOTHING);
 	frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser);
-
-	// Determine switch setup to select strategy.
-
-
+	selectedAutoStrategy = autoStrategyChooser.GetSelected();
 }
 // Returns true if at target
 

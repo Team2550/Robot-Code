@@ -63,9 +63,9 @@ public:
 	bool autoAimOn = true;
 	bool autoAimOff = false;
 
-	SendableChooser<bool*> autoAimChooser;
+	frc::SendableChooser<bool*> autoAimChooser;
 	bool *autoAimToggle;
-	frc::SendableChooser<const AutoController::PositionOptions*> autoStrategyChooser; //+
+	frc::SendableChooser<const AutoController::InstructionSet*> autoStrategyChooser; //+
 	const AutoController::InstructionSet* selectedAutoStrategy; //+
 	
 	PowerDistributionPanel pdp;

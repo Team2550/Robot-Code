@@ -4,11 +4,8 @@ const float AUTO_STEER_STRENGTH = 1.3;
 const float STRAIGHT_DECEL_MULT = 90;
 const float ROTATE_DECEL_MULT = 100;
 
-AutoController::AutoController(DriveBase* driveBase, Gyro* gyroscope, Robot* robot_) : robot(robot_)
+AutoController::AutoController(Robot* robot_) : robot(robot_)
 {
-	this->driveBase = driveBase;
-	this->gyroscope = gyroscope;
-
 	instructionSet.steps = NULL;
 	instructionSet.count = 0;
 
@@ -26,14 +23,17 @@ AutoController::~AutoController()
 
 void AutoController::Init(InstructionSet instructionSet)
 {
+	printf("recieved autonomous command!");
 	timer.Reset();
 	timer.Start();
 
 	this->instructionSet.steps = instructionSet.steps;
 	this->instructionSet.count = instructionSet.count;
 
-	driveBase->ResetDistance();
-	gyroscope->Reset();
+	printf("%d", instructionSet.count);
+
+	robot->driveBase.ResetDistance();
+	robot->gyroscope.Reset();
 
 	currentInstruction = 0;
 	instructionStartTime = 0;
@@ -59,7 +59,7 @@ bool AutoController::Execute()
 	case WAIT_TIME:
 		inst.target += instructionStartTime;
 	case WAIT_UNTIL:
-		driveBase->Drive(inst.leftSpeed, inst.rightSpeed);
+		robot->driveBase.Drive(inst.leftSpeed, inst.rightSpeed);
 		instructionCompleted = (timer.Get() >= inst.target);
 		break;
 
@@ -78,13 +78,13 @@ bool AutoController::Execute()
 		break;
 
 	case RESET_DIST_0:
-		driveBase->ResetDistance();
+		robot->driveBase.ResetDistance();
 		std::cout << "Reset dist" << std::endl;
 		instructionCompleted = true;
 		break;
 
 	case DRIVE_UNTIL:
-		if (doAmpTest && driveBase->getAmps(robot->pdp) > Autonomous::AmpLimit)
+		if (doAmpTest && robot->driveBase.getAmps(robot->pdp) > Autonomous::AmpLimit)
 			{
 				printf("Amps too high! Stopping...\n");
 				robot->driveBase.Stop();
@@ -101,14 +101,14 @@ bool AutoController::Execute()
 	//	break;
 
 	default:
-		driveBase->Stop();
+		robot->driveBase.Stop();
 	}
 
 	if (instructionCompleted)
 	{
 		instructionStartTime = timer.Get();
 		instructionStartDistance = GetCurrentDistance();
-		instructionStartAngle = gyroscope->GetAngle();
+		instructionStartAngle = robot->gyroscope.GetAngle();
 
 		if (inst.type == ROTATE_DEG || inst.type == ROTATE_TO)
 			instructionTargetAngle = inst.target;
@@ -119,7 +119,7 @@ bool AutoController::Execute()
 	// Check if all instructions are complete
 	if (currentInstruction >= instructionSet.count)
 	{
-		driveBase->Stop();
+		robot->driveBase.Stop();
 		return true;
 	}
 	else
@@ -130,7 +130,7 @@ bool AutoController::AutoDriveToDist( double leftSpeed, double rightSpeed, doubl
 {
 	// Get sensor data
 	double currentDistance = GetCurrentDistance(); // Average of left and right distances.
-	double currentAngle = gyroscope->GetAngle();
+	double currentAngle = robot->gyroscope.GetAngle();
 
 	// Get the angle that the robot has drifted from its target as a percentage out of 90 degrees
 	double angleOffsetPercent = (currentAngle - targetAngle) / 10;
@@ -174,7 +174,7 @@ bool AutoController::AutoDriveToDist( double leftSpeed, double rightSpeed, doubl
 	if ((leftSpeed + rightSpeed) * 0.5 * fabs(speedMultiplier) < 0.25)
 		speedMultiplier *= 0.25 / ((leftSpeed + rightSpeed) * 0.5 * fabs(speedMultiplier));
 
-	driveBase->Drive(leftSpeed * speedMultiplier * leftSpeedMult, rightSpeed * speedMultiplier * rightSpeedMult);
+	robot->driveBase.Drive(leftSpeed * speedMultiplier * leftSpeedMult, rightSpeed * speedMultiplier * rightSpeedMult);
 
 	// Returns true if distance to target is less than 2 (1/6 foot range)
 	return abs( currentDistance - targetDistance ) < 2;
@@ -195,7 +195,7 @@ bool AutoController::AutoRotateToAngle( double leftSpeed, double rightSpeed, dou
 	}
 
 	// Get sensor data
-	double targetAngleOffset = targetAngle - gyroscope->GetAngle();
+	double targetAngleOffset = targetAngle - robot->gyroscope.GetAngle();
 
 	double speedMultiplier = 1;
 
@@ -216,15 +216,15 @@ bool AutoController::AutoRotateToAngle( double leftSpeed, double rightSpeed, dou
 
 	// Turn clockwise
 	if ( targetAngleOffset > 4 )
-		driveBase->Drive(leftSpeed * speedMultiplier, rightSpeed * speedMultiplier);
+		robot->driveBase.Drive(leftSpeed * speedMultiplier, rightSpeed * speedMultiplier);
 
 	// Turn counter-clockwise
 	else if ( targetAngleOffset < -4 )
-		driveBase->Drive(-leftSpeed * speedMultiplier, -rightSpeed * speedMultiplier);
+		robot->driveBase.Drive(-leftSpeed * speedMultiplier, -rightSpeed * speedMultiplier);
 
 	// Stop
 	else if (stopAtTarget)
-		driveBase->Stop();
+		robot->driveBase.Stop();
 
 
 	// Return true if angle is within range of (targetAngle - 4, targetAngle + 4))
@@ -233,5 +233,5 @@ bool AutoController::AutoRotateToAngle( double leftSpeed, double rightSpeed, dou
 
 double AutoController::GetCurrentDistance()
 {
-	return (driveBase->GetLeftDistance() + driveBase->GetRightDistance()) / 2;
+	return (robot->driveBase.GetLeftDistance() + robot->driveBase.GetRightDistance()) / 2;
 }

@@ -19,14 +19,14 @@ namespace AUTO_STRATEGIES
 		{AutoController::WAIT_TIME, 0.05},
 
 		//rotate towards the left wall and drive until ~1ft away
-		{AutoController::ROTATE_TO, 90, true, 0, AUTO_STRATEGIES::AUTO_ROTATE_SPEED},
+		//{AutoController::ROTATE_TO, 90, true, 0, AUTO_STRATEGIES::AUTO_ROTATE_SPEED},
 		{AutoController::DRIVE_DIST, 8, true, AUTO_STRATEGIES::AUTO_BOOST_SPEED}
 
 
 	};
 
-	const AutoController::InstructionSet LEFT_PLATFORM = {LEFT_PLATFORM_STEPS, 4};
-	const AutoController::PositionOptions LEFT_PLATFORM_OPTIONS = {&LEFT_PLATFORM, &LEFT_PLATFORM};
+	const AutoController::InstructionSet LEFT_PLATFORM = {LEFT_PLATFORM_STEPS, 3};
+	//const AutoController::PositionOptions LEFT_PLATFORM_OPTIONS = {&LEFT_PLATFORM, &LEFT_PLATFORM};
 
 	const AutoController::Instruction SPIN_STEPS[] = 
 	{
@@ -35,14 +35,14 @@ namespace AUTO_STRATEGIES
 	};
 
 	const AutoController::InstructionSet SPIN = {SPIN_STEPS, 2};
-	const AutoController::PositionOptions SPIN_OPTIONS = {&SPIN, &SPIN};
+	//const AutoController::PositionOptions SPIN_OPTIONS = {&SPIN, &SPIN};
 	
 	const AutoController::Instruction NOTHING_STEPS[] =
 	{
 		{}
 	};
 	const AutoController::InstructionSet NOTHING = {NOTHING_STEPS, 0};
-	const AutoController::PositionOptions NOTHING_OPTIONS = {&NOTHING, &NOTHING};
+	//const AutoController::PositionOptions NOTHING_OPTIONS = {&NOTHING, &NOTHING};
 
 }
 

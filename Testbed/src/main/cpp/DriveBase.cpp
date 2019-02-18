@@ -60,9 +60,6 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	printf("%f",leftSpeed);
-	printf(",");
-	printf("%f",rightSpeed);
 	if (leftSpeed > 0)
 		leftMotor.Set(leftSpeed * leftForwardTrim);
 	else

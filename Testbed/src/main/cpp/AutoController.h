@@ -39,13 +39,13 @@ public:
 		unsigned int count;
 	};
 
-	struct PositionOptions
+	/**struct PositionOptions
 	{
 		const InstructionSet* leftOption;
 		const InstructionSet* rightOption;
-	};
+	};**/
 
-	AutoController(DriveBase* driveBase, Gyro* gyroscope, Robot* robot);
+	AutoController(Robot* robot);
 	~AutoController();
 
 	// Name:	Execute
@@ -59,8 +59,6 @@ public:
 	bool Execute();
 
 private:
-	DriveBase* driveBase;
-	Gyro* gyroscope;
 	Robot* robot;
 	Timer timer;
 
