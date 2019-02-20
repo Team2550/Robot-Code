@@ -5,9 +5,9 @@
 
 namespace AUTO_STRATEGIES
 {
-	const float AUTO_DRIVE_SPEED = 0.5f; // Increased from 0.4 to better grip block while moving
+	const float AUTO_DRIVE_SPEED = 0.9f; // Increased from 0.4 to better grip block while moving
 	const float AUTO_BOOST_SPEED = 0.9f;
-	const float AUTO_ROTATE_SPEED = 0.65f;
+	const float AUTO_ROTATE_SPEED = 0.8f;
 
 	const float ROBOT_WIDTH = 30.5f; // Without bumpers
 	const float ROBOT_LENGTH = 28.0f; 
@@ -15,18 +15,29 @@ namespace AUTO_STRATEGIES
 	const AutoController::Instruction LEFT_PLATFORM_STEPS[] =
 	{
 		//drive off the platform
-		{AutoController::DRIVE_DIST, 6, true, AUTO_STRATEGIES::AUTO_DRIVE_SPEED},
+		{AutoController::DRIVE_DIST, 4, true, AUTO_STRATEGIES::AUTO_DRIVE_SPEED},
 		{AutoController::WAIT_TIME, 0.05},
 
 		//rotate towards the left wall and drive until ~1ft away
-		//{AutoController::ROTATE_TO, 90, true, 0, AUTO_STRATEGIES::AUTO_ROTATE_SPEED},
+		{AutoController::ROTATE_TO, 90, true, 0, AUTO_STRATEGIES::AUTO_ROTATE_SPEED},
 		{AutoController::DRIVE_DIST, 8, true, AUTO_STRATEGIES::AUTO_BOOST_SPEED}
 
 
 	};
 
-	const AutoController::InstructionSet LEFT_PLATFORM = {LEFT_PLATFORM_STEPS, 3};
+	const AutoController::InstructionSet LEFT_PLATFORM = {LEFT_PLATFORM_STEPS, 4};
 	//const AutoController::PositionOptions LEFT_PLATFORM_OPTIONS = {&LEFT_PLATFORM, &LEFT_PLATFORM};
+
+	const AutoController::Instruction RIGHT_PLATFORM_STEPS[] =
+	{
+		{AutoController::DRIVE_DIST, 4, true, AUTO_STRATEGIES::AUTO_DRIVE_SPEED},
+		{AutoController::WAIT_TIME, 0.05},
+
+		{AutoController::ROTATE_TO, -90, true, 0, AUTO_STRATEGIES::AUTO_ROTATE_SPEED},
+		{AutoController::DRIVE_DIST, 8, true, AUTO_STRATEGIES::AUTO_BOOST_SPEED}
+	};
+
+	const AutoController::InstructionSet RIGHT_PLATFORM = {RIGHT_PLATFORM_STEPS, 4};
 
 	const AutoController::Instruction SPIN_STEPS[] = 
 	{

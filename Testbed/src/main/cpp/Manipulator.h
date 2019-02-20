@@ -7,14 +7,17 @@
 class Manipulator
 {
 public:
-    Manipulator(int hatchManipulatorLowerPort, int hatchManipulatorRaisePort, int hatchKickerRetractPort, int hatchKickerExtendPort);
-    void manipulatorLower();
-    void manipulatorRaise();
+    Manipulator(int feedHatchRetractPort, int feedHatchExtendPort, int groundHatchLowerPort, int groundHatchRaisePort, int groundHatchKickerRetractPort, int groundHatchKickerExtendPort);
+    void feedHatchRetract();
+    void feedHatchExtend();
 
-    void hatchKickerRetract();
-    void hatchKickerExtend();
+    void groundHatchLower();
+    void groundHatchRaise();
+    
+    void groundHatchKickerRetract();
+    void groundHatchKickerExtend();
 
-    bool grabHatch(double pauseTime);
+    bool grabGroundHatch(double pauseTime);
     
 private:
     enum State { UNKOWN, RETRACT, EXTEND };
@@ -22,8 +25,9 @@ private:
     frc::Timer grabHatchTimer;
     bool isGrabbingHatch;
 
-    frc::DoubleSolenoid manipulator; //2,3
-    frc::DoubleSolenoid hatchKicker; //4,5
+    frc::DoubleSolenoid feedHatch; //2,3
+    frc::DoubleSolenoid groundHatch;
+    frc::DoubleSolenoid groundHatchKicker; //4,5
 
 };
 #endif

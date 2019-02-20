@@ -48,10 +48,13 @@ public:
 	int buttonAutoAim;
 	int buttonWinchForwards;
 	int buttonWinchBackwards;
-	int buttonClimberGrab;
-	int buttonClimberRelease;
-	int buttonGrabHatch;
-	int buttonReleaseHatch;
+	int buttonHandGrab;
+	int buttonArmGrab;
+	int buttonFeedHatchToggle;
+	int buttonClimbGrabToggle;
+
+	int climbGrabToggleCount;
+	int feedHatchToggleCount;
 
 	float boostPressTime;
 

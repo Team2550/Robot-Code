@@ -12,8 +12,8 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 				 winch(2),
-				 grabber(2,3,4,5),
-				 manipulator(2,3,4,5)
+				 grabber(0,1,2,3),
+				 manipulator(0,1,2,3,4,5)
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
@@ -23,10 +23,8 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 	autoAimToggle = &autoAimOn;
 	buttonWinchForwards = xbox::btn::rb;
 	buttonWinchBackwards = xbox::btn::lb;
-	buttonClimberGrab = xbox::btn::rightPush;
-	buttonClimberRelease = xbox::btn::leftPush;
-	buttonGrabHatch = xbox::btn::a;
-	buttonReleaseHatch = xbox::btn::x;
+	buttonClimbGrabToggle = xbox::btn::x;
+	buttonFeedHatchToggle = xbox::btn::a;
 
 	boostPressTime = -999;
 
@@ -40,13 +38,11 @@ Robot::~Robot()
 
 void Robot::RobotInit()
 {
+	climbGrabToggleCount = 2;
+	feedHatchToggleCount = 2;
 	std::cout << "Calibrating gyro..." << std::endl;
 	gyroscope.Calibrate();
 	std::cout << "Gyro calibrated.... This message gets sent regardless of if the Gyro was calibrated or not. I hope it doesn't fail :)" << std::endl;
-
-	autoAimChooser.AddDefault("Auto Aim On", &autoAimOn);
-	autoAimChooser.AddObject("Auto Aim Off", &autoAimOff);
-	SmartDashboard::PutData("Auto Aim Toggle", &autoAimChooser);
 
 	driveBase.setReversed(true);
 
@@ -94,6 +90,11 @@ void Robot::AutonomousPeriodic()
 	printf(", Dist:");
 	printf(std::to_string(data[UDP::Index::Distance]).c_str());
 	printf("\n");**/
+	
+	/**std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
+	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
+			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
+	**/
 
 	printf("...");
 
@@ -209,25 +210,36 @@ void Robot::TeleopPeriodic()
 			winch.climb(false, false);
 		}
 		//Grabber
-		if(perifController.GetRawButton(buttonClimberGrab))
-		{
-			grabber.armGrab();
-			grabber.handGrab();
+		if(perifController.GetRawButton(buttonClimbGrabToggle))
+		{	
+			if(climbGrabToggleCount % 2 == 0)
+			{
+				grabber.handRelease();
+				grabber.armRelease();
+				climbGrabToggleCount++;
+			}
+			else
+			{
+				grabber.handGrab();
+				grabber.armGrab();
+				climbGrabToggleCount++;
+			}
 		}
-		if(perifController.GetRawButton(buttonClimberRelease))
-		{
-			grabber.armRelease();
-			grabber.handRelease();
+		
+		if(perifController.GetRawButton(buttonFeedHatchToggle))
+		{	
+			if(feedHatchToggleCount % 2 == 0)
+			{
+				manipulator.feedHatchRetract();
+				feedHatchToggleCount++;
+			}
+			else
+			{
+				manipulator.feedHatchExtend();
+				feedHatchToggleCount++;
+			}
 		}
-		//Manipulator
-		if(perifController.GetRawButton(buttonGrabHatch))
-		{
-			manipulator.grabHatch(.5);
-		}
-		if(perifController.GetRawButton(buttonReleaseHatch))
-		{
-			manipulator.hatchKickerExtend();
-		}
+
 	}
 
 

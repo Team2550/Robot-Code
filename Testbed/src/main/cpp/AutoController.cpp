@@ -130,6 +130,10 @@ bool AutoController::AutoDriveToDist( double leftSpeed, double rightSpeed, doubl
 {
 	// Get sensor data
 	double currentDistance = GetCurrentDistance(); // Average of left and right distances.
+	printf("current distance: ");
+	printf("%d", currentDistance);
+	printf("target distance: ");
+	printf("%d", targetDistance);
 	double currentAngle = robot->gyroscope.GetAngle();
 
 	// Get the angle that the robot has drifted from its target as a percentage out of 90 degrees
