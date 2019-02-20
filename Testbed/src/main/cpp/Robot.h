@@ -50,8 +50,14 @@ public:
 	int buttonWinchBackwards;
 	int buttonHandGrab;
 	int buttonArmGrab;
-	int buttonFeedHatchToggle;
+	int buttonFeedHatchExtend;
+	int buttonFeedHatchRetract;
 	int buttonClimbGrabToggle;
+	int buttonClimbGrab;
+	int buttonClimbRelease;
+
+	int perifControllerPOV = perifController.GetPOV();
+	int driveControllerPOV = driveController.GetPOV();
 
 	int climbGrabToggleCount;
 	int feedHatchToggleCount;
@@ -70,6 +76,8 @@ public:
 	bool *autoAimToggle;
 	frc::SendableChooser<const AutoController::InstructionSet*> autoStrategyChooser; //+
 	const AutoController::InstructionSet* selectedAutoStrategy; //+
+
+	frc::Compressor compressor;
 	
 	PowerDistributionPanel pdp;
 
