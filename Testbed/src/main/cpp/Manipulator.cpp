@@ -7,7 +7,7 @@ Manipulator::Manipulator(int feedHatchRetractPort, int feedHatchExtendPort, int 
     grabHatchTimer.Start();
 
     feedHatch.Set(frc::DoubleSolenoid::kReverse);
-    groundHatch.Set(frc::DoubleSolenoid::kReverse);
+    groundHatch.Set(frc::DoubleSolenoid::kForward);
     groundHatchKicker.Set(frc::DoubleSolenoid::kReverse);
 
     isGrabbingHatch = false;

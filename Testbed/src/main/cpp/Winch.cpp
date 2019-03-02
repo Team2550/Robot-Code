@@ -4,19 +4,14 @@ Winch::Winch(int winchMotorPort) : winchMotor(winchMotorPort)
 
 {
     climbMotorPort = winchMotorPort;
-    winchSpeed = .8f;
 }
 
-void Winch::setSpeed(double speed)
-{
-    winchSpeed = speed;
-}
 void Winch::climb(bool climb, bool drop)
 {
     if(climb)
-        winchMotor.Set(winchSpeed);
+        winchMotor.Set(1);
     else if(drop)
-        winchMotor.Set(-winchSpeed);
+        winchMotor.Set(-1);
     else 
         winchMotor.Set(0);
 

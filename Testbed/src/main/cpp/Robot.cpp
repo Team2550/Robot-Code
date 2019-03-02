@@ -12,8 +12,8 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 				 winch(2),
-				 grabber(2,3,4,5),
-				 manipulator(6,7,0,1,100,100)
+				 grabber(0,1,2,3),
+				 manipulator(0,1,2,3,4,5)
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
@@ -23,11 +23,8 @@ Robot::Robot() : autoAim(this), driveController(0), perifController(1),
 	autoAimToggle = &autoAimOn;
 	buttonWinchForwards = xbox::btn::rb;
 	buttonWinchBackwards = xbox::btn::lb;
-	//buttonClimbGrabToggle = xbox::btn::x;
-	buttonClimbGrab = xbox::btn::x;
-	buttonClimbRelease = xbox::btn::y;
-	buttonFeedHatchExtend = xbox::btn::a;
-	buttonFeedHatchRetract = xbox::btn::b;
+	buttonClimbGrabToggle = xbox::btn::x;
+	buttonFeedHatchToggle = xbox::btn::a;
 
 	boostPressTime = -999;
 
@@ -145,36 +142,37 @@ void Robot::TeleopPeriodic()
 		autoAim.checkAutoAim();
 	}
 	else{
+		int controllerPOV = driveController.GetPOV();
 
-		if (driveControllerPOV == 0)
+		if (controllerPOV == 0)
 		{
 			driveBase.Drive(speedTurtle);
 		}
-		else if (driveControllerPOV == 45)
+		else if (controllerPOV == 45)
 		{
 			driveBase.Drive(speedTurtle, 0);
 		}
-		else if (driveControllerPOV == 90)
+		else if (controllerPOV == 90)
 		{
 			driveBase.Drive(speedTurtle, -speedTurtle);
 		}
-		else if (driveControllerPOV == 135)
+		else if (controllerPOV == 135)
 		{
 			driveBase.Drive(0, -speedTurtle);
 		}
-		else if (driveControllerPOV == 180)
+		else if (controllerPOV == 180)
 		{
 			driveBase.Drive(-speedTurtle);
 		}
-		else if (driveControllerPOV == 225)
+		else if (controllerPOV == 225)
 		{
 			driveBase.Drive(-speedTurtle, 0);
 		}
-		else if (driveControllerPOV == 270)
+		else if (controllerPOV == 270)
 		{
 			driveBase.Drive(-speedTurtle, speedTurtle);
 		}
-		else if (driveControllerPOV == 315)
+		else if (controllerPOV == 315)
 		{
 			driveBase.Drive(0, speedTurtle);
 		}
@@ -189,7 +187,6 @@ void Robot::TeleopPeriodic()
 				baseSpeed = speedTurtle;
 			else if (driveController.GetRawButton(buttonBoost)) // Boost
 			{
-				printf("BEAST MODDDDEEEEE!!!!!!!!!");
 				baseSpeed = speedBoost;
 				boostPressTime = timer.Get();
 			}
@@ -203,20 +200,17 @@ void Robot::TeleopPeriodic()
 		if(perifController.GetRawButton(buttonWinchForwards))
 		{
 			winch.climb(true, false);
-			compressor.Stop();
 		}
 		else if(perifController.GetRawButton(buttonWinchBackwards))
 		{
 			winch.climb(false, true);
-			compressor.Stop();
 		}
 		else
 		{
 			winch.climb(false, false);
-			compressor.Start();
 		}
 		//Grabber
-		/*if(perifController.GetRawButton(buttonClimbGrabToggle))
+		if(perifController.GetRawButton(buttonClimbGrabToggle))
 		{	
 			if(climbGrabToggleCount % 2 == 0)
 			{
@@ -230,59 +224,20 @@ void Robot::TeleopPeriodic()
 				grabber.armGrab();
 				climbGrabToggleCount++;
 			}
-		}*/
-		if(perifController.GetRawButton(buttonClimbGrab))
-		{	
-			grabber.handGrab();
-			grabber.armGrab();
 		}
-		if(perifController.GetRawButton(buttonClimbRelease))
-		{	
-			grabber.handRelease();
-			grabber.armRelease();
-		}
-
 		
-		if(perifController.GetRawButton(buttonFeedHatchExtend))
+		if(perifController.GetRawButton(buttonFeedHatchToggle))
 		{	
-			manipulator.groundHatchRaise();
-		}
-		if(perifController.GetRawButton(buttonFeedHatchRetract))
-		{	
-			manipulator.groundHatchLower();
-		}
-
-		if (perifControllerPOV == 0)
-		{
-			winch.setSpeed(3/7);
-		}
-		else if (perifControllerPOV == 45)
-		{
-			winch.setSpeed(4/7);
-		}
-		else if (perifControllerPOV == 90)
-		{
-			winch.setSpeed(5/7);
-		}
-		else if (perifControllerPOV == 135)
-		{
-			winch.setSpeed(6/7);
-		}
-		else if (perifControllerPOV == 180)
-		{
-			winch.setSpeed(7/7);
-		}
-		else if (perifControllerPOV == 225)
-		{
-			winch.setSpeed(1/7);
-		}
-		else if (perifControllerPOV == 270)
-		{
-			winch.setSpeed(2/7);
-		}
-		else if (perifControllerPOV == 315)
-		{
-			winch.setSpeed(3/7);
+			if(feedHatchToggleCount % 2 == 0)
+			{
+				manipulator.feedHatchRetract();
+				feedHatchToggleCount++;
+			}
+			else
+			{
+				manipulator.feedHatchExtend();
+				feedHatchToggleCount++;
+			}
 		}
 
 	}
