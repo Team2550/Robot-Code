@@ -1,2 +1,2 @@
 # Robot-Code
-This is the code for the 2019 season and on.
+This is the code for the robotics club at CAIS.
