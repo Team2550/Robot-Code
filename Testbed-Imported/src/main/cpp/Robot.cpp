@@ -6,14 +6,11 @@
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
-Robot::Robot() : autoAim(this), driveController(0), perifController(1),
+Robot::Robot() : driveController(0), perifController(1),
 				 udpReceiver(),
-				 autoController(this), //+
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
-				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512), // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
-				 winch(2),
-				 grabber(0,1,2,3),
-				 manipulator(0,1,2,3,4,5)
+				 // 0 for right, 1 for left on El Churro
+				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 {
 	axisTankLeft = xbox::axis::leftY;
 	axisTankRight = xbox::axis::rightY;
@@ -53,67 +50,16 @@ void Robot::RobotInit()
 
 void Robot::AutonomousInit()
 {
-	UpdatePreferences();
-
-	driveBase.Stop();
-
-	timer.Reset();
-	timer.Start();
-
-	
-	//+
-	if (selectedAutoStrategy != NULL)
-	{
-		std::cout << "Initializing autonomous" << std::endl;
-		autoController.Init(*selectedAutoStrategy);
-		autoController.Execute();
-		autoStrategyCompleted = false;
-	}
-	else
-	{
-		std::cout << "Selected strategy is blank" << std::endl;
-		autoStrategyCompleted = true;
-	}
+	std::cout << "This does NOTHING!";
 }
 
 void Robot::AutonomousPeriodic()
 {
-	/* ========== udpReceiver ========== */
-	udpReceiver.checkUDP();
-	udpReceiver.clearUDPSocket();
-
-	float data[UDP::DataCount];
-	udpReceiver.getUDPData(data);
-
-	/**printf("X Angle:");
-	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
-	printf(", Dist:");
-	printf(std::to_string(data[UDP::Index::Distance]).c_str());
-	printf("\n");**/
-	
-	/**std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
-	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
-			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
-	**/
-
-	printf("...");
-
-	
+	std::cout << "This does NOTHING!";
 }
 
-void Robot::TeleopInit()
-{
-	UpdatePreferences();
-
-	gyroscope.Reset();
-
-	driveBase.Stop();
-	driveBase.ResetDistance();
-	boostPressTime = -999;
-
-
-	timer.Reset();
-	timer.Start();
+void Robot::TeleopInit(){
+	std::cout << "This does NOTHING!";
 }
 
 void Robot::TeleopPeriodic()
@@ -139,7 +85,7 @@ void Robot::TeleopPeriodic()
 	// Use D-pad of controller to drive in basic directions
 
 	if(driveController.GetRawButton(buttonAutoAim)){
-		autoAim.checkAutoAim();
+		std::cout << "We removed this";
 	}
 	else{
 		int controllerPOV = driveController.GetPOV();
@@ -196,52 +142,8 @@ void Robot::TeleopPeriodic()
 			driveBase.Drive(leftSpeed * baseSpeed,
 							rightSpeed * baseSpeed);
 		}
-		//Winch
-		if(perifController.GetRawButton(buttonWinchForwards))
-		{
-			winch.climb(true, false);
-		}
-		else if(perifController.GetRawButton(buttonWinchBackwards))
-		{
-			winch.climb(false, true);
-		}
-		else
-		{
-			winch.climb(false, false);
-		}
-		//Grabber
-		if(perifController.GetRawButton(buttonClimbGrabToggle))
-		{	
-			if(climbGrabToggleCount % 2 == 0)
-			{
-				grabber.handRelease();
-				grabber.armRelease();
-				climbGrabToggleCount++;
-			}
-			else
-			{
-				grabber.handGrab();
-				grabber.armGrab();
-				climbGrabToggleCount++;
-			}
-		}
-		
-		if(perifController.GetRawButton(buttonFeedHatchToggle))
-		{	
-			if(feedHatchToggleCount % 2 == 0)
-			{
-				manipulator.feedHatchRetract();
-				feedHatchToggleCount++;
-			}
-			else
-			{
-				manipulator.feedHatchExtend();
-				feedHatchToggleCount++;
-			}
-		}
 
 	}
-
 
 }
 
@@ -263,12 +165,6 @@ void Robot::UpdatePreferences()
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
 
 
-	// Setup autonomous strategy chooser
-	autoStrategyChooser.AddDefault("Left Platform", &AUTO_STRATEGIES::LEFT_PLATFORM);
-	autoStrategyChooser.AddObject("Spin", &AUTO_STRATEGIES::SPIN);
-	autoStrategyChooser.AddObject("Nothing", &AUTO_STRATEGIES::NOTHING);
-	frc::SmartDashboard::PutData("Autonomous Strategies", &autoStrategyChooser);
-	selectedAutoStrategy = autoStrategyChooser.GetSelected();
 }
 // Returns true if at target
 
