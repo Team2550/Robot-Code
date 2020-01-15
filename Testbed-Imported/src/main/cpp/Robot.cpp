@@ -22,8 +22,9 @@ Robot::Robot() : driveController(0), perifController(1),
 	buttonWinchBackwards = xbox::btn::lb;
 	buttonClimbGrabToggle = xbox::btn::x;
 	buttonFeedHatchToggle = xbox::btn::a;
-
 	boostPressTime = -999;
+
+	input = new Xbox;
 
 	UpdatePreferences();
 }
@@ -110,7 +111,7 @@ void Robot::TeleopPeriodic()
 		{
 			driveBase.Drive(-speedTurtle);
 		}
-		else if (controllerPOV == 225)
+		else if (controllerPOV == 225) // input.turtle
 		{
 			driveBase.Drive(-speedTurtle, 0);
 		}

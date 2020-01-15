@@ -9,7 +9,8 @@
 #include <frc/WPILib.h>
 #include <iostream>
 #include <iomanip>
-#include "xBox.h"
+#include "Xbox.h"
+#include "Input.h"
 #include "UDP-Receiver.h"
 #include "DriveBase.h"
 
@@ -63,6 +64,7 @@ public:
 	
 	PowerDistributionPanel pdp;
 
+	Input *input;
 	Joystick driveController;
 	Joystick perifController;
 	Timer timer;
