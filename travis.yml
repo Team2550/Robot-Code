@@ -1,0 +1,6 @@
+sudo: false
+language: cpp
+install: true
+script: ./Hindsight/gradlew build
+after_success: ./Hindsight/gradlew bintrayUpload
+jdk: oraclejdk8
