@@ -12,7 +12,7 @@ public:
 	bool climb();
 	bool autoAim();
 private:
-	Joystick controller;
+	frc::Joystick controller;
 	const uint32_t a = 1;
 	const uint32_t b = 2;
 	const uint32_t x = 3;
@@ -30,7 +30,7 @@ private:
 
 
 
-
+/*
 namespace xbox
 {
 	namespace axis
@@ -62,5 +62,6 @@ namespace xbox
 		const uint32_t rightPush = 10;
 	}
 }
+*/
 
 #endif
