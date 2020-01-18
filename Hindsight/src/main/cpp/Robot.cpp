@@ -6,22 +6,13 @@
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
-Robot::Robot() : //driveController(0),
+Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 // 0 for right, 1 for left on El Churro
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 {
-/*
-	axisTankLeft = xbox::axis::leftY;
-	axisTankRight = xbox::axis::rightY;
-	buttonBoost = xbox::btn::rb;
-	buttonTurtle = xbox::btn::lb;
-*/
 	boostPressTime = -999;
-	
-	input = new Xbox();
-
 	UpdatePreferences();
 }
 
@@ -84,14 +75,14 @@ void Robot::TeleopPeriodic()
 
 
 
-	float leftSpeed = Utility::Deadzone(-input->leftTankAxis());
-	float rightSpeed = Utility::Deadzone(-input->rightTankAxis());
+	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
+	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
 
 	float baseSpeed = speedNormal;
 
-	if (input->turtle()){ 
+	if (inputController.turtle()){ 
 		baseSpeed = speedTurtle;
-	} else if (input->boost()){
+	} else if (inputController.boost()){
 		baseSpeed = speedBoost;
 		boostPressTime = timer.Get();
 	} else if (timer.Get() < boostPressTime + boostDecelerationTime) {

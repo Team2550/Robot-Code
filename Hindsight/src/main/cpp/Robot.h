@@ -64,8 +64,7 @@ public:
 	
 	PowerDistributionPanel pdp;
 
-	Input *input;
-	// Joystick driveController;
+	Xbox inputController;
 	Timer timer;
 	//Timer UDPAgeTimer;
 	UDP_Receiver udpReceiver;
