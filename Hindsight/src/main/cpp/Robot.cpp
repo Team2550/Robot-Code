@@ -104,5 +104,10 @@ void Robot::UpdatePreferences()
 }
 // Returns true if at target
 
+//Old way, was creating a complier warning
+//START_ROBOT_CLASS(Robot)
 
-START_ROBOT_CLASS(Robot)
+//New way (maybe), suggested by the complier
+int main() {
+	return frc::StartRobot<Robot>();
+}
