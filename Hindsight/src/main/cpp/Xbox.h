@@ -8,9 +8,10 @@
 class Xbox : public Input{
 public:
 	Xbox();
-	bool shoot();
-	bool climb();
-	bool autoAim();
+	bool boost();
+	bool turtle();
+	double leftTankAxis();
+	double rightTankAxis();
 private:
 	frc::Joystick controller;
 	const uint32_t a = 1;
@@ -26,6 +27,18 @@ private:
 
 	const uint32_t leftPush = 9;
 	const uint32_t rightPush = 10;
+
+	//Axes (not the slashy kind)
+
+	const uint32_t leftX = 0;
+	const uint32_t leftY = 1;
+
+	const uint32_t rightX = 4;
+	const uint32_t rightY = 5;
+
+	const uint32_t LT = 2;
+	const uint32_t RT = 3;
+	const uint32_t dpadX = 6;
 };
 
 

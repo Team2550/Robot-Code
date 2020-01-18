@@ -66,7 +66,6 @@ public:
 
 	Input *input;
 	Joystick driveController;
-	Joystick perifController;
 	Timer timer;
 	//Timer UDPAgeTimer;
 	UDP_Receiver udpReceiver;

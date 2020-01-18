@@ -16,12 +16,6 @@ Robot::Robot() : driveController(0), perifController(1),
 	axisTankRight = xbox::axis::rightY;
 	buttonBoost = xbox::btn::rb;
 	buttonTurtle = xbox::btn::lb;
-	buttonAutoAim = xbox::btn::a;
-	autoAimToggle = &autoAimOn;
-	buttonWinchForwards = xbox::btn::rb;
-	buttonWinchBackwards = xbox::btn::lb;
-	buttonClimbGrabToggle = xbox::btn::x;
-	buttonFeedHatchToggle = xbox::btn::a;
 	boostPressTime = -999;
 
 	input = new Xbox;
@@ -36,8 +30,6 @@ Robot::~Robot()
 
 void Robot::RobotInit()
 {
-	climbGrabToggleCount = 2;
-	feedHatchToggleCount = 2;
 	std::cout << "Calibrating gyro..." << std::endl;
 	gyroscope.Calibrate();
 	std::cout << "Gyro calibrated.... This message gets sent regardless of if the Gyro was calibrated or not. I hope it doesn't fail :)" << std::endl;
@@ -85,68 +77,30 @@ void Robot::TeleopPeriodic()
 	// Drivebase
 	// Use D-pad of controller to drive in basic directions
 
-	if(driveController.GetRawButton(buttonAutoAim)){
-		std::cout << "We removed this";
+
+
+	float leftSpeed = Utility::Deadzone(-driveController.GetRawAxis(axisTankLeft));
+	float rightSpeed = Utility::Deadzone(-driveController.GetRawAxis(axisTankRight));
+
+	float baseSpeed = speedNormal;
+
+	if (driveController.GetRawButton(buttonTurtle)) // Turtle
+		baseSpeed = speedTurtle;
+	else if (driveController.GetRawButton(buttonBoost)) // Boost
+	{
+		baseSpeed = speedBoost;
+		boostPressTime = timer.Get();
 	}
-	else{
-		int controllerPOV = driveController.GetPOV();
+	else if (timer.Get() < boostPressTime + boostDecelerationTime) // Deceleration from boost
+		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((timer.Get() - boostPressTime) / boostDecelerationTime);
 
-		if (controllerPOV == 0)
-		{
-			driveBase.Drive(speedTurtle);
-		}
-		else if (controllerPOV == 45)
-		{
-			driveBase.Drive(speedTurtle, 0);
-		}
-		else if (controllerPOV == 90)
-		{
-			driveBase.Drive(speedTurtle, -speedTurtle);
-		}
-		else if (controllerPOV == 135)
-		{
-			driveBase.Drive(0, -speedTurtle);
-		}
-		else if (controllerPOV == 180)
-		{
-			driveBase.Drive(-speedTurtle);
-		}
-		else if (controllerPOV == 225) // input.turtle
-		{
-			driveBase.Drive(-speedTurtle, 0);
-		}
-		else if (controllerPOV == 270)
-		{
-			driveBase.Drive(-speedTurtle, speedTurtle);
-		}
-		else if (controllerPOV == 315)
-		{
-			driveBase.Drive(0, speedTurtle);
-		}
-		else // No buttons on D-pad being pressed, use joysticks
-		{
-			float leftSpeed = Utility::Deadzone(-driveController.GetRawAxis(axisTankLeft));
-			float rightSpeed = Utility::Deadzone(-driveController.GetRawAxis(axisTankRight));
-
-			float baseSpeed = speedNormal;
-
-			if (driveController.GetRawButton(buttonTurtle)) // Turtle
-				baseSpeed = speedTurtle;
-			else if (driveController.GetRawButton(buttonBoost)) // Boost
-			{
-				baseSpeed = speedBoost;
-				boostPressTime = timer.Get();
-			}
-			else if (timer.Get() < boostPressTime + boostDecelerationTime) // Deceleration from boost
-				baseSpeed = speedBoost + (speedNormal - speedBoost) * ((timer.Get() - boostPressTime) / boostDecelerationTime);
-
-			driveBase.Drive(leftSpeed * baseSpeed,
-							rightSpeed * baseSpeed);
-		}
-
-	}
-
+	driveBase.Drive(leftSpeed * baseSpeed,
+					rightSpeed * baseSpeed);
 }
+
+
+
+
 
 void Robot::UpdatePreferences()
 {
