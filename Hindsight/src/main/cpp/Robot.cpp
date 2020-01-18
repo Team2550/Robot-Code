@@ -57,22 +57,9 @@ void Robot::TeleopPeriodic()
 	float data[UDP::DataCount];
 	udpReceiver.getUDPData(data);
 
-	// FIXME
-
-	/*
-	printf("X Angle:");
-	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
-	printf(", Dist:");
-	printf(std::to_string(data[UDP::Index::Distance]).c_str());
-	printf("\n");
-	*/
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
 	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
 			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
-
-	// Drivebase
-	// Use D-pad of controller to drive in basic directions
-
 
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());

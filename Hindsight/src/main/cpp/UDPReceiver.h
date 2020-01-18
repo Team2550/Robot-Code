@@ -9,8 +9,6 @@
 #include <arpa/inet.h>
 #include <vector>
 #include "Utility.h"
-//#include "Robot.h"
-//#include "Constants.h"
 
 //these should be changed to constants instead of #defines
 #define BUFSIZE      2048
@@ -33,7 +31,7 @@ namespace UDP
 	}
 }
 
-class UDP_Receiver {
+class UDPReceiver {
 
 private:
 	int ourSocket;
@@ -46,7 +44,7 @@ private:
 	Timer UDPAgeTimer;
 	int createUDPSocket();
 public:
-	UDP_Receiver();
+	UDPReceiver();
 
 	bool checkUDP();
 	void getUDPData(float data[]);
