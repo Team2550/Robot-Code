@@ -14,7 +14,7 @@
 #include "UDP-Receiver.h"
 #include "DriveBase.h"
 
-class Robot: public IterativeRobot
+class Robot: public TimedRobot
 {
 public:
 
@@ -65,7 +65,7 @@ public:
 	PowerDistributionPanel pdp;
 
 	Input *input;
-	Joystick driveController;
+	// Joystick driveController;
 	Timer timer;
 	//Timer UDPAgeTimer;
 	UDP_Receiver udpReceiver;

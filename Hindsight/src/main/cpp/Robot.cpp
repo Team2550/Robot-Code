@@ -6,7 +6,7 @@
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
-Robot::Robot() : driveController(0),
+Robot::Robot() : //driveController(0),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 // 0 for right, 1 for left on El Churro
@@ -17,9 +17,10 @@ Robot::Robot() : driveController(0),
 	axisTankRight = xbox::axis::rightY;
 	buttonBoost = xbox::btn::rb;
 	buttonTurtle = xbox::btn::lb;
-	boostPressTime = -999;
 */
-	Input *input = new Xbox();
+	boostPressTime = -999;
+	
+	input = new Xbox();
 
 	UpdatePreferences();
 }
@@ -65,12 +66,15 @@ void Robot::TeleopPeriodic()
 	float data[UDP::DataCount];
 	udpReceiver.getUDPData(data);
 
+	// FIXME
+
+	/*
 	printf("X Angle:");
 	printf(std::to_string(data[UDP::Index::HorizAngle]).c_str());
 	printf(", Dist:");
 	printf(std::to_string(data[UDP::Index::Distance]).c_str());
 	printf("\n");
-
+	*/
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
 	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
 			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
@@ -85,16 +89,14 @@ void Robot::TeleopPeriodic()
 
 	float baseSpeed = speedNormal;
 
-	if (driveController.GetRawButton(buttonTurtle)) // Turtle
+	if (input->turtle()){ 
 		baseSpeed = speedTurtle;
-	else if (driveController.GetRawButton(buttonBoost)) // Boost
-	{
+	} else if (input->boost()){
 		baseSpeed = speedBoost;
 		boostPressTime = timer.Get();
-	}
-	else if (timer.Get() < boostPressTime + boostDecelerationTime) // Deceleration from boost
+	} else if (timer.Get() < boostPressTime + boostDecelerationTime) {
 		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((timer.Get() - boostPressTime) / boostDecelerationTime);
-
+	}
 	driveBase.Drive(leftSpeed * baseSpeed,
 					rightSpeed * baseSpeed);
 }
