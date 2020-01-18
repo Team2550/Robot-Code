@@ -2,11 +2,17 @@
 #define ROBOT_H
 
 #include <frc/Commands/Command.h>
+#include <cameraserver/CameraServer.h>
 #include <frc/Commands/Scheduler.h>
 #include <frc/LiveWindow/LiveWindow.h>
 #include <frc/SmartDashboard/SendableChooser.h>
 #include <frc/SmartDashboard/SmartDashboard.h>
-#include <frc/WPILib.h>
+#include <frc/PowerDistributionPanel.h>
+#include <frc/ADXRS450_Gyro.h>
+#include <frc/Preferences.h>
+#include <frc/RobotBase.h>
+#include <frc/TimedRobot.h>
+#include <frc/Timer.h>
 #include <iostream>
 #include <iomanip>
 #include "Xbox.h"
@@ -66,7 +72,6 @@ public:
 
 	Xbox inputController;
 	Timer timer;
-	//Timer UDPAgeTimer;
 	UDPReceiver udpReceiver;
 
 	ADXRS450_Gyro gyroscope;

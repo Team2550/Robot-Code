@@ -1,7 +1,7 @@
 #ifndef XBOX_H
 #define XBOX_H
 
-#include <frc/WPILib.h>
+#include <frc/Joystick.h>
 #include "Input.h"
 
 

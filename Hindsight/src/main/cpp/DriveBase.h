@@ -1,7 +1,9 @@
 #ifndef DRIVEBASE_H
 #define DRIVEBASE_H
 
-#include <frc/WPILib.h>
+#include <frc/Victor.h>
+#include <frc/Encoder.h>
+#include <frc/PowerDistributionPanel.h>
 #include <math.h>
 #include "Utility.h"
 
