@@ -11,7 +11,7 @@
 #include <iomanip>
 #include "Xbox.h"
 #include "Input.h"
-#include "UDP-Receiver.h"
+#include "UDPReceiver.h"
 #include "DriveBase.h"
 
 class Robot: public TimedRobot
