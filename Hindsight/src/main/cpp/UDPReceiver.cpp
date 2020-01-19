@@ -160,5 +160,16 @@ void UDPReceiver::clearUDPSocket()
 		packetsCleared++;
 	}
 }
+/*
+	This is used during TeleopPeriodic
+*/
+void UDPReceiver::getTeleopUDPData(){
+	UDPReceiver udpReceiver;
 
+	/* ========== udpReceiver ========== */
+	udpReceiver.checkUDP();
+	udpReceiver.clearUDPSocket();
 
+	float data[UDP::DataCount];
+	udpReceiver.getUDPData(data);
+}

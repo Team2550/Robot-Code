@@ -50,12 +50,7 @@ void Robot::TeleopInit(){
 
 void Robot::TeleopPeriodic()
 {
-	/* ========== udpReceiver ========== */
-	udpReceiver.checkUDP();
-	udpReceiver.clearUDPSocket();
-
-	float data[UDP::DataCount];
-	udpReceiver.getUDPData(data);
+	udpReceiver.getTeleopUDPData();
 
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
 	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '

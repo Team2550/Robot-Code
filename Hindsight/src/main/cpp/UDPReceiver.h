@@ -51,6 +51,7 @@ public:
 	double getUDPDataAge();
 	bool getUDPDataIsReal();
 	void clearUDPSocket();
+	void getTeleopUDPData();
 };
 
 
