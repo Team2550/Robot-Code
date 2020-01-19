@@ -9,6 +9,7 @@
 Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
+				 intake(3),
 				 // 0 for right, 1 for left on El Churro
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 {
@@ -23,9 +24,7 @@ Robot::~Robot()
 
 void Robot::RobotInit()
 {
-	std::cout << "Calibrating gyro..." << std::endl;
 	gyroscope.Calibrate();
-	std::cout << "Gyro calibrated.... This message gets sent regardless of if the Gyro was calibrated or not. I hope it doesn't fail :)" << std::endl;
 
 	driveBase.setReversed(true);
 
@@ -36,16 +35,16 @@ void Robot::RobotInit()
 
 void Robot::AutonomousInit()
 {
-	std::cout << "This does NOTHING!";
+	// TODO: Auto
 }
 
 void Robot::AutonomousPeriodic()
 {
-	std::cout << "This does NOTHING!";
+	// TODO: Auto
 }
 
 void Robot::TeleopInit(){
-	std::cout << "This does NOTHING!";
+	// TODO: TeleopInit
 }
 
 void Robot::TeleopPeriodic()
@@ -59,8 +58,20 @@ void Robot::TeleopPeriodic()
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
 	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
-
 	float baseSpeed = speedNormal;
+
+
+	// Potential bug. If the stop part of the toggle doesn't work, this is why.
+	bool isActive = false;
+	if (inputController.intake()){
+		if(isActive == true){
+			intake.Stop();
+		} else if (isActive == false){
+			intake.Start();
+		}
+		isActive = !isActive;
+
+	}
 
 	if (inputController.turtle()){ 
 		baseSpeed = speedTurtle;

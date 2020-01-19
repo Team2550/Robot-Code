@@ -12,5 +12,8 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
+},
+"files.associations": {
+	"bitset": "cpp"
 }
 }

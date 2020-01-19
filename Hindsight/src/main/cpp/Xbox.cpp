@@ -6,8 +6,13 @@ Xbox::Xbox() : controller(0)
 bool Xbox::boost(){
 	return controller.GetRawButton(lb);
 }
+
 bool Xbox::turtle(){
 	return controller.GetRawButton(rb);
+}
+
+bool Xbox::intake(){
+	return controller.GetRawButton(a);
 }
 
 double Xbox::leftTankAxis(){

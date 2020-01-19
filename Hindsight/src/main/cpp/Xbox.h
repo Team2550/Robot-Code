@@ -10,6 +10,7 @@ public:
 	Xbox();
 	bool boost();
 	bool turtle();
+	bool intake();
 	double leftTankAxis();
 	double rightTankAxis();
 private:

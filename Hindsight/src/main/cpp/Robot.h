@@ -17,6 +17,7 @@
 #include <iomanip>
 #include "Xbox.h"
 #include "Input.h"
+#include "Intake.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
 
@@ -76,6 +77,7 @@ public:
 
 	ADXRS450_Gyro gyroscope;
 
+	Intake intake;
 	DriveBase driveBase;
 };
 
