@@ -12,6 +12,7 @@ public:
 	Intake(int intakeMotorPort);
 	void Start();
 	void Stop();
+	bool IsActive();
 private:
 	Victor intakeMotor;
 	bool isActive;

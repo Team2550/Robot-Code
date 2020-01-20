@@ -13,3 +13,11 @@ void Intake::Start (){
 void Intake::Stop (){
 	intakeMotor.Set(0);
 }
+
+bool Intake::IsActive (){
+	if(intakeMotor.Get() > 0 || intakeMotor.Get() < 0){
+		return true
+	} else {
+		return false
+	} 
+}

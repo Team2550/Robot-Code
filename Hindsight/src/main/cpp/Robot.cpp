@@ -61,16 +61,12 @@ void Robot::TeleopPeriodic()
 	float baseSpeed = speedNormal;
 
 
-	// Potential bug. If the stop part of the toggle doesn't work, this is why.
-	bool isActive = false;
 	if (inputController.intake()){
-		if(isActive == true){
+		if(intake.IsActive()){
 			intake.Stop();
-		} else if (isActive == false){
+		} else {
 			intake.Start();
 		}
-		isActive = !isActive;
-
 	}
 
 	if (inputController.turtle()){ 
