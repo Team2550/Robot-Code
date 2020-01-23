@@ -1,5 +1,6 @@
-//This code was made for the FRC 2019 season
+//This code was made for the FRC 2019 and modified for the 2020 season
 //By: Brayton Kerekffy and Travis Albers
+// Modified by Charlie Welsh and Alex Pearson
 #include "Robot.h"
 
 // driver: (int) xBox controller number
@@ -11,49 +12,46 @@ Robot::Robot() : inputController(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(3),
 				 // 0 for right, 1 for left on El Churro
-				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) 
+				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 {
 	boostPressTime = -999;
 	UpdatePreferences();
 }
 
-Robot::~Robot()
-{
+Robot::~Robot() {
 
 }
 
-void Robot::RobotInit()
-{
+void Robot::RobotInit() {
 	gyroscope.Calibrate();
 
 	driveBase.setReversed(true);
 
 	// Start Video Stream
 	// URL is "http://10.25.50.94:8080/"
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	CameraServer::GetInstance() -> StartAutomaticCapture();
 }
 
-void Robot::AutonomousInit()
-{
+void Robot::AutonomousInit() {
 	// TODO: Auto
 }
 
-void Robot::AutonomousPeriodic()
-{
+void Robot::AutonomousPeriodic() {
 	// TODO: Auto
 }
 
-void Robot::TeleopInit(){
+void Robot::TeleopInit() {
 	// TODO: TeleopInit
 }
 
-void Robot::TeleopPeriodic()
-{
+void Robot::TeleopPeriodic() {
+
 	udpReceiver.getTeleopUDPData();
 
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
 	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
-			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl;
+			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
 
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
@@ -61,17 +59,18 @@ void Robot::TeleopPeriodic()
 	float baseSpeed = speedNormal;
 
 
-	if (inputController.intake()){
-		if(intake.IsActive()){
+	if (inputController.intake()) { 
+		// TODO: Check on debouncing this
+		if (intake.IsActive()) {
 			intake.Stop();
 		} else {
 			intake.Start();
 		}
 	}
 
-	if (inputController.turtle()){ 
+	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
-	} else if (inputController.boost()){
+	} else if (inputController.boost()) {
 		baseSpeed = speedBoost;
 		boostPressTime = timer.Get();
 	} else if (timer.Get() < boostPressTime + boostDecelerationTime) {
@@ -85,19 +84,19 @@ void Robot::TeleopPeriodic()
 
 
 
-void Robot::UpdatePreferences()
-{
+void Robot::UpdatePreferences() {
+
 	prefs = Preferences::GetInstance();
 
-	driveBase.SetTrim(prefs->GetDouble("LeftForwardTrim", 0.82),
-					  prefs->GetDouble("RightForwardTrim", 1.0),
-					  prefs->GetDouble("LeftReverseTrim", 1.0),
-					  prefs->GetDouble("RightReverseTrim", 1.0));
+	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.82),
+					  prefs -> GetDouble("RightForwardTrim", 1.0),
+					  prefs -> GetDouble("LeftReverseTrim", 1.0),
+					  prefs -> GetDouble("RightReverseTrim", 1.0));
 
-	speedNormal = prefs->GetFloat("SpeedNormal", 0.6f);
-	speedTurtle = prefs->GetFloat("SpeedTurtle", 0.35f);
-	speedBoost = prefs->GetFloat("SpeedBoost", 1.0f);
-	boostDecelerationTime = prefs->GetFloat("BoostDecelTime", 0.5f);
+	speedNormal = prefs -> GetFloat("SpeedNormal", 0.6f);
+	speedTurtle = prefs -> GetFloat("SpeedTurtle", 0.35f);
+	speedBoost = prefs -> GetFloat("SpeedBoost", 1.0f);
+	boostDecelerationTime = prefs -> GetFloat("BoostDecelTime", 0.5f);
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
