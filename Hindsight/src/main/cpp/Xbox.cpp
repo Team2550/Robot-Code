@@ -3,12 +3,22 @@
 Xbox::Xbox() : controller(0)
 {}
 
-bool Xbox::shoot(){
-	return true;
+bool Xbox::boost(){
+	return controller.GetRawButton(lb);
 }
-bool Xbox::climb(){
-	return true;
+
+bool Xbox::turtle(){
+	return controller.GetRawButton(rb);
 }
-bool Xbox::autoAim(){
+
+bool Xbox::intake(){
 	return controller.GetRawButton(a);
+}
+
+double Xbox::leftTankAxis(){
+	return controller.GetRawAxis(leftY);
+}
+
+double Xbox::rightTankAxis(){
+	return controller.GetRawAxis(rightY);
 }

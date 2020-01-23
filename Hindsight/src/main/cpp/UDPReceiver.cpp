@@ -1,6 +1,6 @@
-#include "UDP-Receiver.h"
+#include "UDPReceiver.h"
 
-UDP_Receiver::UDP_Receiver()
+UDPReceiver::UDPReceiver()
 {
 	createUDPSocket();
 
@@ -15,7 +15,7 @@ Arguments:
 Return:
 	Array of ints from UDP
 ================================================*/
-void UDP_Receiver::getUDPData(float data[])
+void UDPReceiver::getUDPData(float data[])
 {
 	memcpy(data, newestUDPData, sizeof(newestUDPData));
 }
@@ -28,7 +28,7 @@ Arguments:
 Return:
 	Seconds since data was last received
 ================================================*/
-double UDP_Receiver::getUDPDataAge()
+double UDPReceiver::getUDPDataAge()
 {
 	return UDPAgeTimer.Get();
 }
@@ -41,7 +41,7 @@ Arguments:
 Return:
 	True if real, false if placeholder
 ================================================*/
-bool UDP_Receiver::getUDPDataIsReal()
+bool UDPReceiver::getUDPDataIsReal()
 {
 	return isRealData;
 }
@@ -54,7 +54,7 @@ Arguments:
 Return:
 	0 if success, 1 if failed
 ================================================*/
-int UDP_Receiver::createUDPSocket()
+int UDPReceiver::createUDPSocket()
 {
 	if ((ourSocket = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
 	{
@@ -84,7 +84,7 @@ Arguments:
 Return:
 	none
 ================================================*/
-bool UDP_Receiver::checkUDP()
+bool UDPReceiver::checkUDP()
 {
 	int bytesRecievedCount = 0;
 
@@ -141,7 +141,7 @@ bool UDP_Receiver::checkUDP()
 	return false;
 }
 
-void UDP_Receiver::clearUDPSocket()
+void UDPReceiver::clearUDPSocket()
 {
 	int packetsCleared = 0;
 	int bytesRecievedCount = 1;
@@ -160,5 +160,16 @@ void UDP_Receiver::clearUDPSocket()
 		packetsCleared++;
 	}
 }
+/*
+	This is used during TeleopPeriodic
+*/
+void UDPReceiver::getTeleopUDPData(){
+	UDPReceiver udpReceiver;
 
+	/* ========== udpReceiver ========== */
+	udpReceiver.checkUDP();
+	udpReceiver.clearUDPSocket();
 
+	float data[UDP::DataCount];
+	udpReceiver.getUDPData(data);
+}

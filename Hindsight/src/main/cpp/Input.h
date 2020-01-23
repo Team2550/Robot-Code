@@ -3,8 +3,10 @@
 
 class Input{
 public:
-	virtual bool shoot() = 0;
-	virtual bool climb() = 0;
-	virtual bool autoAim() = 0;
+	virtual bool boost() = 0;
+	virtual bool turtle() = 0;
+	virtual bool intake() = 0;
+	virtual double leftTankAxis() = 0;
+	virtual double rightTankAxis() = 0;	
 };
 #endif
