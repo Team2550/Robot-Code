@@ -7,6 +7,11 @@
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
+
+// These are for the intake toggle later.
+bool intakeToggleOn = false;
+bool intakeTogglePressed = false;
+
 Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
@@ -59,13 +64,16 @@ void Robot::TeleopPeriodic() {
 	float baseSpeed = speedNormal;
 
 
-	if (inputController.intake()) { 
-		// TODO: Check on debouncing this
+	updateToggle(inputController.intake);
+
+	if (intakeToggleOn) { 
 		if (intake.IsActive()) {
 			intake.Stop();
 		} else {
 			intake.Start();
 		}
+	} else {
+
 	}
 
 	if (inputController.turtle()) { 
@@ -103,12 +111,21 @@ void Robot::UpdatePreferences() {
 
 
 }
+
+void updateToggle (bool button){
+	if (button){
+		if(!togglePressed){
+			intakeToggleOn = !intakeToggleOn;
+			intakeTogglePressed = true;
+		}
+	} else {
+		togglePressed = false;
+	}
+}
+
+
 // Returns true if at target
 
-//Old way, was creating a complier warning
-//START_ROBOT_CLASS(Robot)
-
-//New way (maybe), suggested by the complier
 int main() {
 	return frc::StartRobot<Robot>();
 }
