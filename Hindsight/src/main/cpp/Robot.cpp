@@ -64,9 +64,7 @@ void Robot::TeleopPeriodic() {
 	float baseSpeed = speedNormal;
 
 
-	updateToggle(inputController.intake);
-
-	if (intakeToggleOn) { 
+	if (inputController.intake()) { 
 		if (intake.IsActive()) {
 			intake.Stop();
 		} else {
