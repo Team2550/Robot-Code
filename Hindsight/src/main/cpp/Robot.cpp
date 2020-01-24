@@ -110,20 +110,6 @@ void Robot::UpdatePreferences() {
 
 }
 
-void updateToggle (bool button){
-	if (button){
-		if(!togglePressed){
-			intakeToggleOn = !intakeToggleOn;
-			intakeTogglePressed = true;
-		}
-	} else {
-		togglePressed = false;
-	}
-}
-
-
-// Returns true if at target
-
 int main() {
 	return frc::StartRobot<Robot>();
 }
