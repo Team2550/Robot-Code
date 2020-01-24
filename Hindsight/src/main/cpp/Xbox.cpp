@@ -12,7 +12,7 @@ bool Xbox::turtle(){
 }
 
 bool Xbox::intake(){
-	return controller.GetRawButton(a);
+	return controller.GetRawButtonPressed(a);
 }
 
 double Xbox::leftTankAxis(){
