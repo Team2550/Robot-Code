@@ -1,3 +1,5 @@
 /.metadata/
 .DS_Store
-Hindsight/.vscode/settings.json
+/Hindsight/.vscode/settings.json
+/Hindsight/.gradle
+/Hindsight/build/

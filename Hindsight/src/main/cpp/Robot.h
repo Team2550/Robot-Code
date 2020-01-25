@@ -35,7 +35,6 @@ public:
 	void TeleopInit();
 	void TeleopPeriodic();
 	void UpdatePreferences();
-//private:
 	float speedNormal;
 	float speedTurtle;
 	float speedBoost;

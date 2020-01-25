@@ -3,7 +3,7 @@
 Intake::Intake (int intakeMotorPort):
 	intakeMotor(intakeMotorPort)
 {
-	intakeMotor.SetInverted(false);
+	intakeMotor.SetInverted(true);
 }
 
 void Intake::Start (){
