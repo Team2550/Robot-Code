@@ -44,31 +44,18 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 
 double DriveBase::GetLeftSpeed()
 {
-	if (leftMotor.GetInverted())
-		return leftMotor.Get();
-	else
-		return -leftMotor.Get();
+	return leftMotor.GetInverted() ? leftMotor.Get() : -leftMotor.Get();
 }
 
 double DriveBase::GetRightSpeed()
 {
-	if (rightMotor.GetInverted())
-		return -rightMotor.Get();
-	else
-		return rightMotor.Get();
+	return rightMotor.GetInverted() ? rightMotor.Get() : -rightMotor.Get();
 }
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	if (leftSpeed > 0)
-		leftMotor.Set(leftSpeed * leftForwardTrim);
-	else
-		leftMotor.Set(leftSpeed * leftReverseTrim);
-
-	if (rightSpeed > 0)
-		rightMotor.Set(rightSpeed * rightForwardTrim);
-	else
-		rightMotor.Set(rightSpeed * rightReverseTrim);
+	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 void DriveBase::Drive(double speed)
@@ -83,23 +70,23 @@ void DriveBase::Stop()
 
 bool DriveBase::IsStopped()
 {
-	return leftEncoder.GetStopped() && rightEncoder.GetStopped();//it is red but it builds. Don't touch it. We don't know what is going on. We don't know how it works.
+	return leftEncoder.GetStopped() && rightEncoder.GetStopped();
 }
 
 void DriveBase::ResetDistance()
 {
-	leftEncoder.Reset(); //it is red but it builds. Don't touch it. We don't know what is going on. We don't know how it works.
-	rightEncoder.Reset();//it is red but it builds. Don't touch it. We don't know what is going on. We don't know how it works.
+	leftEncoder.Reset(); 
+	rightEncoder.Reset();
 }
 
 double DriveBase::GetLeftDistance()
 {
-	return leftEncoder.GetDistance();//it is red but it builds. Don't touch it. We don't know what is going on. We don't know how it works.
+	return leftEncoder.GetDistance();
 }
 
 double DriveBase::GetRightDistance()
 {
-	return rightEncoder.GetDistance();//it is red but it builds. Don't touch it. We don't know what is going on. We don't know how it works.
+	return rightEncoder.GetDistance();
 }
 
 void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim)
