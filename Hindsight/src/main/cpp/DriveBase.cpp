@@ -13,7 +13,7 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 
 	// Set encoder reversal for one side
 	leftEncoder.SetReverseDirection(false);
-	rightEncoder.SetReverseDirection(true);
+	rightEncoder.SetReverseDirection(false);
 
 	// Distance per pulse from encoder.
 	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
