@@ -15,7 +15,7 @@ bool intakeTogglePressed = false;
 Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
-				 intake(3),
+				 intake(2),
 				 // 0 for right, 1 for left on El Churro
 				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) 
 				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
