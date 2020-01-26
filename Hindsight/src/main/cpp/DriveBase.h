@@ -6,6 +6,8 @@
 #include <frc/PowerDistributionPanel.h>
 #include <math.h>
 #include "Utility.h"
+#include <iostream>
+#include <iomanip>
 
 class DriveBase
 {
@@ -54,6 +56,10 @@ private:
 
 	bool isReversed;
 
+	//double lastRightEncoderValue;
+	//double lastLeftEncoderValue;
+	double lastRightSpeedValue;
+	double lastLeftSpeedValue;
 };
 
 #endif

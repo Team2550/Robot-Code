@@ -40,6 +40,11 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	rightEncoderPortBValue = leftEncoderPortB;
 	wheelCircumferenceValue = wheelCircumference;
 	encoderPulsesPerRotationValue = encoderPulsesPerRotation;
+
+	//lastRightEncoderValue = 0.0;
+	//lastLeftEncoderValue = 0.0;
+	lastRightSpeedValue = 0.0;
+	lastLeftSpeedValue = 0.0;
 }
 
 double DriveBase::GetLeftSpeed()
@@ -54,8 +59,22 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
+	double leftEncoderValue = GetLeftDistance(), rightEncoderValue = GetRightDistance();
+
+	double distanceRatio = leftEncoderValue / rightEncoderValue;
+	double speedRatio = lastLeftSpeedValue / lastRightSpeedValue;
+
+	std::cout << "Distance Ratio: " << std::setw(5) << distanceRatio << ' ' 
+			  << "Speed Ratio: " << std::setw(5) << speedRatio << std::endl;
+
 	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+
+	lastLeftSpeedValue = leftSpeed;
+	lastRightSpeedValue = rightSpeed;
+
+	leftEncoder.Reset();
+	rightEncoder.Reset();
 }
 
 void DriveBase::Drive(double speed)
