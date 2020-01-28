@@ -26,9 +26,9 @@ public:
 	double GetRightDistance();
 	void SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim);
 	//float DriveBase(PowerDistributionPanel& pdp);
-	float getAmps(PowerDistributionPanel& pdp);
-	void setReversed(bool reverse);
-	bool getReversed();
+	float GetAmps(PowerDistributionPanel& pdp);
+	void SetReversed(bool reverse);
+	bool GetReversed();
 
 private:
 	Spark leftMotor;

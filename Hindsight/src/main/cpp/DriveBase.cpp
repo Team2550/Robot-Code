@@ -111,7 +111,7 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
 //	FIX CAPTIALIZATION!
 //
 
-void DriveBase::setReversed(bool reverse)
+void DriveBase::SetReversed(bool reverse)
 {
 	isReversed = reverse;
 }
@@ -121,12 +121,12 @@ void DriveBase::setReversed(bool reverse)
  *
  * \return True if and only if the back of the Robot is being treated as the front
  */
-bool DriveBase::getReversed()
+bool DriveBase::GetReversed()
 {
 	return isReversed;
 }
 
-float DriveBase::getAmps(PowerDistributionPanel& pdp)
+float DriveBase::GetAmps(PowerDistributionPanel& pdp)
 {
 	return (pdp.GetCurrent(leftMotorPortValue) + pdp.GetCurrent(rightMotorPortValue)) / 2;
 }

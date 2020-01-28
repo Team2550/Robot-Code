@@ -36,7 +36,7 @@ Robot::~Robot() {
 void Robot::RobotInit() {
 	gyroscope.Calibrate();
 
-	driveBase.setReversed(true);
+	driveBase.SetReversed(true);
 
 	// Start Video Stream
 	// URL is "http://10.25.50.94:8080/"
