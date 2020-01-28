@@ -60,17 +60,19 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
 	
 	//This is for PID control of motors. This should work with some tuning.
-	leftMotor.Set(leftPIDSpeed);
-	rightMotor.Set(rightPIDSpeed);
+	//leftMotor.Set(leftPIDSpeed);
+	//rightMotor.Set(rightPIDSpeed);
 
-	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	//(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << endl;
+
+	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 //
 //	Convienience function for same speed to both motors. 
 //
-//	Deprecated.
+//	Deprecated. Will be removed pre-competition
 //
 void DriveBase::Drive(double speed)
 {
@@ -115,10 +117,6 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
  *
  * \param[in] reverse Whether or not the back of the Robot should be considered the front
  */
-
-//
-//	FIX CAPTIALIZATION!
-//
 
 void DriveBase::SetReversed(bool reverse)
 {
