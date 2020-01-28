@@ -6,7 +6,7 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 					 double wheelCircumference, int encoderPulsesPerRotation) :
 	leftMotor(leftMotorPort), rightMotor(rightMotorPort),
 	leftEncoder(leftEncoderPortA, leftEncoderPortB, Encoder::EncodingType::k2X),
-	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X)
+	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X),
 {
 	leftMotor.SetInverted(false);
 	rightMotor.SetInverted(false);
@@ -26,6 +26,8 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	// Minimum speed to determine if robot is stopped (distance units/second).
 	leftEncoder.SetMinRate(1);
 	rightEncoder.SetMinRate(1);
+
+	//leftController.setPID(K_P, K_I, K_D);
 
 	leftForwardTrim = 1;
 	rightForwardTrim = 1;
@@ -54,8 +56,17 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+
+	/* Call calculate on the PID controllers */
+	//
+	//	Change speed to setpoint in variable names
+	//
+
+	//std::cout << leftController.Calculate(leftEncoder.GetDistance(), 0.1) << endl;
+	//std::cout << rightController.Calculate(rightEncoder.GetDistance(), 0.1) << endl;
+
+	leftMotor.Set(leftController.Calculate(leftEncoder.GetDistance(), leftSpeed));
+	rightMotor.Set(rightController.Calculate(rightEncoder.GetDistance(), rightSpeed));
 }
 
 //
