@@ -27,6 +27,8 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	leftEncoder.SetMinRate(1);
 	rightEncoder.SetMinRate(1);
 
+	//leftController.setPID(K_P, K_I, K_D);
+
 	leftForwardTrim = 1;
 	rightForwardTrim = 1;
 	leftReverseTrim = 1;
@@ -54,6 +56,8 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
+	/* Call calculate on the PID controllers */
+
 	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }

@@ -8,6 +8,11 @@
 #include "Utility.h"
 #include <iostream>
 #include <iomanip>
+#include <frc/PIDController.h>
+
+const double K_P = 1;
+const double K_I = 1;
+const double K_D = 1;
 
 class DriveBase
 {
@@ -38,6 +43,9 @@ private:
 
 	Encoder leftEncoder;
 	Encoder rightEncoder;
+
+	frc2::PIDController leftController(K_P,K_I,K_D);
+	//frc2::PIDController rightController();
 
 	float leftForwardTrim;
 	float rightForwardTrim;
