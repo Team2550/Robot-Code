@@ -15,5 +15,6 @@
 },
 "files.associations": {
 	"bitset": "cpp"
-}
+},
+"C_Cpp.default.configurationProvider": "vscode-wpilib"
 }
