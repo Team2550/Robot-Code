@@ -10,10 +10,10 @@
 #include <iomanip>
 #include <frc/controller/PIDController.h>
 
-
-const double K_P = 1;
-const double K_I = 1;
-const double K_D = 1;
+// 0 only to test PID slowly. Will be ramped up. 0 acts as straight passthrough if PID code is perfoming correctly.
+const double K_P = 0;
+const double K_I = 0;
+const double K_D = 0;
 
 class DriveBase
 {
