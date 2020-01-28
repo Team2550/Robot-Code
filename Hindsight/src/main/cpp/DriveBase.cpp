@@ -59,12 +59,12 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
 	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
 	
-	//Commenting out the implementation I think is needed for now to not break the robot testing
-	//leftMotor.Set(leftPIDSpeed);
-	//rightMotor.Set(rightPIDSpeed);
+	//This is for PID control of motors. This should work with some tuning.
+	leftMotor.Set(leftPIDSpeed);
+	rightMotor.Set(rightPIDSpeed);
 
-	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	//(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 //
