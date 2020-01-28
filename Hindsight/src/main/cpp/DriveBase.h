@@ -8,7 +8,8 @@
 #include "Utility.h"
 #include <iostream>
 #include <iomanip>
-#include <frc/PIDController.h>
+#include <frc/controller/PIDController.h>
+
 
 const double K_P = 1;
 const double K_I = 1;
@@ -44,7 +45,7 @@ private:
 	Encoder leftEncoder;
 	Encoder rightEncoder;
 
-	frc2::PIDController leftController(K_P,K_I,K_D);
+	frc2::PIDController leftController(double K_P, double K_I, double K_D);
 	//frc2::PIDController rightController();
 
 	float leftForwardTrim;
