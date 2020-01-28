@@ -1,7 +1,7 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-#include <frc/Victor.h>
+#include <frc/Spark.h>
 #include <frc/Encoder.h>
 #include <frc/PowerDistributionPanel.h>
 #include <math.h>
@@ -14,7 +14,7 @@ public:
 	void Stop();
 	bool IsActive();
 private:
-	Victor intakeMotor;
+	Spark intakeMotor;
 	bool isActive;
 };
 

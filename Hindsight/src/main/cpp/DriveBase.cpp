@@ -9,11 +9,11 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X)
 {
 	leftMotor.SetInverted(false);
-	rightMotor.SetInverted(true);
+	rightMotor.SetInverted(false);
 
 	// Set encoder reversal for one side
 	leftEncoder.SetReverseDirection(false);
-	rightEncoder.SetReverseDirection(true);
+	rightEncoder.SetReverseDirection(false);
 
 	// Distance per pulse from encoder.
 	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
@@ -77,6 +77,11 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	rightEncoder.Reset();
 }
 
+//
+//	Convienience function for same speed to both motors. 
+//
+//	Deprecated.
+//
 void DriveBase::Drive(double speed)
 {
 	Drive(speed, speed);
@@ -120,7 +125,12 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
  *
  * \param[in] reverse Whether or not the back of the Robot should be considered the front
  */
-void DriveBase::setReversed(bool reverse)
+
+//
+//	FIX CAPTIALIZATION!
+//
+
+void DriveBase::SetReversed(bool reverse)
 {
 	isReversed = reverse;
 }
@@ -130,14 +140,13 @@ void DriveBase::setReversed(bool reverse)
  *
  * \return True if and only if the back of the Robot is being treated as the front
  */
-bool DriveBase::getReversed()
+bool DriveBase::GetReversed()
 {
 	return isReversed;
 }
 
-float DriveBase::getAmps(PowerDistributionPanel& pdp)
+float DriveBase::GetAmps(PowerDistributionPanel& pdp)
 {
 	return (pdp.GetCurrent(leftMotorPortValue) + pdp.GetCurrent(rightMotorPortValue)) / 2;
 }
-
 

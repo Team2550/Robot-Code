@@ -1,7 +1,7 @@
 #ifndef DRIVEBASE_H
 #define DRIVEBASE_H
 
-#include <frc/Victor.h>
+#include <frc/Spark.h>
 #include <frc/Encoder.h>
 #include <frc/PowerDistributionPanel.h>
 #include <math.h>
@@ -28,13 +28,13 @@ public:
 	double GetRightDistance();
 	void SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim);
 	//float DriveBase(PowerDistributionPanel& pdp);
-	float getAmps(PowerDistributionPanel& pdp);
-	void setReversed(bool reverse);
-	bool getReversed();
+	float GetAmps(PowerDistributionPanel& pdp);
+	void SetReversed(bool reverse);
+	bool GetReversed();
 
 private:
-	Victor leftMotor;
-	Victor rightMotor;
+	Spark leftMotor;
+	Spark rightMotor;
 
 	Encoder leftEncoder;
 	Encoder rightEncoder;
