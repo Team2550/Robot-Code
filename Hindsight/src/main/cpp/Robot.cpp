@@ -1,9 +1,14 @@
-//This code was made for the FRC 2019 and modified for the 2020 season
-//By: Brayton Kerekffy and Travis Albers
-// Modified by Charlie Welsh and Alex Pearson
+// 
+//	© 2020 Skynet 2550
+//
+//	Programming Lead: Charlie Welsh
+//
+//	Programming Team: Charlie Welsh
+//
+//	Programming Mentors: Lance Booth, Alex Pearson
+//
 #include "Robot.h"
 
-// driver: (int) xBox controller number
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
@@ -52,6 +57,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 
+	// Input changes will happen here
 	udpReceiver.getTeleopUDPData();
 
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
@@ -70,9 +76,7 @@ void Robot::TeleopPeriodic() {
 		} else {
 			intake.Start();
 		}
-	} else {
-
-	}
+	} 
 
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
@@ -86,13 +90,11 @@ void Robot::TeleopPeriodic() {
 					rightSpeed * baseSpeed);
 }
 
-
-
-
-
 void Robot::UpdatePreferences() {
 
 	prefs = Preferences::GetInstance();
+
+	// Soon to be replaced
 
 	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.82),
 					  prefs -> GetDouble("RightForwardTrim", 1.0),

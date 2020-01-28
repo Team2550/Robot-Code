@@ -58,6 +58,11 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
+//
+//	Convienience function for same speed to both motors. 
+//
+//	Deprecated.
+//
 void DriveBase::Drive(double speed)
 {
 	Drive(speed, speed);
@@ -101,6 +106,11 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
  *
  * \param[in] reverse Whether or not the back of the Robot should be considered the front
  */
+
+//
+//	FIX CAPTIALIZATION!
+//
+
 void DriveBase::setReversed(bool reverse)
 {
 	isReversed = reverse;
@@ -120,5 +130,4 @@ float DriveBase::getAmps(PowerDistributionPanel& pdp)
 {
 	return (pdp.GetCurrent(leftMotorPortValue) + pdp.GetCurrent(rightMotorPortValue)) / 2;
 }
-
 
