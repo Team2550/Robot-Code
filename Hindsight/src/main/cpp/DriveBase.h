@@ -55,11 +55,6 @@ private:
 	int encoderPulsesPerRotationValue;
 
 	bool isReversed;
-
-	//double lastRightEncoderValue;
-	//double lastLeftEncoderValue;
-	double lastRightSpeedValue;
-	double lastLeftSpeedValue;
 };
 
 #endif
