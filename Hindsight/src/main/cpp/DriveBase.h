@@ -45,8 +45,8 @@ private:
 	Encoder leftEncoder;
 	Encoder rightEncoder;
 
-	frc2::PIDController leftController(double K_P, double K_I, double K_D);
-	frc2::PIDController rightController(double K_P, double K_I, double K_D);
+	frc2::PIDController leftController; //(double K_P, double K_I, double K_D);
+	frc2::PIDController rightController; //(double K_P, double K_I, double K_D);
 
 
 	float leftForwardTrim;

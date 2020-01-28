@@ -6,7 +6,9 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 					 double wheelCircumference, int encoderPulsesPerRotation) :
 	leftMotor(leftMotorPort), rightMotor(rightMotorPort),
 	leftEncoder(leftEncoderPortA, leftEncoderPortB, Encoder::EncodingType::k2X),
-	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X)
+	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X),
+	leftController(K_P, K_I, K_D),
+	rightController(K_P, K_I, K_D)
 {
 	leftMotor.SetInverted(false);
 	rightMotor.SetInverted(false);
@@ -54,8 +56,13 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-
+	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
+	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
 	
+	//Commenting out the implementation I think is needed for now to not break the robot testing
+	//leftMotor.Set(leftPIDSpeed);
+	//rightMotor.Set(rightPIDSpeed);
+
 	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
