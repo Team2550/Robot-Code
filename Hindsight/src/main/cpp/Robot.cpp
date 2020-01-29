@@ -96,7 +96,7 @@ void Robot::UpdatePreferences() {
 
 	// Soon to be replaced
 
-	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.82),
+	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 1.0),
 					  prefs -> GetDouble("RightForwardTrim", 1.0),
 					  prefs -> GetDouble("LeftReverseTrim", 1.0),
 					  prefs -> GetDouble("RightReverseTrim", 1.0));
