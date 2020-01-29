@@ -64,7 +64,7 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	rightMotor.Set(rightPIDSpeed);
 
 	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << std::endl;
-	std::cout << "leftEncoderValue: " << leftEncoderPortAValue << " portB: " << leftEncoderPortAValue << ", rightEncoder: " << leftEncoderPortAValue << " portB: " << leftEncoderPortAValue << std::endl;
+	std::cout << "leftEncoderValue: " << leftEncoderPortAValue << " portB: " << leftEncoderPortBValue << ", rightEncoder: " << rightEncoderPortAValue << " portB: " << rightEncoderPortBValue << std::endl;
 
 
 	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
