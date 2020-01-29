@@ -60,23 +60,15 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
 	
 	//This is for PID control of motors. This should work with some tuning.
-	//leftMotor.Set(leftPIDSpeed);
-	//rightMotor.Set(rightPIDSpeed);
+	leftMotor.Set(leftPIDSpeed);
+	rightMotor.Set(rightPIDSpeed);
 
 	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << std::endl;
+		std::cout << "leftEncoderValue: " << leftEncoderPortAValue << " portB: " << leftEncoderPortAValue << ", rightEncoder: " << leftEncoderPortAValue << " portB: " << leftEncoderPortAValue << std::endl;
 
-	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
-}
 
-//
-//	Convienience function for same speed to both motors. 
-//
-//	Deprecated. Will be removed pre-competition
-//
-void DriveBase::Drive(double speed)
-{
-	Drive(speed, speed);
+	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	//(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 void DriveBase::Stop()
