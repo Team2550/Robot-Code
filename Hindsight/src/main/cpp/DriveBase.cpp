@@ -56,19 +56,19 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
-	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
-	
+	double leftPIDSpeed = leftController.Calculate(leftEncoder.GetRate() / 30, leftSpeed);
+	double rightPIDSpeed = rightController.Calculate(rightEncoder.GetRate() / 30, rightSpeed);
+
 	//This is for PID control of motors. This should work with some tuning.
-	leftMotor.Set(leftPIDSpeed);
-	rightMotor.Set(rightPIDSpeed);
+	//leftMotor.Set(leftPIDSpeed);
+	//rightMotor.Set(rightPIDSpeed);
 
 	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << std::endl;
-	std::cout << "leftEncoderValue: " << leftEncoderPortAValue << " portB: " << leftEncoderPortBValue << ", rightEncoder: " << rightEncoderPortAValue << " portB: " << rightEncoderPortBValue << std::endl;
+	std::cout << "leftEncoderValue: " << leftEncoder.GetRate() << " rightEncoderValue: " << rightEncoder.GetRate() << std::endl;
 
 
-	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	//(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 void DriveBase::Stop()

@@ -11,7 +11,7 @@
 #include <frc/controller/PIDController.h>
 
 // 0 only to test PID slowly. Will be ramped up. 0 acts as straight passthrough if PID code is perfoming correctly.
-const double K_P = 0.1;
+const double K_P = 0.5;
 const double K_I = 0;
 const double K_D = 0;
 

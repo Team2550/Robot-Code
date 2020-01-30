@@ -22,8 +22,8 @@ Robot::Robot() : inputController(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(2),
 				 // 0 for right, 1 for left on El Churro
-				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) 
-				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 2048) 
+				 // Pulses per rotation is set by encoder DIP switch. 2048 PPR uses DIP switch configuration 0000.
 {
 	boostPressTime = -999;
 	UpdatePreferences();
@@ -60,15 +60,16 @@ void Robot::TeleopPeriodic() {
 	// Input changes will happen here
 	udpReceiver.getTeleopUDPData();
 
-	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
-	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
-			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
+	//std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
+	//          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
+	//		  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
 
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
 	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
 	float baseSpeed = speedNormal;
 
+	std::cout << "Left Joystick: " << inputController.leftTankAxis() << " Right Joystick: " << inputController.rightTankAxis() << std::endl;
 
 	if (inputController.intake()) { 
 		if (intake.IsActive()) {
