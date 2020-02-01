@@ -104,10 +104,13 @@ void Robot::UpdatePreferences() {
 
 	// Soon to be replaced
 
-	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.88),
+	driveBase.SetTrim(//prefs -> GetDouble("LeftForwardTrim", 0.88),
 					  prefs -> GetDouble("RightForwardTrim", 1.0),
-					  prefs -> GetDouble("LeftReverseTrim", 0.88),
-					  prefs -> GetDouble("RightReverseTrim", 1.0));
+					  //prefs -> GetDouble("LeftReverseTrim", 0.88),
+					  prefs -> GetDouble("RightReverseTrim", 1.0),
+					  prefs -> GetDouble("LeftReverseTrim", 1.0),
+					  prefs -> GetDouble("LeftForwardTrim", 0.88)
+					  );
 
 	speedNormal = prefs -> GetFloat("SpeedNormal", 0.6f);
 	speedTurtle = prefs -> GetFloat("SpeedTurtle", 0.35f);
