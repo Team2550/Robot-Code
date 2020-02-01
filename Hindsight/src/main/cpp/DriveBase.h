@@ -1,11 +1,19 @@
 #ifndef DRIVEBASE_H
 #define DRIVEBASE_H
 
-#include <frc/Victor.h>
+#include <frc/Spark.h>
 #include <frc/Encoder.h>
 #include <frc/PowerDistributionPanel.h>
 #include <math.h>
 #include "Utility.h"
+#include <iostream>
+#include <iomanip>
+#include <frc/controller/PIDController.h>
+
+
+const double K_P = 1;
+const double K_I = 1;
+const double K_D = 1;
 
 class DriveBase
 {
@@ -26,16 +34,20 @@ public:
 	double GetRightDistance();
 	void SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim);
 	//float DriveBase(PowerDistributionPanel& pdp);
-	float getAmps(PowerDistributionPanel& pdp);
-	void setReversed(bool reverse);
-	bool getReversed();
+	float GetAmps(PowerDistributionPanel& pdp);
+	void SetReversed(bool reverse);
+	bool GetReversed();
 
 private:
-	Victor leftMotor;
-	Victor rightMotor;
+	Spark leftMotor;
+	Spark rightMotor;
 
 	Encoder leftEncoder;
 	Encoder rightEncoder;
+
+	frc2::PIDController leftController; //(double K_P, double K_I, double K_D);
+	frc2::PIDController rightController; //(double K_P, double K_I, double K_D);
+
 
 	float leftForwardTrim;
 	float rightForwardTrim;
@@ -53,7 +65,6 @@ private:
 	int encoderPulsesPerRotationValue;
 
 	bool isReversed;
-
 };
 
 #endif
