@@ -1,12 +1,12 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#include <frc/Commands/Command.h>
+#include <frc/commands/Command.h>
 #include <cameraserver/CameraServer.h>
-#include <frc/Commands/Scheduler.h>
-#include <frc/LiveWindow/LiveWindow.h>
-#include <frc/SmartDashboard/SendableChooser.h>
-#include <frc/SmartDashboard/SmartDashboard.h>
+#include <frc/commands/Scheduler.h>
+#include <frc/livewindow/LiveWindow.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/PowerDistributionPanel.h>
 #include <frc/ADXRS450_Gyro.h>
 #include <frc/Preferences.h>
