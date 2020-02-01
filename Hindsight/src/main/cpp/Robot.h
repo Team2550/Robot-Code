@@ -25,6 +25,7 @@
 #include "UDPReceiver.h"
 #include "DriveBase.h"
 
+
 class Robot: public TimedRobot
 {
 public:
@@ -76,6 +77,7 @@ public:
 
 	FlightStick inputController;
 	Timer timer;
+	Timer trimTest;
 	UDPReceiver udpReceiver;
 
 	ADXRS450_Gyro gyroscope;

@@ -1,7 +1,6 @@
 #include "FlightStick.h"
 
-FlightStick::FlightStick() : leftFlightStick(0),
-                   rightFlightStick(1)
+FlightStick::FlightStick() : leftFlightStick(0), rightFlightStick(1)
 {}
 
 bool FlightStick::boost(){

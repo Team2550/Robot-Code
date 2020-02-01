@@ -11,11 +11,11 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	rightController(K_P, K_I, K_D)
 {
 	leftMotor.SetInverted(false);
-	rightMotor.SetInverted(true);
+	rightMotor.SetInverted(false);
 
 	// Set encoder reversal for one side
 	leftEncoder.SetReverseDirection(false);
-	rightEncoder.SetReverseDirection(false);
+	rightEncoder.SetReverseDirection(true);
 
 	// Distance per pulse from encoder.
 	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
@@ -65,7 +65,7 @@ void DriveBase::Drive(double leftSpeed, double rightSpeed)
 
 	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << std::endl;
 	std::cout << "leftEncoderValue: " << leftEncoder.GetRate() << " rightEncoderValue: " << rightEncoder.GetRate() << std::endl;
-
+	std::cout << "leftEncoderDistance: " << leftEncoder.Get() << " rightEncoderDistance: " << rightEncoder.Get() << std::endl;
 
 	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
