@@ -11,7 +11,7 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	rightController(K_P, K_I, K_D)
 {
 	leftMotor.SetInverted(false);
-	rightMotor.SetInverted(false);
+	rightMotor.SetInverted(true);
 
 	// Set encoder reversal for one side
 	leftEncoder.SetReverseDirection(false);
