@@ -56,8 +56,8 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	double leftPIDSpeed = leftController.Calculate(leftEncoder.GetRate(), leftSpeed);
-	double rightPIDSpeed = rightController.Calculate(rightEncoder.GetRate(), rightSpeed);
+	double leftPIDSpeed = leftController.Calculate(leftEncoder.GetRate() / 250.0, leftSpeed);
+	double rightPIDSpeed = rightController.Calculate(rightEncoder.GetRate() / 250.0, rightSpeed);
 
 	//This is for PID control of motors. This should work with some tuning.
 	leftMotor.Set(leftPIDSpeed);
