@@ -11,8 +11,10 @@ public:
 	bool boost();
 	bool turtle();
 	bool intake();
+	bool shoot();
 	double leftTankAxis();
 	double rightTankAxis();
+	double shooterSpeedAxis();
 private:
 	frc::Joystick controller;
 	const uint32_t a = 1;

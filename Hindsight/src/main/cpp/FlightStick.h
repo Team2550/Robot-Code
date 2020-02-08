@@ -3,6 +3,7 @@
 
 #include <frc/Joystick.h>
 #include "Input.h"
+#include <iostream>
 
 
 class FlightStick : public Input{
@@ -11,8 +12,10 @@ public:
 	bool boost();
 	bool turtle();
 	bool intake();
+	bool shoot();
 	double leftTankAxis();
 	double rightTankAxis();
+	double shooterSpeedAxis();
 private:
 	frc::Joystick leftFlightStick;
     frc::Joystick rightFlightStick;

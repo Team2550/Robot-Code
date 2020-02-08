@@ -22,6 +22,7 @@
 
 
 #include "Intake.h"
+#include "Shooter.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
 
@@ -81,6 +82,7 @@ public:
 	ADXRS450_Gyro gyroscope;
 
 	Intake intake;
+	Shooter shooter;
 	DriveBase driveBase;
 };
 

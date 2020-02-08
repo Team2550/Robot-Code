@@ -15,10 +15,18 @@ bool Xbox::intake(){
 	return controller.GetRawButtonPressed(a);
 }
 
+bool Xbox::shoot(){
+	return controller.GetRawButtonPressed(b);
+}
+
 double Xbox::leftTankAxis(){
 	return controller.GetRawAxis(leftY);
 }
 
 double Xbox::rightTankAxis(){
 	return controller.GetRawAxis(rightY);
+}
+
+double Xbox::shooterSpeedAxis(){
+	return 0.5;
 }
