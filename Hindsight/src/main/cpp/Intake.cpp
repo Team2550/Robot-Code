@@ -7,7 +7,7 @@ Intake::Intake (int intakeMotorPort):
 }
 
 void Intake::Start (){
-	intakeMotor.Set(0.42);
+	intakeMotor.Set(0.42*1.5);
 }
 
 void Intake::Stop (){

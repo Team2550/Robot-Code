@@ -15,7 +15,7 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 
 	// Set encoder reversal for one side
 	leftEncoder.SetReverseDirection(false);
-	rightEncoder.SetReverseDirection(false);
+	rightEncoder.SetReverseDirection(true);
 
 	// Distance per pulse from encoder.
 	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
@@ -56,25 +56,19 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
-	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
-	
-	//Commenting out the implementation I think is needed for now to not break the robot testing
-	//leftMotor.Set(leftPIDSpeed);
-	//rightMotor.Set(rightPIDSpeed);
+	double leftPIDSpeed = leftController.Calculate(leftEncoder.GetRate() / 250.0, leftSpeed);
+	double rightPIDSpeed = rightController.Calculate(rightEncoder.GetRate() / 250.0, rightSpeed);
 
-	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
-}
+	//This is for PID control of motors. This should work with some tuning.
+	leftMotor.Set(leftPIDSpeed);
+	rightMotor.Set(rightPIDSpeed);
 
-//
-//	Convienience function for same speed to both motors. 
-//
-//	Deprecated.
-//
-void DriveBase::Drive(double speed)
-{
-	Drive(speed, speed);
+	std::cout << "leftPIDSpeed: " << leftPIDSpeed << ", rightPIDSpeed: " << rightPIDSpeed << std::endl;
+	std::cout << "leftEncoderValue: " << leftEncoder.GetRate() << " rightEncoderValue: " << rightEncoder.GetRate() << std::endl;
+	std::cout << "leftEncoderDistance: " << leftEncoder.Get() << " rightEncoderDistance: " << rightEncoder.Get() << std::endl;
+
+	//(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
+	//(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 void DriveBase::Stop()
@@ -115,10 +109,6 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
  *
  * \param[in] reverse Whether or not the back of the Robot should be considered the front
  */
-
-//
-//	FIX CAPTIALIZATION!
-//
 
 void DriveBase::SetReversed(bool reverse)
 {

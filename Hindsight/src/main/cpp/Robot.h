@@ -15,16 +15,17 @@
 #include <frc/Timer.h>
 #include <iostream>
 #include <iomanip>
+
 // Not all inputs are in use, but makes for very fast adaptations.
+#include "Input.h"
 #include "Xbox.h"
 #include "FlightStick.h"
-#include "Input.h"
-
 
 #include "Intake.h"
 #include "Shooter.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
+
 
 class Robot: public TimedRobot
 {
@@ -77,6 +78,7 @@ public:
 
 	FlightStick inputController;
 	Timer timer;
+	Timer trimTest;
 	UDPReceiver udpReceiver;
 
 	ADXRS450_Gyro gyroscope;
