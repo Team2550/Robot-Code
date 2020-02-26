@@ -1,6 +1,6 @@
 #include "Xbox.h"
 
-Xbox::Xbox() : controller(0)
+Xbox::Xbox() : controller(0), secondaryController(1)
 {}
 
 bool Xbox::boost(){

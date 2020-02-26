@@ -14,7 +14,7 @@ public:
 	void Stop();
 	bool IsActive();
 private:
-	Spark intakeMotor;
+	frc::Spark intakeMotor;
 	bool isActive;
 };
 

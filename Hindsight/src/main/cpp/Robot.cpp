@@ -21,7 +21,6 @@ Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(2),
-				 shooter(3),
 				 // 0 for right, 1 for left on El Churro
 				 driveBase(0, 1, 0, 1, 2, 3, 6.07 * M_PI, 2048) 
 				 // Pulses per rotation is set by encoder DIP switch. 2048 PPR uses DIP switch configuration 0000.
@@ -81,8 +80,7 @@ void Robot::TeleopPeriodic() {
 	std::cout << "Left Joystick: " << inputController.leftTankAxis() << " Right Joystick: " << inputController.rightTankAxis() << std::endl;
 
 	if (inputController.climb()){
-		leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
-		rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
+		std::cout << "this will do things soon" << std::endl;
 	}
 
 	if (inputController.turtle()) { 

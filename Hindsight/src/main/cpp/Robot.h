@@ -13,7 +13,6 @@
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
-#include <frc/Solenoid.h>
 #include <iostream>
 #include <iomanip>
 
@@ -76,7 +75,7 @@ public:
 	
 	PowerDistributionPanel pdp;
 
-	FlightStick inputController;
+	Xbox inputController;
 	Timer timer;
 	Timer trimTest;
 	UDPReceiver udpReceiver;
@@ -84,11 +83,8 @@ public:
 	ADXRS450_Gyro gyroscope;
 
 	Intake intake;
-	Shooter shooter;
 	DriveBase driveBase;
 
-	frc::DoubleSolenoid leftClimber {0,1};
-	frc::DoubleSolenoid rightClimber {2,3};
 };
 
 #endif

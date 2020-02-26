@@ -19,5 +19,6 @@
   "queue": "cpp",
   "stack": "cpp",
   "random": "cpp"
-}
+},
+"C_Cpp.errorSquiggles": "Enabled"
 }
