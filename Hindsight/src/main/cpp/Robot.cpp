@@ -113,10 +113,6 @@ void Robot::TeleopPeriodic() {
 		shooter.SetSpeed(inputController.shooterSpeedAxis());
 	}
 
-	if (inputController.climb()){
-		leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
-		rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
-	}
 
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;

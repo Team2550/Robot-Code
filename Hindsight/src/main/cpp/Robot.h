@@ -87,9 +87,6 @@ public:
 	Intake intake;
 	Shooter shooter;
 	DriveBase driveBase;
-
-	frc::DoubleSolenoid leftClimber {0,1};
-	frc::DoubleSolenoid rightClimber {2,3};
 };
 
 #endif
