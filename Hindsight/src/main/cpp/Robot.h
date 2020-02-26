@@ -13,6 +13,7 @@
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
+#include <frc/DriverStation.h>
 #include <iostream>
 #include <iomanip>
 // Not all inputs are in use, but makes for very fast adaptations.
@@ -68,6 +69,7 @@ public:
 	bool autoStartedBackup;
 	bool autoAimOn = true;
 	bool autoAimOff = false;
+	std::string gameData;
 
 	frc::SendableChooser<bool*> autoAimChooser;
 	bool *autoAimToggle;

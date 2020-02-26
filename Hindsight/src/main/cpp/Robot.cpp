@@ -78,6 +78,32 @@ void Robot::TeleopPeriodic() {
 		}
 	} 
 
+	
+	gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+	if(gameData.length() > 0)
+	{
+		// If there's time, make this an automated process with a color sensor or vision; utilizing the switch. For now, it's just for this.
+		switch (gameData[0]) {
+			case 'B' :
+				frc::SmartDashboard::PutString("WheelOfFortuneColor", gameData)
+			break;
+			case 'G' :
+				frc::SmartDashboard::PutString("WheelOfFortuneColor", gameData)
+			break;
+			case 'R' :
+				frc::SmartDashboard::PutString("WheelOfFortuneColor", gameData);
+			break;
+			case 'Y' :
+				frc::SmartDashboard::PutString("WheelOfFortuneColor", gameData);
+			break;
+			default :
+				frc::SmartDashboard::PutString("WheelOfFortuneColor", "No Color Yet");
+			break;
+		}
+	} else {
+	//Code for no data received yet
+	}
+
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
 	} else if (inputController.boost()) {
