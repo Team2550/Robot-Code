@@ -87,6 +87,27 @@ void Robot::TeleopPeriodic() {
 			intake.Start();
 		}
 	} 
+
+	if (inputController.intake()) { 
+		if (intake.IsActive()) {
+			intake.Stop();
+		} else {
+			intake.Start();
+		}
+	} 
+
+	if (inputController.shoot()) {
+		if (shooter.IsActive()) {
+			shooter.Stop();
+		} else {
+			shooter.SetSpeed(inputController.shooterSpeedAxis());
+			shooter.Start();
+		}
+	}
+	
+	if (shooter.IsActive()) {
+		shooter.SetSpeed(inputController.shooterSpeedAxis());
+	}
 	
 	if (shooter.IsActive()) {
 		shooter.SetSpeed(inputController.shooterSpeedAxis());
