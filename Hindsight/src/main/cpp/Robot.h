@@ -23,7 +23,6 @@
 #include "FlightStick.h"
 
 #include "Intake.h"
-#include "Shooter.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
 
