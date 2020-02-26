@@ -13,6 +13,7 @@
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
+#include <frc/Compressor.h>
 #include <iostream>
 #include <iomanip>
 // Not all inputs are in use, but makes for very fast adaptations.
@@ -82,6 +83,8 @@ public:
 
 	Intake intake;
 	DriveBase driveBase;
+
+	frc::Compressor compressor {0}
 };
 
 #endif
