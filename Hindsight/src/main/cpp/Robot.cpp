@@ -80,27 +80,6 @@ void Robot::TeleopPeriodic() {
 
 	std::cout << "Left Joystick: " << inputController.leftTankAxis() << " Right Joystick: " << inputController.rightTankAxis() << std::endl;
 
-	if (inputController.intake()) { 
-		if (intake.IsActive()) {
-			intake.Stop();
-		} else {
-			intake.Start();
-		}
-	} 
-
-	if (inputController.shoot()) {
-		if (shooter.IsActive()) {
-			shooter.Stop();
-		} else {
-			shooter.SetSpeed(inputController.shooterSpeedAxis());
-			shooter.Start();
-		}
-	}
-	
-	if (shooter.IsActive()) {
-		shooter.SetSpeed(inputController.shooterSpeedAxis());
-	}
-
 	if (inputController.climb()){
 		leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
 		rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
