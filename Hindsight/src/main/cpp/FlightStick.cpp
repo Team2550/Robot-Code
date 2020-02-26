@@ -16,6 +16,17 @@ bool FlightStick::intake(){
 	return rightFlightStick.GetRawButtonPressed(3);
 }
 
+<<<<<<< Updated upstream
+=======
+bool FlightStick::shoot(){
+	return rightFlightStick.GetRawButton(1);
+}
+
+bool FlightStick::climb(){
+	return rightFlightStick.GetRawButtonPressed(11);
+}
+
+>>>>>>> Stashed changes
 double FlightStick::leftTankAxis(){
 	return leftFlightStick.GetRawAxis(Y);
 }

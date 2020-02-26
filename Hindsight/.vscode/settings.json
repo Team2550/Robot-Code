@@ -14,6 +14,10 @@
     "**/.factorypath": true
 },
 "files.associations": {
-	"bitset": "cpp"
+  "bitset": "cpp",
+  "*.inc": "cpp",
+  "queue": "cpp",
+  "stack": "cpp",
+  "random": "cpp"
 }
 }

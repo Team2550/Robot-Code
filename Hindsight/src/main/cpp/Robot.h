@@ -13,18 +13,20 @@
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
-#include <frc/Compressor.h>
+#include <frc/Solenoid.h>
 #include <iostream>
 #include <iomanip>
+
 // Not all inputs are in use, but makes for very fast adaptations.
+#include "Input.h"
 #include "Xbox.h"
 #include "FlightStick.h"
-#include "Input.h"
-
 
 #include "Intake.h"
+#include "Shooter.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
+
 
 class Robot: public TimedRobot
 {
@@ -77,14 +79,17 @@ public:
 
 	FlightStick inputController;
 	Timer timer;
+	Timer trimTest;
 	UDPReceiver udpReceiver;
 
 	ADXRS450_Gyro gyroscope;
 
 	Intake intake;
+	Shooter shooter;
 	DriveBase driveBase;
 
-	frc::Compressor compressor {0}
+	frc::DoubleSolenoid leftClimber {0,1};
+	frc::DoubleSolenoid rightClimber {2,3};
 };
 
 #endif

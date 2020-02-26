@@ -21,9 +21,10 @@ Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(2),
+				 shooter(3),
 				 // 0 for right, 1 for left on El Churro
-				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) 
-				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+				 driveBase(0, 1, 0, 1, 2, 3, 6.07 * M_PI, 2048) 
+				 // Pulses per rotation is set by encoder DIP switch. 2048 PPR uses DIP switch configuration 0000.
 {
 	boostPressTime = -999;
 	UpdatePreferences();
@@ -41,14 +42,22 @@ void Robot::RobotInit() {
 	// Start Video Stream
 	// URL is "http://10.25.50.94:8080/"
 	CameraServer::GetInstance() -> StartAutomaticCapture();
+
 }
 
 void Robot::AutonomousInit() {
 	// TODO: Auto
+	trimTest.Reset();
+	trimTest.Start();
 }
 
 void Robot::AutonomousPeriodic() {
 	// TODO: Auto
+	if (trimTest.Get() <= 10.0){
+		driveBase.Drive(0.5,0.5);
+	} else {
+		driveBase.Stop();
+	}
 }
 
 void Robot::TeleopInit() {
@@ -60,15 +69,16 @@ void Robot::TeleopPeriodic() {
 	// Input changes will happen here
 	udpReceiver.getTeleopUDPData();
 
-	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
-	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
-			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
+	//std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
+	//          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
+	//		  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
 
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
 	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
 	float baseSpeed = speedNormal;
 
+	std::cout << "Left Joystick: " << inputController.leftTankAxis() << " Right Joystick: " << inputController.rightTankAxis() << std::endl;
 
 	if (inputController.intake()) { 
 		if (intake.IsActive()) {
@@ -77,6 +87,24 @@ void Robot::TeleopPeriodic() {
 			intake.Start();
 		}
 	} 
+
+	if (inputController.shoot()) {
+		if (shooter.IsActive()) {
+			shooter.Stop();
+		} else {
+			shooter.SetSpeed(inputController.shooterSpeedAxis());
+			shooter.Start();
+		}
+	}
+	
+	if (shooter.IsActive()) {
+		shooter.SetSpeed(inputController.shooterSpeedAxis());
+	}
+
+	if (inputController.climb()){
+		leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
+		rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
+	}
 
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
@@ -88,7 +116,6 @@ void Robot::TeleopPeriodic() {
 	}
 	driveBase.Drive(leftSpeed * baseSpeed,
 					rightSpeed * baseSpeed);
-					
 }
 
 void Robot::UpdatePreferences() {
@@ -97,10 +124,13 @@ void Robot::UpdatePreferences() {
 
 	// Soon to be replaced
 
-	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.82),
+	driveBase.SetTrim(//prefs -> GetDouble("LeftForwardTrim", 0.88),
 					  prefs -> GetDouble("RightForwardTrim", 1.0),
+					  //prefs -> GetDouble("LeftReverseTrim", 0.88),
+					  prefs -> GetDouble("RightReverseTrim", 1.0),
 					  prefs -> GetDouble("LeftReverseTrim", 1.0),
-					  prefs -> GetDouble("RightReverseTrim", 1.0));
+					  prefs -> GetDouble("LeftForwardTrim", 0.88)
+					  );
 
 	speedNormal = prefs -> GetFloat("SpeedNormal", 0.6f);
 	speedTurtle = prefs -> GetFloat("SpeedTurtle", 0.35f);
@@ -109,7 +139,6 @@ void Robot::UpdatePreferences() {
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
-
 
 }
 
