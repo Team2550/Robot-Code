@@ -56,8 +56,8 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
-	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
+	//double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
+	//double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
 	
 	//Commenting out the implementation I think is needed for now to not break the robot testing
 	//leftMotor.Set(leftPIDSpeed);

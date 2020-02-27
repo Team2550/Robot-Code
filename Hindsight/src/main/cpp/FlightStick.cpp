@@ -31,3 +31,7 @@ double FlightStick::leftTankAxis(){
 double FlightStick::rightTankAxis(){
 	return rightFlightStick.GetRawAxis(Y);
 }
+
+double FlightStick::shooterSpeedAxis(){
+	return 0.5;
+}
