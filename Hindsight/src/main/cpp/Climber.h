@@ -18,7 +18,7 @@ public:
 private:
 	frc::DoubleSolenoid leftClimber;
 	frc::DoubleSolenoid rightClimber;
-	frc::Compressor hindsightCompressor {0};
+	frc::Compressor hindsightCompressor;
 	frc::Spark winch;
 };
 

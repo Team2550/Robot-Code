@@ -20,7 +20,7 @@ bool Xbox::shoot(){
 }
 
 bool Xbox::climb(){
-	return controller.GetRawButtonPressed(back);
+	return secondaryController.GetRawButtonPressed(a);
 }
 
 bool Xbox::winchCW(){

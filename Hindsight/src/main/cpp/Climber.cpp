@@ -4,9 +4,8 @@ Climber::Climber(int leftClimberUpPort, int leftClimberDownPort, int rightClimbe
 	leftClimber(leftClimberUpPort, leftClimberDownPort), rightClimber(rightClimberUpPort, rightClimberDownPort), winch(winchMotorPort)
 
 {
-	leftClimber.Set(frc::DoubleSolenoid::Value::kOff);
-	rightClimber.Set(frc::DoubleSolenoid::Value::kOff);
-	hindsightCompressor.SetClosedLoopControl(false);
+	leftClimber.Set(frc::DoubleSolenoid::Value::kReverse);
+	rightClimber.Set(frc::DoubleSolenoid::Value::kReverse);
 }
 
 void Climber::StartCompressor(){

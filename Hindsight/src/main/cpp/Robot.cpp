@@ -78,10 +78,9 @@ void Robot::TeleopPeriodic() {
 	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
 	float baseSpeed = speedNormal;
 
-	std::cout << "Left Joystick: " << inputController.leftTankAxis() << " Right Joystick: " << inputController.rightTankAxis() << std::endl;
-
 	if (inputController.climb()){
 		climber.LiftClimber();
+		std::cout << "Climb Button Pressed" << std::endl; 
 	}
 
 	if (inputController.winchCW()){
@@ -90,6 +89,10 @@ void Robot::TeleopPeriodic() {
 
 	if (inputController.winchCCW()){
 		climber.WinchCounterclockwise();
+	}
+
+	if (inputController.winchCCW() == inputController.winchCW()){
+		climber.WinchStop();
 	}
 
 	if (inputController.turtle()) { 

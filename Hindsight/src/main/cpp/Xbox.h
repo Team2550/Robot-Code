@@ -20,7 +20,7 @@ public:
 	double shooterSpeedAxis();
 private:
 	frc::Joystick controller;
-	frc::Joystick secondaryController;
+	frc::Joystick secondaryController; // 5/10
 	const uint32_t a = 1;
 	const uint32_t b = 2;
 	const uint32_t x = 3;
