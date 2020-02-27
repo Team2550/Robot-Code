@@ -24,6 +24,14 @@ bool FlightStick::climb(){
 	return rightFlightStick.GetRawButtonPressed(11);
 }
 
+bool FlightStick::winchCCW(){
+	return leftFlightStick.GetRawButtonPressed(4);
+}
+
+bool FlightStick::winchCW(){
+	return rightFlightStick.GetRawButton(4);
+}
+
 double FlightStick::leftTankAxis(){
 	return leftFlightStick.GetRawAxis(Y);
 }

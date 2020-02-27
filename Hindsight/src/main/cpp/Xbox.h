@@ -13,6 +13,8 @@ public:
 	bool intake();
 	bool shoot();
 	bool climb();
+	bool winchCW();
+	bool winchCCW();
 	double leftTankAxis();
 	double rightTankAxis();
 	double shooterSpeedAxis();

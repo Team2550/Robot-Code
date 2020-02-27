@@ -84,6 +84,14 @@ void Robot::TeleopPeriodic() {
 		climber.LiftClimber();
 	}
 
+	if (inputController.winchCW()){
+		climber.WinchClockwise();
+	}
+
+	if (inputController.winchCCW()){
+		climber.WinchCounterclockwise();
+	}
+
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
 	} else if (inputController.boost()) {

@@ -23,6 +23,14 @@ bool Xbox::climb(){
 	return controller.GetRawButtonPressed(back);
 }
 
+bool Xbox::winchCW(){
+	return secondaryController.GetRawButton(lb);
+}
+
+bool Xbox::winchCCW(){
+	return secondaryController.GetRawButton(rb);
+}
+
 double Xbox::leftTankAxis(){
 	return controller.GetRawAxis(leftY);
 }
