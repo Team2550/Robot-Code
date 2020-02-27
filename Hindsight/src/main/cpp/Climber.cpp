@@ -6,12 +6,30 @@ Climber::Climber(int leftClimberUpPort, int leftClimberDownPort, int rightClimbe
 {
 	leftClimber.Set(frc::DoubleSolenoid::Value::kOff);
 	rightClimber.Set(frc::DoubleSolenoid::Value::kOff);
+	hindsightCompressor.SetClosedLoopControl(false);
+}
+
+void Climber::StartCompressor(){
+	hindsightCompressor.Start();
 }
 
 void Climber::StopCompressor(){
 	hindsightCompressor.Stop();
 }
 
-void Climber::LiftClimber() {
+void Climber::WinchClockwise(){
+	winch.Set(-1);
+}
 
+void Climber::WinchCounterclockwise(){
+	winch.Set(1);
+}
+
+void Climber::WinchStop(){
+	winch.Set(0);
+}
+
+void Climber::LiftClimber() {
+	leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
+	rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
 }

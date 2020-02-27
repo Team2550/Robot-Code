@@ -14,6 +14,7 @@ public:
 	void LiftClimber();
 	void WinchClockwise();
 	void WinchCounterclockwise();
+	void WinchStop();
 private:
 	frc::DoubleSolenoid leftClimber;
 	frc::DoubleSolenoid rightClimber;

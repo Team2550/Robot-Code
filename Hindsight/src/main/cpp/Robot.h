@@ -24,6 +24,7 @@
 #include "Intake.h"
 #include "UDPReceiver.h"
 #include "DriveBase.h"
+#include "Climber.h"
 
 
 class Robot: public TimedRobot
@@ -83,6 +84,8 @@ public:
 	ADXRS450_Gyro gyroscope;
 
 	Intake intake;
+	Climber climber;
+
 	DriveBase driveBase;
 
 };
