@@ -8,10 +8,10 @@ public:
 	virtual bool intake() = 0;
 	virtual bool shoot() = 0;
 	virtual bool climb() = 0;
-	virtual bool winchCW() = 0;
-	virtual bool winchCCW() = 0;
+	virtual double winchSpeed() = 0;
 	virtual double leftTankAxis() = 0;
 	virtual double rightTankAxis() = 0;
 	virtual double shooterSpeedAxis() = 0;	
+	virtual double trenchSpeedAxis() = 0; 
 };
 #endif

@@ -4,8 +4,8 @@ Climber::Climber(int leftClimberUpPort, int leftClimberDownPort, int rightClimbe
 	leftClimber(leftClimberUpPort, leftClimberDownPort), rightClimber(rightClimberUpPort, rightClimberDownPort), winch(winchMotorPort)
 
 {
-	leftClimber.Set(frc::DoubleSolenoid::Value::kReverse);
-	rightClimber.Set(frc::DoubleSolenoid::Value::kReverse);
+	leftClimber.Set(frc::DoubleSolenoid::kReverse);
+	rightClimber.Set(frc::DoubleSolenoid::kReverse);
 }
 
 void Climber::StartCompressor(){
@@ -16,19 +16,16 @@ void Climber::StopCompressor(){
 	hindsightCompressor.Stop();
 }
 
-void Climber::WinchClockwise(){
-	winch.Set(-1);
-}
-
-void Climber::WinchCounterclockwise(){
-	winch.Set(1);
-}
-
-void Climber::WinchStop(){
-	winch.Set(0);
+void Climber::WinchSpeed(double speed){
+	winch.Set(speed);
 }
 
 void Climber::LiftClimber() {
-	leftClimber.Set(frc::DoubleSolenoid::Value::kForward);
-	rightClimber.Set(frc::DoubleSolenoid::Value::kForward);
+	leftClimber.Set(frc::DoubleSolenoid::kForward);
+	rightClimber.Set(frc::DoubleSolenoid::kForward);
+}
+
+void Climber::LowerClimber() {
+	leftClimber.Set(frc::DoubleSolenoid::kReverse);
+	rightClimber.Set(frc::DoubleSolenoid::kReverse);
 }

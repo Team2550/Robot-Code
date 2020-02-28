@@ -12,9 +12,8 @@ public:
 	void StartCompressor();
 	void StopCompressor();
 	void LiftClimber();
-	void WinchClockwise();
-	void WinchCounterclockwise();
-	void WinchStop();
+	void LowerClimber();
+	void WinchSpeed(double speed);
 private:
 	frc::DoubleSolenoid leftClimber;
 	frc::DoubleSolenoid rightClimber;

@@ -13,11 +13,11 @@ public:
 	bool intake();
 	bool shoot();
 	bool climb();
-	bool winchCW();
-	bool winchCCW();
+	double winchSpeed();
 	double leftTankAxis();
 	double rightTankAxis();
 	double shooterSpeedAxis();
+	double trenchSpeedAxis();
 private:
 	frc::Joystick controller;
 	frc::Joystick secondaryController; // 5/10

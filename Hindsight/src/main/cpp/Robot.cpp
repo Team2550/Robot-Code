@@ -21,7 +21,8 @@ Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(2),
-				 climber(0, 1, 2, 3, 2),
+				 climber(0, 1, 2, 3, 3),
+				 trench(4),
 				 // 0 for right, 1 for left on El Churro
 				 driveBase(0, 1, 0, 1, 2, 3, 6.07 * M_PI, 2048) 
 				 // Pulses per rotation is set by encoder DIP switch. 2048 PPR uses DIP switch configuration 0000.
@@ -79,21 +80,18 @@ void Robot::TeleopPeriodic() {
 	float baseSpeed = speedNormal;
 
 	if (inputController.climb()){
-		climber.LiftClimber();
+		if (climbGrabToggleCount % 2 == 0){
+			climber.LiftClimber();
+		} else {
+			climber.LowerClimber();
+		}
 		std::cout << "Climb Button Pressed" << std::endl; 
+		climbGrabToggleCount++;
 	}
 
-	if (inputController.winchCW()){
-		climber.WinchClockwise();
-	}
+	trench.SpinTrench(inputController.trenchSpeedAxis());
 
-	if (inputController.winchCCW()){
-		climber.WinchCounterclockwise();
-	}
-
-	if (inputController.winchCCW() == inputController.winchCW()){
-		climber.WinchStop();
-	}
+	climber.WinchSpeed(inputController.winchSpeed());
 
 	if (inputController.turtle()) { 
 		baseSpeed = speedTurtle;
@@ -117,7 +115,7 @@ void Robot::UpdatePreferences() {
 					  prefs -> GetDouble("RightForwardTrim", 1.0),
 					  //prefs -> GetDouble("LeftReverseTrim", 0.88),
 					  prefs -> GetDouble("RightReverseTrim", 1.0),
-					  prefs -> GetDouble("LeftReverseTrim", 1.0),
+					  prefs -> GetDouble("LeftReverseTrim", 0.88),
 					  prefs -> GetDouble("LeftForwardTrim", 0.88)
 					  );
 

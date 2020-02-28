@@ -24,12 +24,16 @@ bool FlightStick::climb(){
 	return rightFlightStick.GetRawButtonPressed(11);
 }
 
-bool FlightStick::winchCCW(){
-	return leftFlightStick.GetRawButtonPressed(4);
-}
-
-bool FlightStick::winchCW(){
-	return rightFlightStick.GetRawButton(4);
+double FlightStick::winchSpeed(){
+	if (rightFlightStick.GetRawButton(4) && leftFlightStick.GetRawButtonPressed(4)){
+		return 0; // Safety feature -- keeps contradictory signals from being sent
+	} else if (rightFlightStick.GetRawButton(4) && !leftFlightStick.GetRawButtonPressed(4)) {
+		return 1;
+	} else if (leftFlightStick.GetRawButton(4) && !rightFlightStick.GetRawButton(4)) {
+		return -1;
+	} else {
+		return 0;
+	}
 }
 
 double FlightStick::leftTankAxis(){
@@ -42,4 +46,16 @@ double FlightStick::rightTankAxis(){
 
 double FlightStick::shooterSpeedAxis(){
 	return 0.5;
+}
+
+double FlightStick::trenchSpeedAxis(){
+	if (rightFlightStick.GetRawButton(11) && rightFlightStick.GetRawButton(10)){
+		return 0; // Safety feature -- keeps contradictory signals from being sent
+	} else if (rightFlightStick.GetRawButton(11) && !rightFlightStick.GetRawButton(10)) {
+		return 1;
+	} else if (rightFlightStick.GetRawButton(10) && !rightFlightStick.GetRawButton(11)) {
+		return -1;
+	} else {
+		return 0;
+	}
 }

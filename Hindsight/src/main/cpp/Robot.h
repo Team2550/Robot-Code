@@ -25,6 +25,7 @@
 #include "UDPReceiver.h"
 #include "DriveBase.h"
 #include "Climber.h"
+#include "Trench.h"
 
 
 class Robot: public TimedRobot
@@ -85,6 +86,7 @@ public:
 
 	Intake intake;
 	Climber climber;
+	Trench trench;
 
 	DriveBase driveBase;
 
