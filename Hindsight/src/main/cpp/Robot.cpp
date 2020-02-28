@@ -51,7 +51,7 @@ void Robot::AutonomousPeriodic() {
 		autoTimer.Reset();
 		autoTimer.Start();
 		if(autoTimer.Get() <= autoLength){
-			driveBase.Drive(0.5,0.5);
+			driveBase.Drive(0.42,0.42);
 		} else {
 			driveBase.Stop();
 		}
