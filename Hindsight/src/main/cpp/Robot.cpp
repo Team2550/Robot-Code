@@ -47,17 +47,19 @@ void Robot::RobotInit() {
 }
 
 void Robot::AutonomousInit() {
-	// TODO: Auto
-	trimTest.Reset();
-	trimTest.Start();
+	autoDelayTimer.Reset();
+	autoDelayTimer.Start();
 }
 
 void Robot::AutonomousPeriodic() {
-	// TODO: Auto
-	if (trimTest.Get() <= 10.0){
-		driveBase.Drive(0.5,0.5);
-	} else {
-		driveBase.Stop();
+	if(autoDelayTimer.Get() >= autoDelay){
+		autoTimer.Reset();
+		autoTimer.Start();
+		if(autoTimer.Get() <= autoLength){
+			driveBase.Drive(0.5,0.5);
+		} else {
+			driveBase.Stop();
+		}
 	}
 }
 
@@ -125,7 +127,9 @@ void Robot::UpdatePreferences() {
 	boostDecelerationTime = prefs -> GetFloat("BoostDecelTime", 0.5f);
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
+	frc::SmartDashboard::SetDefaultNumber("Auto Length", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
+	autoLength = frc::SmartDashboard::GetNumber("Auto Length", 1);
 
 }
 

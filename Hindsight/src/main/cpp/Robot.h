@@ -66,6 +66,7 @@ public:
 
 	Preferences *prefs;
 	float autoDelay;
+	float autoLength;
 
 	bool autoStrategyCompleted;
 	bool autoStartedBackup;
@@ -79,7 +80,8 @@ public:
 
 	Xbox inputController;
 	Timer timer;
-	Timer trimTest;
+	Timer autoTimer;
+	Timer autoDelayTimer;
 	UDPReceiver udpReceiver;
 
 	ADXRS450_Gyro gyroscope;
