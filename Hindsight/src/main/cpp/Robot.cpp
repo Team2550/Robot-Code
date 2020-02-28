@@ -12,11 +12,6 @@
 // driveBase:  (float) max power, (float) max boost power, (int) left motor port,
 //             (int) right motor port
 
-
-// These are for the intake toggle later.
-bool intakeToggleOn = false;
-bool intakeTogglePressed = false;
-
 Robot::Robot() : inputController(),
 				 udpReceiver(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
