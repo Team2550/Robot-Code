@@ -43,14 +43,14 @@ void Robot::RobotInit() {
 
 void Robot::AutonomousInit() {
 	autoDelayTimer.Reset();
+	autoTimer.Reset();
 	autoDelayTimer.Start();
+	autoTimer.Start();
 }
 
 void Robot::AutonomousPeriodic() {
 	if(autoDelayTimer.Get() >= autoDelay){
-		autoTimer.Reset();
-		autoTimer.Start();
-		if(autoTimer.Get() <= autoLength){
+		if(autoTimer.Get() <= autoLength + autoDelay){
 			driveBase.Drive(0.42,0.42);
 		} else {
 			driveBase.Stop();
