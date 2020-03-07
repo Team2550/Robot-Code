@@ -39,6 +39,9 @@ void Robot::RobotInit() {
 	// URL is "http://10.25.50.94:8080/"
 	CameraServer::GetInstance() -> StartAutomaticCapture();
 
+
+	// Sets LimeLight to off by default
+	limelight->PutNumber("ledMode", 1);
 }
 
 void Robot::AutonomousInit() {
@@ -49,17 +52,23 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-	if(autoDelayTimer.Get() >= autoDelay){
-		if(autoTimer.Get() <= autoLength + autoDelay){
+	if (autoTimer.Get() <= 1.0){
+		driveBase.Drive(0.42,0.42);
+	} else {
+		driveBase.Stop();
+	}
+	
+	/*if(autoDelayTimer.Get() >= autoDelay 0){
+		if(autoTimer.Get() <= 2autoLength + autoDelay){
 			driveBase.Drive(0.42,0.42);
 		} else {
 			driveBase.Stop();
 		}
-	}
+	}*/
 }
 
 void Robot::TeleopInit() {
-	// TODO: TeleopInit
+	
 }
 
 void Robot::TeleopPeriodic() {
@@ -98,6 +107,7 @@ void Robot::TeleopPeriodic() {
 	} else if (timer.Get() < boostPressTime + boostDecelerationTime) {
 		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((timer.Get() - boostPressTime) / boostDecelerationTime);
 	}
+
 	driveBase.Drive(leftSpeed * baseSpeed,
 					rightSpeed * baseSpeed);
 }

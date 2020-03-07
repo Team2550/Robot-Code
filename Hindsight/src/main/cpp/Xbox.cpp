@@ -4,11 +4,11 @@ Xbox::Xbox() : controller(0), secondaryController(1)
 {}
 
 bool Xbox::boost(){
-	return controller.GetRawButton(lb);
+	return controller.GetRawButton(rb);
 }
 
 bool Xbox::turtle(){
-	return controller.GetRawButton(rb);
+	return controller.GetRawButton(lb);
 }
 
 bool Xbox::intake(){

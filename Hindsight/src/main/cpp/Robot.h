@@ -77,6 +77,7 @@ public:
 	bool *autoAimToggle;
 	
 	PowerDistributionPanel pdp;
+	std::shared_ptr<NetworkTable> limelight = NetworkTable::GetTable("limelight");
 
 	Xbox inputController;
 	Timer timer;
