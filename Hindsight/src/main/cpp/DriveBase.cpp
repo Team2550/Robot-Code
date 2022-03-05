@@ -21,9 +21,10 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
 	rightEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
 
-	// Length of time needed to determine whether robot is stopped (seconds).
-	leftEncoder.SetMaxPeriod(.1);
-	rightEncoder.SetMaxPeriod(.1);
+
+	// Distance per second below which we count as stopped (think encoder deadzone).
+	leftEncoder.SetMinRate(wheelCircumference / 8);
+	rightEncoder.SetMinRate(wheelCircumference / 8);
 
 	// Minimum speed to determine if robot is stopped (distance units/second).
 	leftEncoder.SetMinRate(1);
@@ -56,27 +57,25 @@ double DriveBase::GetRightSpeed()
 
 void DriveBase::Drive(double leftSpeed, double rightSpeed)
 {
-	double leftPIDSpeed = leftController.Calculate(leftEncoder.Get(), leftSpeed);
-	double rightPIDSpeed = rightController.Calculate(rightEncoder.Get(), rightSpeed);
-	
-	//Commenting out the implementation I think is needed for now to not break the robot testing
-	//leftMotor.Set(leftPIDSpeed);
-	//rightMotor.Set(rightPIDSpeed);
-
 	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
 	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
-//
-//	Convienience function for same speed to both motors. 
-//
-//	Deprecated.
-//
+/**
+ * Convienience function for same speed to both motors.
+ * 
+ * @deprecated
+*/
 void DriveBase::Drive(double speed)
 {
 	Drive(speed, speed);
 }
 
+/**
+ * Convienience function to set both motors to zero.
+ * 
+ * @deprecated
+*/
 void DriveBase::Stop()
 {
 	Drive(0, 0);
@@ -135,7 +134,7 @@ bool DriveBase::GetReversed()
 	return isReversed;
 }
 
-float DriveBase::GetAmps(PowerDistributionPanel& pdp)
+float DriveBase::GetAmps(PowerDistribution& pdp)
 {
 	return (pdp.GetCurrent(leftMotorPortValue) + pdp.GetCurrent(rightMotorPortValue)) / 2;
 }
