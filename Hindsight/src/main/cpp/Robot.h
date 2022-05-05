@@ -1,34 +1,31 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#include <frc/commands/Command.h>
 #include <cameraserver/CameraServer.h>
-#include <frc/commands/Scheduler.h>
-#include <frc/livewindow/LiveWindow.h>
-#include <frc/smartdashboard/SendableChooser.h>
-#include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/PowerDistribution.h>
 #include <frc/ADXRS450_Gyro.h>
+#include <frc/PowerDistribution.h>
 #include <frc/Preferences.h>
 #include <frc/RobotBase.h>
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
-#include <iostream>
+#include <frc/commands/Command.h>
+#include <frc/commands/Scheduler.h>
+#include <frc/livewindow/LiveWindow.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <iomanip>
+#include <iostream>
 // Not all inputs are in use, but makes for very fast adaptations.
-#include "Xbox.h"
 #include "FlightStick.h"
 #include "Input.h"
+#include "Xbox.h"
 
-
+#include "DriveBase.h"
 #include "Intake.h"
 #include "UDPReceiver.h"
-#include "DriveBase.h"
 
-class Robot: public TimedRobot
-{
-public:
-
+class Robot : public TimedRobot {
+  public:
 	enum Position { LEFT, RIGHT };
 
 	Robot();
@@ -69,9 +66,9 @@ public:
 	bool autoAimOn = true;
 	bool autoAimOff = false;
 
-	frc::SendableChooser<bool*> autoAimChooser;
+	frc::SendableChooser<bool *> autoAimChooser;
 	bool *autoAimToggle;
-	
+
 	PowerDistribution pdp;
 
 	FlightStick inputController;

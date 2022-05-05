@@ -1,19 +1,20 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-#include <frc/motorcontrol/Spark.h>
+#include "Utility.h"
 #include <frc/Encoder.h>
 #include <frc/PowerDistribution.h>
+#include <frc/motorcontrol/Spark.h>
 #include <math.h>
-#include "Utility.h"
 
-class Intake{
-public:
+class Intake {
+  public:
 	Intake(int intakeMotorPort);
 	void Start();
 	void Stop();
 	bool IsActive();
-private:
+
+  private:
 	Spark intakeMotor;
 	bool isActive;
 };

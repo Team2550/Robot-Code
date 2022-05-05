@@ -1,6 +1,5 @@
 #include "Utility.h"
 
-
 /*!
  * \brief Applies the specified deadzone to value
  *
@@ -9,8 +8,7 @@
  * \return 0 if the absolute value of the given value is smaller than or
  * equal to tolerance; otherwise, the original value
  */
-float Utility::Deadzone(float value, float tolerance)
-{
+float Utility::Deadzone(float value, float tolerance) {
 	return fabs(value) <= tolerance ? 0 : value;
 }
 
@@ -21,17 +19,14 @@ float Utility::Deadzone(float value, float tolerance)
  * \param[in] delimiter The delimiter to use
  * \return A vector containing the resulting strings
  */
-std::vector<std::string> Utility::SplitString(std::string str, char delimiter)
-{
+std::vector<std::string> Utility::SplitString(std::string str, char delimiter) {
 	std::vector<std::string> substrings;
 	std::string substr;
 
-	for (unsigned int i = 0; i < str.length(); i++)
-	{
+	for (unsigned int i = 0; i < str.length(); i++) {
 		substr = "";
 
-		while (str[i] != delimiter && i < str.length())
-		{
+		while (str[i] != delimiter && i < str.length()) {
 			substr += str[i++];
 		}
 
@@ -49,19 +44,17 @@ std::vector<std::string> Utility::SplitString(std::string str, char delimiter)
  * \param[in] strs The strings to convert
  * \return A vector containing the resulting floats
  */
-std::vector<float> Utility::StrVectorToFloatVector(std::vector<std::string> strs)
-{
+std::vector<float>
+Utility::StrVectorToFloatVector(std::vector<std::string> strs) {
 	std::vector<float> nums;
 	float num;
 
 	for (unsigned int i = 0; i < strs.size(); i++)
-		try
-		{
+		try {
 			num = stof(strs[i]);
 			nums.push_back(num);
+		} catch (...) {
 		}
-		catch (...)
-		{}
 
 	return nums;
 }
@@ -75,10 +68,9 @@ std::vector<float> Utility::StrVectorToFloatVector(std::vector<std::string> strs
  * \param[in] rumbleSide   Which side of the controller to rumble
  * \param[in] rumbleAmount The intensity of the rumble, from 0 to 1
  */
-void Utility::SetRumble(Joystick& controller, Utility::RumbleSide rumbleSide, float rumbleAmount)
-{
-	switch (rumbleSide)
-	{
+void Utility::SetRumble(Joystick &controller, Utility::RumbleSide rumbleSide,
+						float rumbleAmount) {
+	switch (rumbleSide) {
 	case LEFT:
 		controller.SetRumble(Joystick::kLeftRumble, rumbleAmount);
 		break;

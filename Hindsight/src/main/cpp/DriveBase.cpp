@@ -3,13 +3,13 @@
 DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 					 int leftEncoderPortA, int leftEncoderPortB,
 					 int rightEncoderPortA, int rightEncoderPortB,
-					 double wheelCircumference, int encoderPulsesPerRotation) :
-	leftMotor(leftMotorPort), rightMotor(rightMotorPort),
-	leftEncoder(leftEncoderPortA, leftEncoderPortB, Encoder::EncodingType::k2X),
-	rightEncoder(rightEncoderPortA, rightEncoderPortB, Encoder::EncodingType::k2X),
-	leftController(K_P, K_I, K_D),
-	rightController(K_P, K_I, K_D)
-{
+					 double wheelCircumference, int encoderPulsesPerRotation)
+	: leftMotor(leftMotorPort), rightMotor(rightMotorPort),
+	  leftEncoder(leftEncoderPortA, leftEncoderPortB,
+				  Encoder::EncodingType::k2X),
+	  rightEncoder(rightEncoderPortA, rightEncoderPortB,
+				   Encoder::EncodingType::k2X),
+	  leftController(K_P, K_I, K_D), rightController(K_P, K_I, K_D) {
 	leftMotor.SetInverted(false);
 	rightMotor.SetInverted(false);
 
@@ -18,11 +18,13 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	rightEncoder.SetReverseDirection(false);
 
 	// Distance per pulse from encoder.
-	leftEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
-	rightEncoder.SetDistancePerPulse(wheelCircumference / encoderPulsesPerRotation);
+	leftEncoder.SetDistancePerPulse(wheelCircumference /
+									encoderPulsesPerRotation);
+	rightEncoder.SetDistancePerPulse(wheelCircumference /
+									 encoderPulsesPerRotation);
 
-
-	// Distance per second below which we count as stopped (think encoder deadzone).
+	// Distance per second below which we count as stopped (think encoder
+	// deadzone).
 	leftEncoder.SetMinRate(wheelCircumference / 8);
 	rightEncoder.SetMinRate(wheelCircumference / 8);
 
@@ -45,65 +47,50 @@ DriveBase::DriveBase(int leftMotorPort, int rightMotorPort,
 	encoderPulsesPerRotationValue = encoderPulsesPerRotation;
 }
 
-double DriveBase::GetLeftSpeed()
-{
+double DriveBase::GetLeftSpeed() {
 	return leftMotor.GetInverted() ? leftMotor.Get() : -leftMotor.Get();
 }
 
-double DriveBase::GetRightSpeed()
-{
+double DriveBase::GetRightSpeed() {
 	return rightMotor.GetInverted() ? rightMotor.Get() : -rightMotor.Get();
 }
 
-void DriveBase::Drive(double leftSpeed, double rightSpeed)
-{
-	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim) : leftMotor.Set(leftSpeed * leftReverseTrim);
-	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim) : rightMotor.Set(rightSpeed * rightReverseTrim);
+void DriveBase::Drive(double leftSpeed, double rightSpeed) {
+	(leftSpeed > 0) ? leftMotor.Set(leftSpeed * leftForwardTrim)
+					: leftMotor.Set(leftSpeed * leftReverseTrim);
+	(rightSpeed > 0) ? rightMotor.Set(rightSpeed * rightForwardTrim)
+					 : rightMotor.Set(rightSpeed * rightReverseTrim);
 }
 
 /**
  * Convienience function for same speed to both motors.
- * 
+ *
  * @deprecated
-*/
-void DriveBase::Drive(double speed)
-{
-	Drive(speed, speed);
-}
+ */
+void DriveBase::Drive(double speed) { Drive(speed, speed); }
 
 /**
  * Convienience function to set both motors to zero.
- * 
+ *
  * @deprecated
-*/
-void DriveBase::Stop()
-{
-	Drive(0, 0);
-}
+ */
+void DriveBase::Stop() { Drive(0, 0); }
 
-bool DriveBase::IsStopped()
-{
+bool DriveBase::IsStopped() {
 	return leftEncoder.GetStopped() && rightEncoder.GetStopped();
 }
 
-void DriveBase::ResetDistance()
-{
-	leftEncoder.Reset(); 
+void DriveBase::ResetDistance() {
+	leftEncoder.Reset();
 	rightEncoder.Reset();
 }
 
-double DriveBase::GetLeftDistance()
-{
-	return leftEncoder.GetDistance();
-}
+double DriveBase::GetLeftDistance() { return leftEncoder.GetDistance(); }
 
-double DriveBase::GetRightDistance()
-{
-	return rightEncoder.GetDistance();
-}
+double DriveBase::GetRightDistance() { return rightEncoder.GetDistance(); }
 
-void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim)
-{
+void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim,
+						float leftReverseTrim, float rightReverseTrim) {
 	this->leftForwardTrim = leftForwardTrim;
 	this->rightForwardTrim = rightForwardTrim;
 	this->leftReverseTrim = leftReverseTrim;
@@ -112,30 +99,26 @@ void DriveBase::SetTrim(float leftForwardTrim, float rightForwardTrim, float lef
 /*!
  * \brief Changes which end of the Robot is the front
  *
- * \param[in] reverse Whether or not the back of the Robot should be considered the front
+ * \param[in] reverse Whether or not the back of the Robot should be considered
+ * the front
  */
 
 //
 //	FIX CAPTIALIZATION!
 //
 
-void DriveBase::SetReversed(bool reverse)
-{
-	isReversed = reverse;
-}
+void DriveBase::SetReversed(bool reverse) { isReversed = reverse; }
 
 /*!
  * \brief Tells which end of the Robot is the front
  *
- * \return True if and only if the back of the Robot is being treated as the front
+ * \return True if and only if the back of the Robot is being treated as the
+ * front
  */
-bool DriveBase::GetReversed()
-{
-	return isReversed;
-}
+bool DriveBase::GetReversed() { return isReversed; }
 
-float DriveBase::GetAmps(PowerDistribution& pdp)
-{
-	return (pdp.GetCurrent(leftMotorPortValue) + pdp.GetCurrent(rightMotorPortValue)) / 2;
+float DriveBase::GetAmps(PowerDistribution &pdp) {
+	return (pdp.GetCurrent(leftMotorPortValue) +
+			pdp.GetCurrent(rightMotorPortValue)) /
+		   2;
 }
-
