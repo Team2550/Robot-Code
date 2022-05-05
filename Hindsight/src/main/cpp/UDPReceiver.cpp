@@ -28,9 +28,10 @@ Arguments:
 Return:
 	Seconds since data was last received
 ================================================*/
+// NOTE: this should probably return the proper units.
 double UDPReceiver::getUDPDataAge()
 {
-	return UDPAgeTimer.Get();
+	return double(UDPAgeTimer.Get());
 }
 
 /*================================================

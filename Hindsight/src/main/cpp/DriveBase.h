@@ -1,9 +1,9 @@
 #ifndef DRIVEBASE_H
 #define DRIVEBASE_H
 
-#include <frc/Spark.h>
+#include <frc/motorcontrol/Spark.h>
 #include <frc/Encoder.h>
-#include <frc/PowerDistributionPanel.h>
+#include <frc/PowerDistribution.h>
 #include <math.h>
 #include "Utility.h"
 #include <iostream>
@@ -33,8 +33,8 @@ public:
 	double GetLeftDistance();
 	double GetRightDistance();
 	void SetTrim(float leftForwardTrim, float rightForwardTrim, float leftReverseTrim, float rightReverseTrim);
-	//float DriveBase(PowerDistributionPanel& pdp);
-	float GetAmps(PowerDistributionPanel& pdp);
+	//float DriveBase(PowerDistribution& pdp);
+	float GetAmps(PowerDistribution& pdp);
 	void SetReversed(bool reverse);
 	bool GetReversed();
 

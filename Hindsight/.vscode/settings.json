@@ -11,9 +11,8 @@
     "**/.classpath": true,
     "**/.project": true,
     "**/.settings": true,
-    "**/.factorypath": true
-},
-"files.associations": {
-	"bitset": "cpp"
-}
+    "**/.factorypath": true,
+    "**/*~": true
+  },
+  "C_Cpp.default.configurationProvider": "vscode-wpilib"
 }

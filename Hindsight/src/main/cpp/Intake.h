@@ -1,9 +1,9 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-#include <frc/Spark.h>
+#include <frc/motorcontrol/Spark.h>
 #include <frc/Encoder.h>
-#include <frc/PowerDistributionPanel.h>
+#include <frc/PowerDistribution.h>
 #include <math.h>
 #include "Utility.h"
 

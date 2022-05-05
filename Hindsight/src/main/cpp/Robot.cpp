@@ -22,7 +22,11 @@ Robot::Robot() : inputController(),
 				 gyroscope(frc::SPI::Port::kOnboardCS0),
 				 intake(2),
 				 // 0 for right, 1 for left on El Churro
-				 driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512) 
+				 driveBase(
+					 1, 0, 
+					 0, 1, 
+					 2, 3, 
+					 6.07 * M_PI, 512) 
 				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
 {
 	boostPressTime = -999;
@@ -40,7 +44,7 @@ void Robot::RobotInit() {
 
 	// Start Video Stream
 	// URL is "http://10.25.50.94:8080/"
-	CameraServer::GetInstance() -> StartAutomaticCapture();
+	CameraServer::StartAutomaticCapture();
 }
 
 void Robot::AutonomousInit() {
@@ -82,9 +86,9 @@ void Robot::TeleopPeriodic() {
 		baseSpeed = speedTurtle;
 	} else if (inputController.boost()) {
 		baseSpeed = speedBoost;
-		boostPressTime = timer.Get();
-	} else if (timer.Get() < boostPressTime + boostDecelerationTime) {
-		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((timer.Get() - boostPressTime) / boostDecelerationTime);
+		boostPressTime = float(timer.Get());
+	} else if (float(timer.Get()) < boostPressTime + boostDecelerationTime) {
+		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((float(timer.Get()) - boostPressTime) / boostDecelerationTime);
 	}
 	driveBase.Drive(leftSpeed * baseSpeed,
 					rightSpeed * baseSpeed);
@@ -92,19 +96,17 @@ void Robot::TeleopPeriodic() {
 
 void Robot::UpdatePreferences() {
 
-	prefs = Preferences::GetInstance();
-
 	// Soon to be replaced
 
-	driveBase.SetTrim(prefs -> GetDouble("LeftForwardTrim", 0.82),
-					  prefs -> GetDouble("RightForwardTrim", 1.0),
-					  prefs -> GetDouble("LeftReverseTrim", 1.0),
-					  prefs -> GetDouble("RightReverseTrim", 1.0));
+	driveBase.SetTrim(Preferences::GetDouble("LeftForwardTrim", 0.82),
+					  Preferences::GetDouble("RightForwardTrim", 1.0),
+					  Preferences::GetDouble("LeftReverseTrim", 1.0),
+					  Preferences::GetDouble("RightReverseTrim", 1.0));
 
-	speedNormal = prefs -> GetFloat("SpeedNormal", 0.6f);
-	speedTurtle = prefs -> GetFloat("SpeedTurtle", 0.35f);
-	speedBoost = prefs -> GetFloat("SpeedBoost", 1.0f);
-	boostDecelerationTime = prefs -> GetFloat("BoostDecelTime", 0.5f);
+	speedNormal = Preferences::GetFloat("SpeedNormal", 0.6f);
+	speedTurtle = Preferences::GetFloat("SpeedTurtle", 0.35f);
+	speedBoost = Preferences::GetFloat("SpeedBoost", 1.0f);
+	boostDecelerationTime = Preferences::GetFloat("BoostDecelTime", 0.5f);
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);

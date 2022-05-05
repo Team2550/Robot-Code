@@ -7,7 +7,7 @@
 #include <frc/livewindow/LiveWindow.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/PowerDistributionPanel.h>
+#include <frc/PowerDistribution.h>
 #include <frc/ADXRS450_Gyro.h>
 #include <frc/Preferences.h>
 #include <frc/RobotBase.h>
@@ -72,7 +72,7 @@ public:
 	frc::SendableChooser<bool*> autoAimChooser;
 	bool *autoAimToggle;
 	
-	PowerDistributionPanel pdp;
+	PowerDistribution pdp;
 
 	FlightStick inputController;
 	Timer timer;
