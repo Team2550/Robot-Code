@@ -1,16 +1,15 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
+#include "Xbox.h"
 #include <frc/Joystick.h>
 #include <math.h>
-#include <vector>
 #include <string>
-#include "Xbox.h"
+#include <vector>
 
 using namespace frc;
 
-namespace Utility
-{
+namespace Utility {
 	enum RumbleSide { LEFT, RIGHT, BOTH };
 
 	/*=================================================
@@ -55,8 +54,9 @@ namespace Utility
 	Return:
 		none
 	=================================================*/
-	void SetRumble(Joystick& controller, RumbleSide rumbleSide, float rumbleAmount);
+	void SetRumble(Joystick &controller, RumbleSide rumbleSide,
+				   float rumbleAmount);
 
-}
+} // namespace Utility
 
 #endif

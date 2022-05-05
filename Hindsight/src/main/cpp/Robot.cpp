@@ -1,4 +1,4 @@
-// 
+//
 //	© 2020 Skynet 2550
 //
 //	Programming Lead: Charlie Welsh
@@ -9,33 +9,27 @@
 //
 #include "Robot.h"
 
-// driveBase:  (float) max power, (float) max boost power, (int) left motor port,
+// driveBase:  (float) max power, (float) max boost power, (int) left motor
+// port,
 //             (int) right motor port
-
 
 // These are for the intake toggle later.
 bool intakeToggleOn = false;
 bool intakeTogglePressed = false;
 
-Robot::Robot() : inputController(),
-				 udpReceiver(),
-				 gyroscope(frc::SPI::Port::kOnboardCS0),
-				 intake(2),
-				 // 0 for right, 1 for left on El Churro
-				 driveBase(
-					 1, 0, 
-					 0, 1, 
-					 2, 3, 
-					 6.07 * M_PI, 512) 
-				 // Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch configuration 0001.
+Robot::Robot()
+	: inputController(), udpReceiver(), gyroscope(frc::SPI::Port::kOnboardCS0),
+	  intake(2),
+	  // 0 for right, 1 for left on El Churro
+	  driveBase(1, 0, 0, 1, 2, 3, 6.07 * M_PI, 512)
+// Pulses per rotation is set by encoder DIP switch. 512 PPR uses DIP switch
+// configuration 0001.
 {
 	boostPressTime = -999;
 	UpdatePreferences();
 }
 
-Robot::~Robot() {
-
-}
+Robot::~Robot() {}
 
 void Robot::RobotInit() {
 	gyroscope.Calibrate();
@@ -65,33 +59,33 @@ void Robot::TeleopPeriodic() {
 	udpReceiver.getTeleopUDPData();
 
 	std::cout << "Left: " << std::setw(5) << driveBase.GetLeftDistance() << ' '
-	          << "Right: " << std::setw(5) << driveBase.GetRightDistance() << ' '
-			  << "Angle: " << std::setw(5) << gyroscope.GetAngle() << std::endl; 
-
+			  << "Right: " << std::setw(5) << driveBase.GetRightDistance()
+			  << ' ' << "Angle: " << std::setw(5) << gyroscope.GetAngle()
+			  << std::endl;
 
 	float leftSpeed = Utility::Deadzone(-inputController.leftTankAxis());
 	float rightSpeed = Utility::Deadzone(-inputController.rightTankAxis());
 	float baseSpeed = speedNormal;
 
-
-	if (inputController.intake()) { 
+	if (inputController.intake()) {
 		if (intake.IsActive()) {
 			intake.Stop();
 		} else {
 			intake.Start();
 		}
-	} 
+	}
 
-	if (inputController.turtle()) { 
+	if (inputController.turtle()) {
 		baseSpeed = speedTurtle;
 	} else if (inputController.boost()) {
 		baseSpeed = speedBoost;
 		boostPressTime = float(timer.Get());
 	} else if (float(timer.Get()) < boostPressTime + boostDecelerationTime) {
-		baseSpeed = speedBoost + (speedNormal - speedBoost) * ((float(timer.Get()) - boostPressTime) / boostDecelerationTime);
+		baseSpeed = speedBoost + (speedNormal - speedBoost) *
+									 ((float(timer.Get()) - boostPressTime) /
+									  boostDecelerationTime);
 	}
-	driveBase.Drive(leftSpeed * baseSpeed,
-					rightSpeed * baseSpeed);
+	driveBase.Drive(leftSpeed * baseSpeed, rightSpeed * baseSpeed);
 }
 
 void Robot::UpdatePreferences() {
@@ -110,10 +104,6 @@ void Robot::UpdatePreferences() {
 	// Get specified delay for autonomous
 	frc::SmartDashboard::SetDefaultNumber("Auto Delay", 0);
 	autoDelay = frc::SmartDashboard::GetNumber("Auto Delay", 0);
-
-
 }
 
-int main() {
-	return frc::StartRobot<Robot>();
-}
+int main() { return frc::StartRobot<Robot>(); }

@@ -1,19 +1,19 @@
 #ifndef XBOX_H
 #define XBOX_H
 
-#include <frc/Joystick.h>
 #include "Input.h"
+#include <frc/Joystick.h>
 
-
-class Xbox : public Input{
-public:
+class Xbox : public Input {
+  public:
 	Xbox();
 	bool boost();
 	bool turtle();
 	bool intake();
 	double leftTankAxis();
 	double rightTankAxis();
-private:
+
+  private:
 	frc::Joystick controller;
 	const uint32_t a = 1;
 	const uint32_t b = 2;
@@ -29,7 +29,7 @@ private:
 	const uint32_t leftPush = 9;
 	const uint32_t rightPush = 10;
 
-	//Axes (not the slashy kind)
+	// Axes (not the slashy kind)
 
 	const uint32_t leftX = 0;
 	const uint32_t leftY = 1;
