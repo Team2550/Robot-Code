@@ -1,0 +1,55 @@
+-x
+c++
+-c
+-Wall
+-Wextra
+-std=c++17
+-Wformat=2
+-pedantic
+-Wno-psabi
+-Wno-unused-parameter
+-Wno-error=deprecated-declarations
+-fPIC
+-rdynamic
+-pthread
+-Og
+-g
+-nostdinc
+-I
+"C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers"
+-I
+"C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers"
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\lib\\gcc\\arm-frc2022-linux-gnueabi\\7.3.0\\include
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\lib\\gcc\\arm-frc2022-linux-gnueabi\\7.3.0\\include-fixed
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\include\\c++\\7.3.0
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\include\\c++\\7.3.0\\arm-frc2022-linux-gnueabi
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\include\\c++\\7.3.0\\backward
+-isystem
+C:\\Users\\Public\\wpilib\\2022\\roborio\\arm-frc2022-linux-gnueabi\\usr\\include

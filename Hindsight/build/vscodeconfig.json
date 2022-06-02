@@ -1,0 +1,381 @@
+[
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "debug",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2022\\roborio\\bin\\arm-frc2022-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2022\\roborio\\bin\\arm-frc2022-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+      "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\dc95e2181b54b4bf13e54232effb931b\\transformed\\wpilibOldCommands-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\bace3f014002850edd343c7a290124ca\\transformed\\wpilibc-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\89a5ddbec0f491219a12bf1b6c42b2d0\\transformed\\ntcore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\268ec3de7757d66cfa75b3a52822ab61\\transformed\\hal-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\e6dd4be99839771c98f2214dde1cbd29\\transformed\\wpimath-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\1774e1db753f8e35f17f74321faba768\\transformed\\wpiutil-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ed0bf7a241866665121cacd5ea4e7db0\\transformed\\cameraserver-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\05dcb83f4e2904a8b86589a293a09b8f\\transformed\\cscore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\79aac71c8d50718f8b9bc13bcdcf9b4f\\transformed\\opencv-cpp-4.5.2-1-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\dc95e2181b54b4bf13e54232effb931b\\transformed\\wpilibOldCommands-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\bace3f014002850edd343c7a290124ca\\transformed\\wpilibc-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\89a5ddbec0f491219a12bf1b6c42b2d0\\transformed\\ntcore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\268ec3de7757d66cfa75b3a52822ab61\\transformed\\hal-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\e6dd4be99839771c98f2214dde1cbd29\\transformed\\wpimath-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\1774e1db753f8e35f17f74321faba768\\transformed\\wpiutil-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ed0bf7a241866665121cacd5ea4e7db0\\transformed\\cameraserver-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\05dcb83f4e2904a8b86589a293a09b8f\\transformed\\cscore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\79aac71c8d50718f8b9bc13bcdcf9b4f\\transformed\\opencv-cpp-4.5.2-1-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+      "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++17",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-rdynamic",
+              "-pthread",
+              "-Og",
+              "-g"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+          "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  },
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "release",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2022\\roborio\\bin\\arm-frc2022-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2022\\roborio\\bin\\arm-frc2022-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+      "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\dc95e2181b54b4bf13e54232effb931b\\transformed\\wpilibOldCommands-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\bace3f014002850edd343c7a290124ca\\transformed\\wpilibc-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\89a5ddbec0f491219a12bf1b6c42b2d0\\transformed\\ntcore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\268ec3de7757d66cfa75b3a52822ab61\\transformed\\hal-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\e6dd4be99839771c98f2214dde1cbd29\\transformed\\wpimath-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\1774e1db753f8e35f17f74321faba768\\transformed\\wpiutil-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ed0bf7a241866665121cacd5ea4e7db0\\transformed\\cameraserver-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\05dcb83f4e2904a8b86589a293a09b8f\\transformed\\cscore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\79aac71c8d50718f8b9bc13bcdcf9b4f\\transformed\\opencv-cpp-4.5.2-1-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\dc95e2181b54b4bf13e54232effb931b\\transformed\\wpilibOldCommands-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\bace3f014002850edd343c7a290124ca\\transformed\\wpilibc-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\89a5ddbec0f491219a12bf1b6c42b2d0\\transformed\\ntcore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\268ec3de7757d66cfa75b3a52822ab61\\transformed\\hal-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\e6dd4be99839771c98f2214dde1cbd29\\transformed\\wpimath-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\1774e1db753f8e35f17f74321faba768\\transformed\\wpiutil-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ed0bf7a241866665121cacd5ea4e7db0\\transformed\\cameraserver-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\05dcb83f4e2904a8b86589a293a09b8f\\transformed\\cscore-cpp-2022.4.1-sources\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\79aac71c8d50718f8b9bc13bcdcf9b4f\\transformed\\opencv-cpp-4.5.2-1-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+      "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+      "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++17",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-rdynamic",
+              "-pthread",
+              "-O2"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7262c45c5a56fc4d51e1516577775a63\\transformed\\wpilibOldCommands-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\83a53c18c19df5f914abde33ca4309b0\\transformed\\wpilibc-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\0633eddf9cc29c97c240246ad007ab86\\transformed\\ntcore-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\013c4d97f722563b8a8f300b5d6fcf5c\\transformed\\hal-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\07ed64aa1074398a5cd82f3b682532eb\\transformed\\wpimath-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\ccada9075d3b8dcc0d173eb790a55986\\transformed\\wpiutil-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\d20970ca6067656e8d18591c65c1c758\\transformed\\netcomm-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\beb5aec5694b7daa19e896d7e4d40300\\transformed\\chipobject-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\011dbd21fb3a73c85c9085af8a9b8327\\transformed\\visa-2022.4.0-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\4b2c15168f64d35a1b579495a5014e1e\\transformed\\cameraserver-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\7b53244be03bb0b4044131ce076c8f9c\\transformed\\cscore-cpp-2022.4.1-headers\\",
+          "C:\\Users\\Team 2550\\.gradle\\caches\\transforms-3\\30bea9114bf75f91d18347a8be921f2a\\transformed\\opencv-cpp-4.5.2-1-headers\\",
+          "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Team 2550\\Desktop\\Robot-Code-develop\\Hindsight\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  }
+]
