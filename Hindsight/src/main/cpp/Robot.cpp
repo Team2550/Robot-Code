@@ -5,8 +5,6 @@
 #include "Robot.h"
 
 void Robot::RobotInit() {
-	frc::CameraServer::StartAutomaticCapture();
-	frc::CameraServer::StartAutomaticCapture();
 	m_chooser.SetDefaultOption(kDefaultAuto, kDefaultAuto);
 	m_chooser.AddOption(kNoAuto, kNoAuto);
 	frc::SmartDashboard::PutData("Autos", &m_chooser);
@@ -38,9 +36,6 @@ void Robot::AutonomousPeriodic() { }
 void Robot::AutonomousExit() { }
 
 void Robot::TeleopInit() {
-	if (m_testCommand) {
-		m_testCommand->Cancel();
-	}
 	if (m_autonomousCommand) {
 		// Make sure the auto command isn't still running (this would cause a conflict!)
 		m_autonomousCommand->Cancel();
@@ -52,11 +47,6 @@ void Robot::TeleopPeriodic() { }
 void Robot::TeleopExit() { }
 
 void Robot::TestInit() {
-	m_testCommand = m_container.GetTestCommand();
-
-	if (m_testCommand) {
-		m_testCommand->Schedule();
-	}
 }
 
 void Robot::TestPeriodic() { }

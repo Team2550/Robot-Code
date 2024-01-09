@@ -7,14 +7,13 @@
 RobotContainer::RobotContainer() { ConfigureBindings(); }
 
 void RobotContainer::ConfigureBindings() {
-	m_drive.SetDefaultCommand(Drive(&m_drive).ToPtr());
+	m_differentialDrive.SetDefaultCommand(Drive(&m_differentialDrive).ToPtr());
+	m_mecanumDrive.SetDefaultCommand(Drive(&m_mecanumDrive).ToPtr());
 	ConfigureButtonBindings();
 }
 
 void RobotContainer::ConfigureButtonBindings() { }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() { return frc2::CommandPtr(BalanceAuto(&m_drive)); };
+frc2::CommandPtr RobotContainer::GetAutonomousCommand() {};
 
-frc2::CommandPtr RobotContainer::GetTestCommand() {
-	return frc2::CommandPtr(ArmHand(ArmHand::Value::kGrab, &m_drive).ToPtr());
-};
+frc2::CommandPtr RobotContainer::GetTestCommand() {};

@@ -18,7 +18,7 @@
 
 class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive> {
 public:
-	/***
+	/**
 	 * @brief Drive and controls
 	 */
 	explicit Drive(DriveSubsystem* subsystem);
@@ -34,10 +34,6 @@ public:
 private:
 	DriveSubsystem* m_drive;
 
-	double m_speed;
-	double m_speedMult = 0.5;
-	double m_rotation;
 	// The driver's controller.
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
-	frc2::CommandXboxController m_armController { OIConstants::kArmControllerPort };
 };
