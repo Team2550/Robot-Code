@@ -1,14 +1,14 @@
 #include "commands/Push.h"
 
-Push:Launch(DriveSubsystem* subsytem) 
-	: m_drive(subsytem) {
+Push:Launch(LaunchSubsystem* subsytem)
+	: m_launch(subsytem) {
 	AddRequirements({ subsytem });
 }
 
 void Push:Initialize() { }
 
 void Push::Execute() {
-	m_drive->PushRing();
+	m_launch->PushRing();
 }
 
 void Push::End(bool interrupted) { }

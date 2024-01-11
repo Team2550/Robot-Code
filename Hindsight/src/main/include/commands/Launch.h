@@ -16,7 +16,7 @@ public:
 	 * 
 	 * @param[in] subsystem The subsytem to use. 
 	 */
-	explicit Launch(DriveSubsystem* subsystem);
+	explicit Launch(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 
@@ -27,5 +27,5 @@ public:
 	bool IsFinished() override;
 
 private:
-	DriveSubsystem* m_drive;
+	LaunchSubsystem* m_launch;
 };

@@ -27,5 +27,5 @@ public:
 	bool IsFinished() override;
 
 private:
-	DriveSubsystem* m_drive;
+	LaunchSubsystem* m_launch;
 };

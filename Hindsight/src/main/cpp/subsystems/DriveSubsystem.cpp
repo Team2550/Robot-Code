@@ -1,4 +1,4 @@
-#include "subsystems/DriveSubsystem.h"
+#include "subsystems/NewDriveSubsystem.h"
 
 using namespace DriveConstants;
 
@@ -9,19 +9,10 @@ DriveSubsystem::DriveSubsystem()
 	, m_rearRight { kRightMotorPorts[1] }
 	, m_leftEncoder { kLeftEncoderPorts[0], kLeftEncoderPorts[1], frc::Encoder::EncodingType::k2X }
 	, m_rightEncoder { kRightEncoderPorts[0], kRightEncoderPorts[1], frc::Encoder::EncodingType::k2X }
-	, m_imu {}
-	, m_frontLeftLocation { kfrontLeftLocations[0], kfrontLeftLocations[1] }
-	, m_frontRightLocation { kfrontRightLocations[0], kfrontRightLocations[1] }
-	, m_rearLeftLocation { krearLeftLocations[0], krearLeftLocations[1] }
-	, m_rearRightLocation { krearRightLocations[0], krearRightLocations[1] }
-	, m_launchMotor { kLaunchMotorPorts[0] }
-	, m_pushMotor { kLaunchMotorPorts[1] }  {
+    {
 	// Set the distance per pulse for the encoders
 	m_leftEncoder.SetDistancePerPulse(4.0 / 256.0);
 	m_rightEncoder.SetDistancePerPulse(4.0 / 256.0);
-
-	// Set the default yaw axis of the accelerometer to Y
-	this->SetYawAxis(frc::ADIS16470_IMU::IMUAxis::kY);
 }
 
 /*
@@ -33,7 +24,13 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation) {
 		speed = 0;
 	if (abs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
-	m_differentialDrive.ArcadeDrive(rotation, speed);
+
+	m_frontRight.Set(speed + rotation);
+    m_rearRight.Set(speed + rotation);
+    m_frontLeft.Set(speed - rotation);
+    m_rearLeft.Set(speed - rotation);
+
+    MotorSafety::Feed()
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
@@ -43,7 +40,12 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 	if (abs(rightSpeed) < OIConstants::kDeadzone)
 		rightSpeed = 0;
 
-	m_differentialDrive.TankDrive(-leftSpeed, rightSpeed);
+    m_frontRight.Set(rightSpeed);
+    m_rearRight.Set(rightSpeed);
+    m_frontLeft.Set(leftSpeed);
+    m_rearLeft.Set(leftSpeed);
+
+    MotorSafety::Feed()
 }
 
 void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation) {
@@ -59,6 +61,8 @@ void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation)
 	m_rearRight.Set(rotation + (-speedV + speedH));
 	m_frontLeft.Set(rotation + (speedV - speedH));
 	m_rearLeft.Set(rotation + (speedV + speedH));
+
+	MotorSafety::Feed()
 }
 
 void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH) {
@@ -76,25 +80,8 @@ void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, doub
 	m_rearRight.Set(-rightSpeedV - rightSpeedH);
 	m_frontLeft.Set(leftSpeedV + leftSpeedH);
 	m_rearLeft.Set(leftSpeedV - leftSpeedH);
-}
 
-void DriveSubsystem::initializeSwerveOdometry(frc::Rotation2d imuAngle, frc::Pose2d pose) {
-	delete odometry;
-	odometry = new frc::SwerveDriveOdometry<4>(m_kinematics, imuAngle, pose);
-}
-
-void DriveSubsystem::SwerveDrive(units::meters_per_second_t speedV, units::meters_per_second_t speedH,
-	units::radians_per_second_t rotation, units::angle::degree_t imuAngle) {
-	// Deadzone
-	if (abs(speedV.value()) < 0.5)
-		speedV = units::meters_per_second_t { 0 };
-	if (abs(speedH.value()) < 0.5)
-		speedH = units::meters_per_second_t { 0 };
-
-	speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(speedH, speedV, rotation, frc::Rotation2d(imuAngle));
-	auto [fl, fr, bl, br] = m_kinematics.ToSwerveModuleStates(speeds);
-
-	// REST OF CODE HERE
+	MotorSafety::Feed()
 }
 
 /*
@@ -112,19 +99,3 @@ frc::Encoder& DriveSubsystem::GetRightEncoder() { return m_rightEncoder; }
 double DriveSubsystem::GetAverageEncoderDistance() {
 	return (std::abs(m_leftEncoder.GetDistance()) + std::abs(m_rightEncoder.GetDistance())) / 2.0;
 }
-
-/*
- * IMU functions
- */
-void DriveSubsystem::ResetGyro() { m_imu.Reset(); }
-
-void DriveSubsystem::SetYawAxis(frc::ADIS16470_IMU::IMUAxis imuAxis) { m_imu.SetYawAxis(imuAxis); }
-
-units::angle::degree_t DriveSubsystem::GetCurrentAngle() { return m_imu.GetAngle(); }
-
-/*
- * Launch functions
- */
-void DriveSubsystem::LaunchRing() { m_launchMotor.Set(1); }
-
-void DriveSubsystem::PushRing() { m_pushMotor.Set(0.2) }

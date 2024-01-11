@@ -14,25 +14,43 @@
 #include <units/angle.h>
 
 #include "Constants.h"
-#include "sequences/Drive.h"
 #include "subsystems/DriveSubsystem.h"
+#include "subsystems/LaunchSubsystem.h"
 
 class RobotContainer {
 public:
+    enum Control {kTank, kArcade, kMecanum, kMecanumTank}
+
 	RobotContainer();
+
+	/**
+     * @brief Sets the control type used by the robot
+     *
+     * Control Types
+     * =============
+     *
+     * kTank
+     * kArcade
+     * kMecanum
+     * kMecanumTank
+     *
+     * @param[in] controlType Accepts one of 4 values to specify which control scheme is used.
+     */
+	void SetControlType(Control controlType);
 
 	frc2::CommandPtr GetAutonomousCommand();
 
 	frc2::CommandPtr GetTestCommand();
 
 private:
+    RobotContainer::Control m_controlType;
+
 	// The driver's controller.
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
 
-	// The robot's subsystems.
-
-	DriveSubsystem m_differentialDrive;
-	DriveSubsystem m_mecanumDrive;
+	// The robot's subsystem.
+	DriveSubsystem m_drive;
+	LaunchSubsystem m_launch;
 
 	void ConfigureBindings();
 	void ConfigureButtonBindings();

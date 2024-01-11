@@ -1,14 +1,14 @@
 #include "commands/Launch.h"
 
-Launch:Launch(DriveSubsystem* subsytem) 
-	: m_drive(subsytem) {
+Launch:Launch(LaunchSubsystem* subsytem)
+	: m_launch(subsytem) {
 	AddRequirements({ subsytem });
 }
 
 void Launch:Initialize() { }
 
 void Launch::Execute() {
-	m_drive->LaunchRing();
+	m_launch->LaunchRing();
 }
 
 void Launch::End(bool interrupted) { }

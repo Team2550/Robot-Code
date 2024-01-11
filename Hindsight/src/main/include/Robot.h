@@ -68,7 +68,7 @@ private:
 	 * @brief Sendable chooser used to select which auto is run,
 	 * 
 	 * Runs either the regular autonomus command in the sequence, or no auto.
-	*/
+	 */
 	frc::SendableChooser<std::string> m_chooser;
 	const std::string kDefaultAuto = "Default";
 	const std::string kNoAuto = "No Auto";
