@@ -9,7 +9,6 @@ void Launch:Initialize() { }
 
 void Launch::Execute() {
 	m_drive->LaunchRing();
-	m_drive->PushRing();
 }
 
 void Launch::End(bool interrupted) { }

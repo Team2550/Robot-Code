@@ -125,6 +125,6 @@ units::angle::degree_t DriveSubsystem::GetCurrentAngle() { return m_imu.GetAngle
 /*
  * Launch functions
  */
-void DriveSubsystem::LaunchRing() { m_launchMotors.Set(1); }
+void DriveSubsystem::LaunchRing() { m_launchMotor.Set(1); }
 
-void DriveSubsystem::PushRing() { m_pushMotors.Set(0.2) }
+void DriveSubsystem::PushRing() { m_pushMotor.Set(0.2) }

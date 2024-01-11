@@ -18,21 +18,23 @@
 
 class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive> {
 public:
+	enum Control {kTank, kArcade, kMecanum, kMecanumTank}
+
 	/**
 	 * @brief Drive and controls
 	 * 
 	 * Control Types
 	 * =============
 	 * 
-	 * 0 - Tank
-	 * 1 - Arcade
-	 * 2 - Mecanum
-	 * 3 - Mecanum Tank
+	 * kTank
+	 * kArcade
+	 * kMecanum
+	 * kMecanumTank
 	 * 
-	 * @param[in] subsystem The sybystem from the DriveSubsytem to be used in controls
-	 * @param[in] controlType An integer to set the control scheme used by the xbox controllers
+	 * @param[in] subsystem The subsystem from the DriveSubsytem to be used.
+	 * @param[in] controlType Accepts one of 4 values to specify which control scheme is used.
 	 */
-	explicit Drive(DriveSubsystem* subsystem, int controlType);
+	explicit Drive(DriveSubsystem* subsystem, Control controlType);
 
 	void Initialize() override;
 
@@ -44,6 +46,7 @@ public:
 
 private:
 	DriveSubsystem* m_drive;
+	Drive::Control m_controlType;
 
 	// The driver's controller.
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
