@@ -20,8 +20,19 @@ class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive> {
 public:
 	/**
 	 * @brief Drive and controls
+	 * 
+	 * Control Types
+	 * =============
+	 * 
+	 * 0 - Tank
+	 * 1 - Arcade
+	 * 2 - Mecanum
+	 * 3 - Mecanum Tank
+	 * 
+	 * @param[in] subsystem The sybystem from the DriveSubsytem to be used in controls
+	 * @param[in] controlType An integer to set the control scheme used by the xbox controllers
 	 */
-	explicit Drive(DriveSubsystem* subsystem);
+	explicit Drive(DriveSubsystem* subsystem, int controlType);
 
 	void Initialize() override;
 

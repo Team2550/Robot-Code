@@ -149,6 +149,12 @@ public:
 	 */
 	units::angle::degree_t GetCurrentAngle();
 
+	/**
+	 * @brief Spins the wheels for the launch mechanism
+	*/
+	void LaunchRing();
+	void PushRing();
+
 private:
 	// Motor Controllers
 	frc::Spark m_frontLeft;
@@ -166,6 +172,9 @@ private:
 	frc::MotorControllerGroup m_right { m_frontRight, m_rearRight };
 
 	frc::ADIS16470_IMU m_imu;
+
+	frc::Spark m_launchMotor;
+	frc::Spart m_pushMotor;
 
 	// Drive Controller
 	frc::DifferentialDrive m_differentialDrive { m_left, m_right };

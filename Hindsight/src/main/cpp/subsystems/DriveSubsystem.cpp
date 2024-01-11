@@ -13,7 +13,9 @@ DriveSubsystem::DriveSubsystem()
 	, m_frontLeftLocation { kfrontLeftLocations[0], kfrontLeftLocations[1] }
 	, m_frontRightLocation { kfrontRightLocations[0], kfrontRightLocations[1] }
 	, m_rearLeftLocation { krearLeftLocations[0], krearLeftLocations[1] }
-	, m_rearRightLocation { krearRightLocations[0], krearRightLocations[1] } {
+	, m_rearRightLocation { krearRightLocations[0], krearRightLocations[1] }
+	, m_launchMotor { kLaunchMotorPorts[0] }
+	, m_pushMotor { kLaunchMotorPorts[1] }  {
 	// Set the distance per pulse for the encoders
 	m_leftEncoder.SetDistancePerPulse(4.0 / 256.0);
 	m_rightEncoder.SetDistancePerPulse(4.0 / 256.0);
@@ -119,3 +121,10 @@ void DriveSubsystem::ResetGyro() { m_imu.Reset(); }
 void DriveSubsystem::SetYawAxis(frc::ADIS16470_IMU::IMUAxis imuAxis) { m_imu.SetYawAxis(imuAxis); }
 
 units::angle::degree_t DriveSubsystem::GetCurrentAngle() { return m_imu.GetAngle(); }
+
+/*
+ * Launch functions
+ */
+void DriveSubsystem::LaunchRing() { m_launchMotors.Set(1); }
+
+void DriveSubsystem::PushRing() { m_pushMotors.Set(0.2) }

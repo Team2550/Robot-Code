@@ -9,20 +9,14 @@
 
 #include <cmath>
 
-class WaitCommand : public frc2::CommandHelper<frc2::CommandBase, WaitCommand> {
+class Launch : public frc2::CommandHelper<frc2::CommandBase, Launch> {
 public:
 	/**
-	 * @brief Creates a new WaitCommand.
-     *
-     * WARNING
-     * =======
-     *
-     * Motor safety **DOES NOT** like this command
-	 *
-	 * @param[in] time The amount of time that will be waited in seconds.
-     *
+	 * @brief Creates a new Launch Command.
+	 * 
+	 * @param[in] subsystem The subsytem to use. 
 	 */
-	explicit WaitCommand(units::second_t time);
+	explicit Launch(DriveSubsystem* subsystem);
 
 	void Initialize() override;
 
@@ -33,8 +27,5 @@ public:
 	bool IsFinished() override;
 
 private:
-	int m_msOccurred = 0;
-	int m_desiredMs;
-
 	DriveSubsystem* m_drive;
 };

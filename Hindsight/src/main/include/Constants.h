@@ -24,6 +24,8 @@ constexpr int kRightEncoderPorts[] = { 2, 3 };
 constexpr bool kLeftEncoderReversed = false;
 constexpr bool kRightEncoderReversed = true;
 
+constexpr int kLaunchMotorPorts[] = { 4, 5 };
+
 constexpr units::meter_t kfrontLeftLocations[] = { 0.381_m, 0.381_m };
 constexpr units::meter_t kfrontRightLocations[] = { 0.381_m, -0.381_m };
 constexpr units::meter_t krearLeftLocations[] = { -0.381_m, 0.381_m };
