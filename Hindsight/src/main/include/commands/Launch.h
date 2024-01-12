@@ -5,7 +5,7 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <subsystems/DriveSubsystem.h>
+#include <subsystems/LaunchSubsystem.h>
 
 #include <cmath>
 
@@ -13,8 +13,8 @@ class Launch : public frc2::CommandHelper<frc2::CommandBase, Launch> {
 public:
 	/**
 	 * @brief Creates a new Launch Command.
-	 * 
-	 * @param[in] subsystem The subsytem to use. 
+	 *
+	 * @param[in] subsystem The subsytem to use.
 	 */
 	explicit Launch(LaunchSubsystem* subsystem);
 

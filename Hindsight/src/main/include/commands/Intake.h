@@ -5,18 +5,18 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <subsystems/DriveSubsystem.h>
+#include <subsystems/LaunchSubsystem.h>
 
 #include <cmath>
 
-class Push : public frc2::CommandHelper<frc2::CommandBase, Push> {
+class Intake : public frc2::CommandHelper<frc2::CommandBase, Intake> {
 public:
 	/**
-	 * @brief Creates a new Push Command.
-	 * 
-	 * @param[in] subsystem The subsytem to use. 
+	 * @brief Creates a new Intake Command.
+	 *
+	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit Push(DriveSubsystem* subsystem);
+	explicit Intake(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 

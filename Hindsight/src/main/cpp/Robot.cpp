@@ -40,15 +40,13 @@ void Robot::TeleopInit() {
 		// Make sure the auto command isn't still running (this would cause a conflict!)
 		m_autonomousCommand->Cancel();
 	}
-	
 }
 
 void Robot::TeleopPeriodic() { }
 
 void Robot::TeleopExit() { }
 
-void Robot::TestInit() {
-}
+void Robot::TestInit() { }
 
 void Robot::TestPeriodic() { }
 

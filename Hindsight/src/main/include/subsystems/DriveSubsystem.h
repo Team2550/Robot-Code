@@ -6,7 +6,6 @@
 #include <frc/drive/MecanumDrive.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/motorcontrol/Spark.h>
-#include <frc/motorsafety.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
@@ -91,7 +90,6 @@ public:
 	 * @return the average of the 2 encoder readings.
 	 */
 	double GetAverageEncoderDistance();
-
 
 private:
 	// Motor Controllers
