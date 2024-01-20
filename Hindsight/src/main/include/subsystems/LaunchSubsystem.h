@@ -2,13 +2,13 @@
 
 #include <frc/MotorSafety.h>
 #include <frc/PowerDistribution.h>
-#include <frc/motorcontrol/Spark.h>
+#include <frc/motorcontrol/VictorSP.h> 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
 #include "Constants.h"
 
-#include <cmath>
+#include <cmath>//ok
 
 class LaunchSubsystem : public frc2::SubsystemBase {
 public:
@@ -23,6 +23,6 @@ public:
 
 private:
 	// Motor Controllers
-	frc::Spark m_launchMotor;
-	frc::Spark m_pushMotor;
+	frc::VictorSP m_launchMotor;
+	frc::VictorSP m_pushMotor;
 };
