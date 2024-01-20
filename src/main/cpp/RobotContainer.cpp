@@ -6,13 +6,14 @@
 
 RobotContainer::RobotContainer() { ConfigureBindings(); }
 
-void RobotContainer::ConfigureBindings() {
+void RobotContainer::ConfigureBindings()
+{
 	ConfigureButtonBindings();
-	m_drive.SetDefaultCommand(TeleDrive(&m_drive, TeleDrive::Control::kArcade, &m_driverController));
+	m_drive.SetDefaultCommand(TeleDrive(&m_drive, TeleDrive::Control::kTank, &m_driverController));
 }
 
 void RobotContainer::ConfigureButtonBindings() { m_driverController.A().OnTrue(Launch(&m_launch).ToPtr()); }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {};
+frc2::CommandPtr RobotContainer::GetAutonomousCommand(){};
 
-frc2::CommandPtr RobotContainer::GetTestCommand() {};
+frc2::CommandPtr RobotContainer::GetTestCommand(){};
