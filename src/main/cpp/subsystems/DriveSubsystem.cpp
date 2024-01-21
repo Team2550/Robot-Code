@@ -24,10 +24,10 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation) {
 	if (abs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
 
-	m_frontRight.Set(speed + rotation);
-	m_rearRight.Set(speed + rotation);
-	m_frontLeft.Set(speed - rotation);
-	m_rearLeft.Set(speed - rotation);
+	m_frontRight.Set(frontRightFilter.Calculate(speed + rotation));
+	m_rearRight.Set(rearRightFilter.Calculate(speed + rotation));
+	m_frontLeft.Set(frontLeftFilter.Calculate(speed - rotation));
+	m_rearLeft.Set(rearLeftFilter.Calculate(speed - rotation));
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
@@ -37,10 +37,10 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 	if (abs(rightSpeed) < OIConstants::kDeadzone)
 		rightSpeed = 0;
 
-	m_frontRight.Set(rightSpeed);
-	m_rearRight.Set(-rightSpeed);
-	m_frontLeft.Set(-leftSpeed);
-	m_rearLeft.Set(-leftSpeed);
+	m_frontRight.Set(frontRightFilter.Calculate(rightSpeed));
+	m_rearRight.Set(rearRightFilter.Calculate(-rightSpeed));
+	m_frontLeft.Set(frontLeftFilter.Calculate(-leftSpeed));
+	m_rearLeft.Set(rearLeftFilter.Calculate(-leftSpeed));
 }
 
 void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation) {
@@ -52,10 +52,10 @@ void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation)
 	if (abs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
 
-	m_frontRight.Set(rotation + (-speedV - speedH));
-	m_rearRight.Set(rotation + (-speedV + speedH));
-	m_frontLeft.Set(rotation + (speedV - speedH));
-	m_rearLeft.Set(rotation + (speedV + speedH));
+	m_frontRight.Set(frontRightFilter.Calculate(rotation + (-speedV - speedH)));
+	m_rearRight.Set(rearRightFilter.Calculate(rotation + (-speedV + speedH)));
+	m_frontLeft.Set(frontLeftFilter.Calculate(rotation + (speedV - speedH)));
+	m_rearLeft.Set(rearLeftFilter.Calculate(rotation + (speedV + speedH)));
 }
 
 void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH) {
@@ -69,10 +69,10 @@ void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, doub
 	if (abs(rightSpeedH) < OIConstants::kDeadzone)
 		rightSpeedH = 0;
 
-	m_frontRight.Set(-rightSpeedV + rightSpeedH);
-	m_rearRight.Set(-rightSpeedV - rightSpeedH);
-	m_frontLeft.Set(leftSpeedV + leftSpeedH);
-	m_rearLeft.Set(leftSpeedV - leftSpeedH);
+	m_frontRight.Set(frontRightFilter.Calculate(-rightSpeedV + rightSpeedH));
+	m_rearRight.Set(rearRightFilter.Calculate(-rightSpeedV - rightSpeedH));
+	m_frontLeft.Set(frontLeftFilter.Calculate(leftSpeedV + leftSpeedH));
+	m_rearLeft.Set(rearLeftFilter.Calculate(leftSpeedV - leftSpeedH));
 }
 
 /*

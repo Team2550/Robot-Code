@@ -7,6 +7,7 @@
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/filter/SlewRateLimiter.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
@@ -98,11 +99,15 @@ private:
 	frc::VictorSP m_rearLeft;
 	frc::Encoder m_leftEncoder;
 	frc::MotorControllerGroup m_left{m_frontLeft, m_rearLeft};
+	frc::SlewRateLimiter<units::volts> frontLeftFilter{0.5_V / 1_s};
+	frc::SlewRateLimiter<units::volts> rearLeftFilter{0.5_V / 1_s};
 
 	frc::VictorSP m_frontRight;
 	frc::VictorSP m_rearRight;
 	frc::Encoder m_rightEncoder;
 	frc::MotorControllerGroup m_right{m_frontRight, m_rearRight};
+	frc::SlewRateLimiter<units::volts> frontRightFilter{0.5_V / 1_s};
+	frc::SlewRateLimiter<units::volts> rearRightFilter{0.5_V / 1_s};
 
 	// Drive Controller
 	frc::MecanumDrive m_drive{m_frontLeft, m_rearLeft, m_frontRight, m_rearRight};
