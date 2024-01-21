@@ -3,12 +3,12 @@
 using namespace DriveConstants;
 
 DriveSubsystem::DriveSubsystem()
-	: m_frontLeft { kLeftMotorPorts[0] }
-	, m_rearLeft { kLeftMotorPorts[1] }
-	, m_frontRight { kRightMotorPorts[0] }
-	, m_rearRight { kRightMotorPorts[1] }
-	, m_leftEncoder { kLeftEncoderPorts[0], kLeftEncoderPorts[1], frc::Encoder::EncodingType::k2X }
-	, m_rightEncoder { kRightEncoderPorts[0], kRightEncoderPorts[1], frc::Encoder::EncodingType::k2X } {
+	: m_frontLeft{kLeftMotorPorts[0]}
+	, m_rearLeft{kLeftMotorPorts[1]}
+	, m_frontRight{kRightMotorPorts[0]}
+	, m_rearRight{kRightMotorPorts[1]}
+	, m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1], frc::Encoder::EncodingType::k2X}
+	, m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1], frc::Encoder::EncodingType::k2X} {
 	// Set the distance per pulse for the encoders
 	m_leftEncoder.SetDistancePerPulse(4.0 / 256.0);
 	m_rightEncoder.SetDistancePerPulse(4.0 / 256.0);
@@ -38,9 +38,9 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 		rightSpeed = 0;
 
 	m_frontRight.Set(rightSpeed);
-	m_rearRight.Set(rightSpeed);
-	m_frontLeft.Set(leftSpeed);
-	m_rearLeft.Set(leftSpeed);
+	m_rearRight.Set(-rightSpeed);
+	m_frontLeft.Set(-leftSpeed);
+	m_rearLeft.Set(-leftSpeed);
 }
 
 void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation) {
@@ -83,9 +83,9 @@ void DriveSubsystem::ResetEncoders() {
 	m_rightEncoder.Reset();
 }
 
-frc::Encoder& DriveSubsystem::GetLeftEncoder() { return m_leftEncoder; }
+frc::Encoder &DriveSubsystem::GetLeftEncoder() { return m_leftEncoder; }
 
-frc::Encoder& DriveSubsystem::GetRightEncoder() { return m_rightEncoder; }
+frc::Encoder &DriveSubsystem::GetRightEncoder() { return m_rightEncoder; }
 
 double DriveSubsystem::GetAverageEncoderDistance() {
 	return (std::abs(m_leftEncoder.GetDistance()) + std::abs(m_rightEncoder.GetDistance())) / 2.0;
