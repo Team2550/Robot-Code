@@ -3,8 +3,12 @@
 using namespace DriveConstants;
 
 DriveSubsystem::DriveSubsystem()
-	: m_frontLeft{kLeftMotorPorts[0]}, m_rearLeft{kLeftMotorPorts[1]}, m_frontRight{kRightMotorPorts[0]}, m_rearRight{kRightMotorPorts[1]}, m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1], frc::Encoder::EncodingType::k2X}, m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1], frc::Encoder::EncodingType::k2X}
-{
+	: m_frontLeft{kLeftMotorPorts[0]}
+	, m_rearLeft{kLeftMotorPorts[1]}
+	, m_frontRight{kRightMotorPorts[0]}
+	, m_rearRight{kRightMotorPorts[1]}
+	, m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1], frc::Encoder::EncodingType::k2X}
+	, m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1], frc::Encoder::EncodingType::k2X} {
 	// Set the distance per pulse for the encoders
 	m_leftEncoder.SetDistancePerPulse(4.0 / 256.0);
 	m_rightEncoder.SetDistancePerPulse(4.0 / 256.0);
@@ -13,8 +17,7 @@ DriveSubsystem::DriveSubsystem()
 /*
  * Drive functions
  */
-void DriveSubsystem::ArcadeDrive(double speed, double rotation)
-{
+void DriveSubsystem::ArcadeDrive(double speed, double rotation) {
 	// Deadzone
 	if (abs(speed) < OIConstants::kDeadzone)
 		speed = 0;
@@ -27,8 +30,7 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation)
 	m_rearLeft.Set(speed - rotation);
 }
 
-void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed)
-{
+void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 	// Deadzone
 	if (abs(leftSpeed) < OIConstants::kDeadzone)
 		leftSpeed = 0;
@@ -41,8 +43,7 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed)
 	m_rearLeft.Set(-leftSpeed);
 }
 
-void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation)
-{
+void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation) {
 	// Deadzone
 	if (abs(speedV) < OIConstants::kDeadzone)
 		speedV = 0;
@@ -57,8 +58,7 @@ void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation)
 	m_rearLeft.Set(rotation + (speedV + speedH));
 }
 
-void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH)
-{
+void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH) {
 	// Deadzone
 	if (abs(leftSpeedV) < OIConstants::kDeadzone)
 		leftSpeedV = 0;
@@ -78,8 +78,7 @@ void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, doub
 /*
  * Encoder functions
  */
-void DriveSubsystem::ResetEncoders()
-{
+void DriveSubsystem::ResetEncoders() {
 	m_leftEncoder.Reset();
 	m_rightEncoder.Reset();
 }
@@ -88,7 +87,6 @@ frc::Encoder &DriveSubsystem::GetLeftEncoder() { return m_leftEncoder; }
 
 frc::Encoder &DriveSubsystem::GetRightEncoder() { return m_rightEncoder; }
 
-double DriveSubsystem::GetAverageEncoderDistance()
-{
+double DriveSubsystem::GetAverageEncoderDistance() {
 	return (std::abs(m_leftEncoder.GetDistance()) + std::abs(m_rightEncoder.GetDistance())) / 2.0;
 }
