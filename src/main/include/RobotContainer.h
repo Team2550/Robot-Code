@@ -14,6 +14,7 @@
 #include <units/angle.h>
 
 #include "Constants.h"
+#include "commands/Intake.h"
 #include "commands/Launch.h"
 #include "commands/TeleDrive.h"
 #include "subsystems/DriveSubsystem.h"
