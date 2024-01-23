@@ -23,11 +23,14 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation) {
 		speed = 0;
 	if (abs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
-
+	
+	// We really shouldn't be inverting this here
+	// I would prefer to do it on hardware for the sake of cleanliness.
+	// but I digress.
 	m_frontRight.Set(frontRightFilter.Calculate(speed + rotation));
-	m_rearRight.Set(rearRightFilter.Calculate(speed + rotation));
-	m_frontLeft.Set(frontLeftFilter.Calculate(speed - rotation));
-	m_rearLeft.Set(rearLeftFilter.Calculate(speed - rotation));
+	m_rearRight.Set(rearRightFilter.Calculate(-(speed + rotation)));
+	m_frontLeft.Set(frontLeftFilter.Calculate(-(speed - rotation)));
+	m_rearLeft.Set(rearLeftFilter.Calculate(-(speed - rotation)));
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
@@ -41,38 +44,6 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 	m_rearRight.Set(rearRightFilter.Calculate(-rightSpeed));
 	m_frontLeft.Set(frontLeftFilter.Calculate(-leftSpeed));
 	m_rearLeft.Set(rearLeftFilter.Calculate(-leftSpeed));
-}
-
-void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation) {
-	// Deadzone
-	if (abs(speedV) < OIConstants::kDeadzone)
-		speedV = 0;
-	if (abs(speedH) < OIConstants::kDeadzone)
-		speedH = 0;
-	if (abs(rotation) < OIConstants::kDeadzone)
-		rotation = 0;
-
-	m_frontRight.Set(frontRightFilter.Calculate(rotation + (-speedV - speedH)));
-	m_rearRight.Set(rearRightFilter.Calculate(rotation + (-speedV + speedH)));
-	m_frontLeft.Set(frontLeftFilter.Calculate(rotation + (speedV - speedH)));
-	m_rearLeft.Set(rearLeftFilter.Calculate(rotation + (speedV + speedH)));
-}
-
-void DriveSubsystem::MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH) {
-	// Deadzone
-	if (abs(leftSpeedV) < OIConstants::kDeadzone)
-		leftSpeedV = 0;
-	if (abs(leftSpeedH) < OIConstants::kDeadzone)
-		leftSpeedH = 0;
-	if (abs(rightSpeedV) < OIConstants::kDeadzone)
-		rightSpeedV = 0;
-	if (abs(rightSpeedH) < OIConstants::kDeadzone)
-		rightSpeedH = 0;
-
-	m_frontRight.Set(frontRightFilter.Calculate(-rightSpeedV + rightSpeedH));
-	m_rearRight.Set(rearRightFilter.Calculate(-rightSpeedV - rightSpeedH));
-	m_frontLeft.Set(frontLeftFilter.Calculate(leftSpeedV + leftSpeedH));
-	m_rearLeft.Set(rearLeftFilter.Calculate(leftSpeedV - leftSpeedH));
 }
 
 /*

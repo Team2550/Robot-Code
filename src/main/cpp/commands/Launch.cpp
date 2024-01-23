@@ -7,12 +7,11 @@ Launch::Launch(LaunchSubsystem* subsytem)
 
 void Launch::Initialize() { Delay = 0; }
 
-// Note: Launch and Push Motors are missnamed, Fix this.
 void Launch::Execute() {
-	m_launch->PushRing();
+	m_launch->LaunchRing();
 	Delay = Delay + 1;
-	if (Delay >= 50) {
-		m_launch->LaunchRing();
+	if (Delay >= 5) {
+		m_launch->PushRing();
 	}
 }
 

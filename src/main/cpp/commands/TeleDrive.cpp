@@ -19,14 +19,6 @@ void TeleDrive::Execute() {
 		m_drive->ArcadeDrive((m_controller->GetLeftY()), (m_controller->GetRightX()));
 	}
 
-	if (m_controlType == TeleDrive::Control::kMecanum) {
-		m_drive->MecanumDrive((m_controller->GetLeftY()), (m_controller->GetLeftX()), (m_controller->GetRightX()));
-	}
-
-	if (m_controlType == TeleDrive::Control::kMecanumTank) {
-		m_drive->MecanumTankDrive((m_controller->GetRightY()), (m_controller->GetRightX()), (m_controller->GetLeftY()),
-			(m_controller->GetLeftX()));
-	}
 }
 
 void TeleDrive::End(bool interrupted) { }

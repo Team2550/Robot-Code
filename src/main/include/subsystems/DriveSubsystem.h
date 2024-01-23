@@ -46,33 +46,6 @@ public:
 	void TankDrive(double leftSpeed, double rightSpeed);
 
 	/**
-	 * @brief Drives mecanum wheels in arcade style
-	 *
-	 * Intended for use in 'arcade' style controls, where 1 stick controls movement
-	 * and the other controls rotation.
-	 *
-	 * @param[in] speedV The speed in which the robot moves forward/backwards.
-	 * @param[in] speedH The speed in which the robot moves left/right.
-	 * @param[in] rotation The speed in which the direction the robot is facing is changed.
-	 *
-	 */
-	void MecanumDrive(double speedV, double speedH, double rotation);
-
-	/**
-	 * @brief Drives mecanum wheels in tank style
-	 *
-	 * Intended for use in 'tank/west-coast/differential' style controls,
-	 * where 1 stick controls the left side, and the other controls the right.
-	 *
-	 * @param[in] leftSpeedV The speed in which the left wheels move forward/backwards.
-	 * @param[in] leftSpeedH The speed in which the left wheels move the robot left/right.
-	 * @param[in] rightSpeedV The speed in which the right wheels move forward/backwards.
-	 * @param[in] rightSpeedH The speed in which the right wheels move the robot left/right.
-	 *
-	 */
-	void MecanumTankDrive(double leftSpeedV, double leftSpeedH, double rightSpeedV, double rightSpeedH);
-
-	/**
 	 * @brief Resets the drive encoders to read zero.
 	 */
 	void ResetEncoders();

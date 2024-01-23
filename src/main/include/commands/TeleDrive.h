@@ -12,7 +12,7 @@
 
 class TeleDrive : public frc2::CommandHelper<frc2::CommandBase, TeleDrive> {
 public:
-	enum Control { kTank, kArcade, kMecanum, kMecanumTank };
+	enum Control { kTank, kArcade };
 
 	/**
 	 * @brief Creates a new Drive Command
