@@ -12,8 +12,8 @@ void RobotContainer::ConfigureBindings() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-	m_driverController.A().OnTrue(Launch(&m_launch).ToPtr());
-	m_driverController.B().OnTrue(Intake(&m_launch).ToPtr());
+	m_driverController.A().WhileTrue(Launch(&m_launch).ToPtr());
+	m_driverController.B().WhileTrue(Intake(&m_launch).ToPtr());
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {};

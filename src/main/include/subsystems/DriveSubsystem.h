@@ -2,6 +2,7 @@
 
 #include <frc/Encoder.h>
 #include <frc/PowerDistribution.h>
+#include <frc/Watchdog.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/drive/MecanumDrive.h>
 #include <frc/filter/SlewRateLimiter.h>

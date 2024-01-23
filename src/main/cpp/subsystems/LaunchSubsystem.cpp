@@ -9,12 +9,16 @@ LaunchSubsystem::LaunchSubsystem()
 /*
  * Launch functions
  */
-void LaunchSubsystem::LaunchRing() {
-	m_launchMotor.Set(1);
-	m_pushMotor.Set(1);
-}
+void LaunchSubsystem::LaunchRing() { m_launchMotor.Set(1); }
+
+void LaunchSubsystem::PushRing() { m_pushMotor.Set(1); }
 
 void LaunchSubsystem::IntakeRing() {
-	m_launchMotor.Set(-1);
-	m_pushMotor.Set(-0.2);
+	m_launchMotor.Set((-0.5));
+	m_pushMotor.Set((-1));
+}
+
+void LaunchSubsystem::Stop() {
+	m_launchMotor.Set(0);
+	m_pushMotor.Set(0);
 }
