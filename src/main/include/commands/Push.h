@@ -9,14 +9,14 @@
 
 #include <cmath>
 
-class Launch : public frc2::CommandHelper<frc2::CommandBase, Launch> {
+class Push : public frc2::CommandHelper<frc2::CommandBase, Push> {
 public:
 	/**
-	 * @brief Creates a new Launch Command.
+	 * @brief Creates a new Push Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit Launch(LaunchSubsystem* subsystem);
+	explicit Push(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 
@@ -28,5 +28,4 @@ public:
 
 private:
 	LaunchSubsystem* m_launch;
-	int Delay;
 };

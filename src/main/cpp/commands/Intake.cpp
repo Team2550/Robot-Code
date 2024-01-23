@@ -9,6 +9,6 @@ void Intake::Initialize() { }
 
 void Intake::Execute() { m_launch->IntakeRing(); }
 
-void Intake::End(bool interrupted) { }
+void Intake::End(bool interrupted) { m_launch->Stop(); }
 
 bool Intake::IsFinished() { return false; }

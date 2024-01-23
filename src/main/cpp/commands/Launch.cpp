@@ -5,10 +5,17 @@ Launch::Launch(LaunchSubsystem* subsytem)
 	AddRequirements({ subsytem });
 }
 
-void Launch::Initialize() { }
+void Launch::Initialize() { Delay = 0; }
 
-void Launch::Execute() { m_launch->LaunchRing(); }
+// Note: Launch and Push Motors are missnamed, Fix this.
+void Launch::Execute() {
+	m_launch->PushRing();
+	Delay = Delay + 1;
+	if (Delay >= 50) {
+		m_launch->LaunchRing();
+	}
+}
 
-void Launch::End(bool interrupted) { }
+void Launch::End(bool interrupted) { m_launch->Stop(); }
 
 bool Launch::IsFinished() { return false; }

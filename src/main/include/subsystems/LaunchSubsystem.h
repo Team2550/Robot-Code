@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Constants.h"
 #include <frc/MotorSafety.h>
 #include <frc/PowerDistribution.h>
-#include <frc/motorcontrol/VictorSP.h> 
+#include <frc/Watchdog.h>
+#include <frc/motorcontrol/PWMSparkMax.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
-
-#include "Constants.h"
+#include <units/voltage.h>
 
 #include <cmath>
 
@@ -19,10 +20,14 @@ public:
 	 */
 	void LaunchRing();
 
+	void PushRing();
+
 	void IntakeRing();
+
+	void Stop();
 
 private:
 	// Motor Controllers
-	frc::VictorSP m_launchMotor;
-	frc::VictorSP m_pushMotor;
+	frc::PWMSparkMax m_launchMotor;
+	frc::PWMSparkMax m_pushMotor;
 };
