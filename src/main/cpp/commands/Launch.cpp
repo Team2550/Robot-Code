@@ -5,7 +5,10 @@ Launch::Launch(LaunchSubsystem* subsytem)
 	AddRequirements({ subsytem });
 }
 
-void Launch::Initialize() { Delay = 0; }
+void Launch::Initialize() { 
+	Delay = 0; 
+	m_launch->RedLight(true);
+}
 
 void Launch::Execute() {
 	m_launch->LaunchRing();
@@ -15,6 +18,9 @@ void Launch::Execute() {
 	}
 }
 
-void Launch::End(bool interrupted) { m_launch->Stop(); }
+void Launch::End(bool interrupted) { 
+	m_launch->Stop(); 
+	m_launch->RedLight(false);
+}
 
 bool Launch::IsFinished() { return false; }
