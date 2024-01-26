@@ -19,8 +19,8 @@ namespace DriveConstants {
 constexpr int kLeftMotorPorts[] = { 0, 1 };
 constexpr int kRightMotorPorts[] = { 2, 3 };
 
-constexpr int kLeftEncoderPorts[] = { 0, 1 };
-constexpr int kRightEncoderPorts[] = { 2, 3 };
+constexpr int kLeftEncoderPorts[] = { 2, 3 };
+constexpr int kRightEncoderPorts[] = { 4, 5 };
 constexpr bool kLeftEncoderReversed = false;
 constexpr bool kRightEncoderReversed = true;
 } // namespace DriveConstants
