@@ -71,14 +71,12 @@ private:
 	// Motor Controllers
 	frc::VictorSP m_frontLeft;
 	frc::VictorSP m_rearLeft;
-	frc::Encoder m_leftEncoder;
 	frc::MotorControllerGroup m_left { m_frontLeft, m_rearLeft };
 	frc::SlewRateLimiter<units::scalar> frontLeftFilter { 0.5 / 1_s };
 	frc::SlewRateLimiter<units::scalar> rearLeftFilter { 0.5 / 1_s };
 
 	frc::VictorSP m_frontRight;
 	frc::VictorSP m_rearRight;
-	frc::Encoder m_rightEncoder;
 	frc::MotorControllerGroup m_right { m_frontRight, m_rearRight };
 	frc::SlewRateLimiter<units::scalar> frontRightFilter { 0.5 / 1_s };
 	frc::SlewRateLimiter<units::scalar> rearRightFilter { 0.5 / 1_s };

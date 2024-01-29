@@ -1,13 +1,12 @@
 #pragma once
 
+#include <cmath>
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
 #include <subsystems/LaunchSubsystem.h>
-
-#include <cmath>
 
 class Intake : public frc2::CommandHelper<frc2::CommandBase, Intake> {
 public:

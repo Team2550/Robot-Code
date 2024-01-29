@@ -19,8 +19,6 @@ namespace DriveConstants {
 constexpr int kLeftMotorPorts[] = { 0, 1 };
 constexpr int kRightMotorPorts[] = { 2, 3 };
 
-constexpr int kLeftEncoderPorts[] = { 2, 3 };
-constexpr int kRightEncoderPorts[] = { 4, 5 };
 constexpr bool kLeftEncoderReversed = false;
 constexpr bool kRightEncoderReversed = true;
 } // namespace DriveConstants
@@ -30,7 +28,7 @@ constexpr bool kRightEncoderReversed = true;
  */
 namespace LaunchConstants {
 constexpr int kLaunchMotorPorts[] = { 4, 5 };
-constexpr int kLightPorts[] = { 0, 1 };
+constexpr int kLightPorts[] = { 0, 1, 2 };
 } // namespace LaunchConstants
 
 /**

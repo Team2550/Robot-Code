@@ -28,7 +28,7 @@ public:
 	 * @param[in] subsystem The subsytem to use.
 	 * @param[in] controlType Accepts one of 4 values to specify which control scheme is used.
 	 */
-	explicit TeleDrive(DriveSubsystem* subsystem, Control controlType, frc::XboxController* controller);
+	explicit TeleDrive(DriveSubsystem* subsystem, Control controlType, double left, double right);
 
 	void Initialize() override;
 
@@ -39,7 +39,8 @@ public:
 	bool IsFinished() override;
 
 private:
-	frc::XboxController* m_controller;
+	double m_left;
+	double m_right;
 	TeleDrive::Control m_controlType;
 	DriveSubsystem* m_drive;
 };
