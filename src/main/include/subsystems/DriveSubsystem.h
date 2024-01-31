@@ -82,5 +82,5 @@ private:
 	frc::SlewRateLimiter<units::scalar> rearRightFilter { 0.5 / 1_s };
 
 	// Drive Controller
-	frc::MecanumDrive m_drive { m_frontLeft, m_rearLeft, m_frontRight, m_rearRight };
+	frc::DifferentialDrive m_drive { m_left, m_right };
 };

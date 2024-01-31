@@ -6,6 +6,7 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
+#include <frc2/command/button/CommandXboxController.h>
 #include <subsystems/DriveSubsystem.h>
 
 #include <cmath>
@@ -42,5 +43,6 @@ private:
 	double m_left;
 	double m_right;
 	TeleDrive::Control m_controlType;
+	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
 	DriveSubsystem* m_drive;
 };
