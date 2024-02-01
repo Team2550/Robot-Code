@@ -9,13 +9,20 @@ TeleDrive::TeleDrive(DriveSubsystem* subsystem, TeleDrive::Control controlType, 
 void TeleDrive::Initialize() { }
 
 void TeleDrive::Execute() {
+	if (m_driverController.GetLeftBumper()) {
+		m_speedMult = 1.0;
+	} else {
+		m_speedMult = 0.75;
+	}
 
 	if (m_controlType == TeleDrive::Control::kTank) {
-		m_drive->TankDrive((m_driverController.GetLeftY()), (m_driverController.GetRightY()));
+		m_drive->TankDrive(
+			-(m_speedMult * (m_driverController.GetLeftY())), (m_speedMult * (m_driverController.GetRightY())), true);
 	}
 
 	if (m_controlType == TeleDrive::Control::kArcade) {
-		m_drive->ArcadeDrive((m_driverController.GetLeftY()), (m_driverController.GetRightX()));
+		m_drive->ArcadeDrive(
+			-(m_speedMult * (m_driverController.GetLeftY())), (m_speedMult * (m_driverController.GetRightX())), true);
 	}
 }
 

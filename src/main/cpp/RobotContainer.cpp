@@ -8,12 +8,10 @@ RobotContainer::RobotContainer() {
 	ConfigureBindings();
 	m_drive.SetDefaultCommand(TeleDrive(
 		&m_drive, TeleDrive::Control::kArcade, m_driverController.GetLeftY(), m_driverController.GetRightX()));
+	m_launch.SetDefaultCommand(TeleShoot(&m_launch));
 }
 
-void RobotContainer::ConfigureBindings() {
-	m_driverController.A().WhileTrue(Launch(&m_launch).ToPtr());
-	m_driverController.B().WhileTrue(Intake(&m_launch).ToPtr());
-}
+void RobotContainer::ConfigureBindings() { }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {};
 

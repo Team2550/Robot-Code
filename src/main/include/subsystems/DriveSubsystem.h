@@ -3,7 +3,6 @@
 #include <frc/Encoder.h>
 #include <frc/PowerDistribution.h>
 #include <frc/Watchdog.h>
-#include <frc/drive/DifferentialDrive.h>
 #include <frc/drive/MecanumDrive.h>
 #include <frc/filter/SlewRateLimiter.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
@@ -29,9 +28,10 @@ public:
 	 *
 	 * @param[in] speed The speed to drive the robot.
 	 * @param[in] rotation The rotation to steer the robot to.
+	 * @param[in] squareInputs Decreases input sensityivity at low speeds.
 	 *
 	 */
-	void ArcadeDrive(double speed, double rotation);
+	void ArcadeDrive(double speed, double rotation, bool squareInputs);
 
 	/**
 	 * @brief Drives the robot using tank controls.
@@ -41,31 +41,10 @@ public:
 	 *
 	 * @param[in] leftSpeed The speed to run the left-side motors.
 	 * @param[in] rightSpeed The speed to run the right-side motors.
+	 * @param[in] squareInputs Decreases input sensityivity at low speeds.
 	 *
 	 */
-	void TankDrive(double leftSpeed, double rightSpeed);
-
-	/**
-	 * @brief Resets the drive encoders to read zero.
-	 */
-	void ResetEncoders();
-
-	/**
-	 * @brief Gets the left drive encoder.
-	 */
-	frc::Encoder& GetLeftEncoder();
-
-	/**
-	 * @brief Gets the right drive encoder.
-	 */
-	frc::Encoder& GetRightEncoder();
-
-	/**
-	 * @brief Gets the average encoder distance between 2 encoders.
-	 *
-	 * @return the average of the 2 encoder readings.
-	 */
-	double GetAverageEncoderDistance();
+	void TankDrive(double leftSpeed, double rightSpeed, bool squareInputs);
 
 private:
 	// Motor Controllers
@@ -82,5 +61,5 @@ private:
 	frc::SlewRateLimiter<units::scalar> rearRightFilter { 0.5 / 1_s };
 
 	// Drive Controller
-	frc::DifferentialDrive m_drive { m_left, m_right };
+	frc::MecanumDrive m_drive { m_frontLeft, m_rearLeft, m_frontRight, m_rearRight };
 };

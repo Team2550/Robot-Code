@@ -42,6 +42,7 @@ public:
 private:
 	double m_left;
 	double m_right;
+	double m_speedMult;
 	TeleDrive::Control m_controlType;
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
 	DriveSubsystem* m_drive;

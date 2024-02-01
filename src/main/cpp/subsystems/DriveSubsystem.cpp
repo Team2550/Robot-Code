@@ -20,7 +20,10 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation) {
 	if (abs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
 
-	m_drive.ArcadeDrive(speed, rotation);
+	m_frontRight.Set(frontRightFilter.Calculate(speed + rotation));
+	m_rearRight.Set(rearRightFilter.Calculate(speed + rotation));
+	m_frontLeft.Set(frontLeftFilter.Calculate(speed - rotation));
+	m_rearLeft.Set(rearLeftFilter.Calculate(speed - rotation));
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
@@ -30,5 +33,8 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed) {
 	if (abs(rightSpeed) < OIConstants::kDeadzone)
 		rightSpeed = 0;
 
-	m_drive.TankDrive(leftSpeed, rightSpeed);
+	m_frontRight.Set(frontRightFilter.Calculate(rightSpeed));
+	m_rearRight.Set(rearRightFilter.Calculate(rightSpeed));
+	m_frontLeft.Set(frontLeftFilter.Calculate(leftSpeed));
+	m_rearLeft.Set(rearLeftFilter.Calculate(leftSpeed));
 }

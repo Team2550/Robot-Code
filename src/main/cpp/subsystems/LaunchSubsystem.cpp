@@ -3,8 +3,8 @@
 using namespace LaunchConstants;
 
 LaunchSubsystem::LaunchSubsystem()
-	: m_pushMotor { kLaunchMotorPorts[0] }
-	, m_launchMotor { kLaunchMotorPorts[1] }
+	: m_pushMotor { kLaunchMotorPorts[0], rev::CANSparkMax::MotorType::kBrushless }
+	, m_launchMotor { kLaunchMotorPorts[1], rev::CANSparkMax::MotorType::kBrushless }
 	, m_redLight { kLightPorts[0] }
 	, m_blueLight { kLightPorts[1] } { }
 

@@ -18,6 +18,7 @@
 #include "commands/Intake.h"
 #include "commands/Launch.h"
 #include "commands/TeleDrive.h"
+#include "commands/TeleShoot.h"
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/LaunchSubsystem.h"
 

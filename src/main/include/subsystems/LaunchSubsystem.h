@@ -5,9 +5,9 @@
 #include <frc/MotorSafety.h>
 #include <frc/PowerDistribution.h>
 #include <frc/Watchdog.h>
-#include <frc/motorcontrol/PWMSparkMax.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
+#include <rev/CANSparkMax.h>
 #include <units/voltage.h>
 
 #include <cmath>
@@ -53,8 +53,8 @@ public:
 
 private:
 	// Motor Controllers
-	frc::PWMSparkMax m_launchMotor;
-	frc::PWMSparkMax m_pushMotor;
+	rev::CANSparkMax m_launchMotor;
+	rev::CANSparkMax m_pushMotor;
 
 	frc::DigitalOutput m_redLight;
 	frc::DigitalOutput m_blueLight;

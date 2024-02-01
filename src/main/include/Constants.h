@@ -27,7 +27,7 @@ constexpr bool kRightEncoderReversed = true;
  * @brief Contains motor ports, and DIO ports for the Launching system
  */
 namespace LaunchConstants {
-constexpr int kLaunchMotorPorts[] = { 4, 5 };
+constexpr int kLaunchMotorPorts[] = { 1, 2 };
 constexpr int kLightPorts[] = { 0, 1, 2 };
 } // namespace LaunchConstants
 
