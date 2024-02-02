@@ -1,8 +1,9 @@
 #include "commands/TeleDrive.h"
 
-TeleDrive::TeleDrive(DriveSubsystem* subsystem, TeleDrive::Control controlType, double left, double right)
+TeleDrive::TeleDrive(DriveSubsystem* subsystem, TeleDrive::Control controlType, frc::XboxController* controller)
 	: m_drive(subsystem)
-	, m_controlType(controlType) {
+	, m_controlType(controlType)
+	, m_controller(controller) {
 	AddRequirements({ subsystem });
 }
 
@@ -17,12 +18,12 @@ void TeleDrive::Execute() {
 
 	if (m_controlType == TeleDrive::Control::kTank) {
 		m_drive->TankDrive(
-			-(m_speedMult * (m_driverController.GetLeftY())), (m_speedMult * (m_driverController.GetRightY())), true);
+			-(m_speedMult * (m_controller.GetLeftY())), (m_speedMult * (m_controller.GetRightY())), true);
 	}
 
 	if (m_controlType == TeleDrive::Control::kArcade) {
 		m_drive->ArcadeDrive(
-			-(m_speedMult * (m_driverController.GetLeftY())), (m_speedMult * (m_driverController.GetRightX())), true);
+			-(m_speedMult * (m_controller.GetLeftY())), (m_speedMult * (m_controller.GetRightX())), true);
 	}
 }
 

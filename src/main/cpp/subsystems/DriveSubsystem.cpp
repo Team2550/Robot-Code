@@ -17,9 +17,9 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation, bool squareInput
 	speed = std::clamp(speed, -1.0, 1.0);
 	rotation = std::clamp(rotation, -1.0, 1.0);
 	// Deadzone
-	if (abs(speed) < OIConstants::kDeadzone)
+	if (fabs(speed) < OIConstants::kDeadzone)
 		speed = 0;
-	if (abs(rotation) < OIConstants::kDeadzone)
+	if (fabs(rotation) < OIConstants::kDeadzone)
 		rotation = 0;
 
 	if (squareInputs) {
@@ -27,19 +27,20 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation, bool squareInput
 		rotation = std::copysign(rotation * rotation, rotation);
 	}
 
-	m_frontRight.Set(frontRightFilter.Calculate(speed + rotation));
-	m_rearRight.Set(rearRightFilter.Calculate(speed + rotation));
-	m_frontLeft.Set(frontLeftFilter.Calculate(speed - rotation));
-	m_rearLeft.Set(rearLeftFilter.Calculate(speed - rotation));
+	m_frontRight.Set((rotation + speed));
+	m_rearRight.Set((rotation + speed));
+	m_frontLeft.Set((rotation - speed));
+	m_rearLeft.Set((rotation - speed));
+	m_drive.Feed();
 }
 
 void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed, bool squareInputs) {
 	leftSpeed = std::clamp(leftSpeed, -1.0, 1.0);
 	rightSpeed = std::clamp(rightSpeed, -1.0, 1.0);
 	// Deadzone
-	if (abs(leftSpeed) < OIConstants::kDeadzone)
+	if (fabs(leftSpeed) < OIConstants::kDeadzone)
 		leftSpeed = 0;
-	if (abs(rightSpeed) < OIConstants::kDeadzone)
+	if (fabs(rightSpeed) < OIConstants::kDeadzone)
 		rightSpeed = 0;
 
 	if (squareInputs) {
@@ -47,8 +48,9 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed, bool squareI
 		rightSpeed = std::copysign(rightSpeed * rightSpeed, rightSpeed);
 	}
 
-	m_frontRight.Set(frontRightFilter.Calculate(rightSpeed));
-	m_rearRight.Set(rearRightFilter.Calculate(rightSpeed));
-	m_frontLeft.Set(frontLeftFilter.Calculate(leftSpeed));
-	m_rearLeft.Set(rearLeftFilter.Calculate(leftSpeed));
+	m_frontRight.Set(rightSpeed);
+	m_rearRight.Set(rightSpeed);
+	m_frontLeft.Set(leftSpeed);
+	m_rearLeft.Set(leftSpeed);
+	m_drive.Feed();
 }

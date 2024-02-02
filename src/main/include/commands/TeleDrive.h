@@ -6,7 +6,6 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <frc2/command/button/CommandXboxController.h>
 #include <subsystems/DriveSubsystem.h>
 
 #include <cmath>
@@ -23,13 +22,12 @@ public:
 	 *
 	 * kTank
 	 * kArcade
-	 * kMecanum
-	 * kMecanumTank
 	 *
 	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] controlType Accepts one of 4 values to specify which control scheme is used.
+	 * @param[in] controlType Accepts one of 2 values to specify which control scheme is used.
+	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
 	 */
-	explicit TeleDrive(DriveSubsystem* subsystem, Control controlType, double left, double right);
+	explicit TeleDrive(DriveSubsystem* subsystem, Control controlType, frc::XboxController* controller);
 
 	void Initialize() override;
 
@@ -40,10 +38,9 @@ public:
 	bool IsFinished() override;
 
 private:
-	double m_left;
-	double m_right;
 	double m_speedMult;
 	TeleDrive::Control m_controlType;
+	frc::XboxController* m_controller;
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
 	DriveSubsystem* m_drive;
 };
