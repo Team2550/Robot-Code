@@ -7,6 +7,8 @@ DriveSubsystem::DriveSubsystem()
 	, m_rearLeft { kLeftMotorPorts[1] }
 	, m_frontRight { kRightMotorPorts[0] }
 	, m_rearRight { kRightMotorPorts[1] } {
+	// Rear Right motor controller was wired backwards.
+	// Inverting in code.
 	m_rearRight.SetInverted(true);
 }
 
@@ -17,6 +19,7 @@ void DriveSubsystem::ArcadeDrive(double speed, double rotation, bool squareInput
 	speed = std::clamp(speed, -1.0, 1.0);
 	rotation = std::clamp(rotation, -1.0, 1.0);
 	// Deadzone
+	// Uses fabs() instead of abs() to avoid casting double to int.
 	if (fabs(speed) < OIConstants::kDeadzone)
 		speed = 0;
 	if (fabs(rotation) < OIConstants::kDeadzone)

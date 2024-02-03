@@ -9,19 +9,14 @@ TeleShoot::TeleShoot(LaunchSubsystem* subsystem, frc::XboxController* controller
 void TeleShoot::Initialize() { }
 
 void TeleShoot::Execute() {
-
 	if (m_controller->GetAButton()) {
 		m_controller->SetRumble(frc::GenericHID::kLeftRumble, 1);
 		m_launch->LaunchRing();
 		m_launch->PushRing();
-	}
-
-	if (m_controller->GetBButton()) {
+	} else if (m_controller->GetBButton()) {
 		m_controller->SetRumble(frc::GenericHID::kRightRumble, 1);
 		m_launch->IntakeRing();
-	}
-
-	if (!m_controller->GetAButton() && !m_controller->GetBButton()) {
+	} else {
 		m_controller->SetRumble(frc::GenericHID::kBothRumble, 0);
 		m_launch->Stop();
 	}

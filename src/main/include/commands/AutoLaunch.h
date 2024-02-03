@@ -9,14 +9,14 @@
 
 #include <cmath>
 
-class Launch : public frc2::CommandHelper<frc2::Command, Launch> {
+class AutoLaunch : public frc2::CommandHelper<frc2::Command, AutoLaunch> {
 public:
 	/**
 	 * @brief Creates a new Launch Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit Launch(LaunchSubsystem* subsystem);
+	explicit AutoLaunch(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 

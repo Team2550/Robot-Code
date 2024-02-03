@@ -8,14 +8,14 @@
 #include <frc2/command/ScheduleCommand.h>
 #include <subsystems/LaunchSubsystem.h>
 
-class Intake : public frc2::CommandHelper<frc2::Command, Intake> {
+class AutoIntake : public frc2::CommandHelper<frc2::Command, AutoIntake> {
 public:
 	/**
 	 * @brief Creates a new Intake Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit Intake(LaunchSubsystem* subsystem);
+	explicit AutoIntake(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 

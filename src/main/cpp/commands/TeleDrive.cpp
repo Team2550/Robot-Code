@@ -10,6 +10,7 @@ TeleDrive::TeleDrive(DriveSubsystem* subsystem, TeleDrive::Control controlType, 
 void TeleDrive::Initialize() { }
 
 void TeleDrive::Execute() {
+	// Boost
 	if (m_controller->GetLeftBumper()) {
 		m_speedMult = 1.0;
 	} else {
