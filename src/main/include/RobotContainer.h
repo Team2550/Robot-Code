@@ -20,6 +20,7 @@
 #include "commands/TeleDrive.h"
 #include "commands/TeleShoot.h"
 #include "subsystems/DriveSubsystem.h"
+#include "subsystems/IntakeSubsystem.h"
 #include "subsystems/LaunchSubsystem.h"
 
 class RobotContainer {
@@ -36,6 +37,7 @@ private:
 
 	// The robot's subsystem.
 	DriveSubsystem m_drive;
+	IntakeSubsystem m_intake;
 	LaunchSubsystem m_launch;
 
 	void ConfigureBindings();

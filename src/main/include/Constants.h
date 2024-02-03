@@ -31,6 +31,14 @@ constexpr int kLaunchMotorPorts[] = { 1, 2 };
 } // namespace LaunchConstants
 
 /**
+ * @brief Contains motor ports, and DIO ports for the Launching system
+ */
+namespace IntakeConstants {
+constexpr int kIntakePivot = 3;
+constexpr int kIntakeMotor = 4;
+} // namespace IntakeConstants
+
+/**
  * @brief Contains the length of time for auto
  */
 namespace AutoConstants {
