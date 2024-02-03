@@ -1,7 +1,7 @@
 #pragma once
 
 #include <frc/XboxController.h>
-#include <frc2/command/CommandBase.h>
+#include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -10,7 +10,7 @@
 
 #include <cmath>
 
-class TeleDrive : public frc2::CommandHelper<frc2::CommandBase, TeleDrive> {
+class TeleDrive : public frc2::CommandHelper<frc2::Command, TeleDrive> {
 public:
 	enum Control { kTank, kArcade };
 
