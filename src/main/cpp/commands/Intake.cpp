@@ -5,15 +5,10 @@ Intake::Intake(LaunchSubsystem* subsytem)
 	AddRequirements({ subsytem });
 }
 
-void Intake::Initialize() { m_launch->BlueLight(true); }
+void Intake::Initialize() { }
 
-void Intake::Execute() { 
-	m_launch->IntakeRing(); 
-}
+void Intake::Execute() { m_launch->IntakeRing(); }
 
-void Intake::End(bool interrupted) { 
-	m_launch->Stop(); 
-	m_launch->BlueLight(false);
-}
+void Intake::End(bool interrupted) { m_launch->Stop(); }
 
 bool Intake::IsFinished() { return false; }

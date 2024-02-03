@@ -4,13 +4,11 @@
 #include <frc/PowerDistribution.h>
 #include <frc/Watchdog.h>
 #include <frc/drive/MecanumDrive.h>
-#include <frc/filter/SlewRateLimiter.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
-#include <units/dimensionless.h>
 
 #include "Constants.h"
 
@@ -51,14 +49,10 @@ private:
 	frc::VictorSP m_frontLeft;
 	frc::VictorSP m_rearLeft;
 	frc::MotorControllerGroup m_left { m_frontLeft, m_rearLeft };
-	frc::SlewRateLimiter<units::scalar> frontLeftFilter { 0.5 / 1_s };
-	frc::SlewRateLimiter<units::scalar> rearLeftFilter { 0.5 / 1_s };
 
 	frc::VictorSP m_frontRight;
 	frc::VictorSP m_rearRight;
 	frc::MotorControllerGroup m_right { m_frontRight, m_rearRight };
-	frc::SlewRateLimiter<units::scalar> frontRightFilter { 0.5 / 1_s };
-	frc::SlewRateLimiter<units::scalar> rearRightFilter { 0.5 / 1_s };
 
 	// Drive Controller
 	frc::MecanumDrive m_drive { m_frontLeft, m_rearLeft, m_frontRight, m_rearRight };

@@ -28,7 +28,6 @@ constexpr bool kRightEncoderReversed = true;
  */
 namespace LaunchConstants {
 constexpr int kLaunchMotorPorts[] = { 1, 2 };
-constexpr int kLightPorts[] = { 0, 1, 2 };
 } // namespace LaunchConstants
 
 /**

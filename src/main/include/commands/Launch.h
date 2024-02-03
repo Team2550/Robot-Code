@@ -28,5 +28,4 @@ public:
 
 private:
 	LaunchSubsystem* m_launch;
-	int Delay;
 };

@@ -37,25 +37,8 @@ public:
 	 */
 	void Stop();
 
-	/**
-	 * @brief Sets the state of the DIO pin for the red light.
-	 *
-	 * @param[in] bool If true light is on, else light is off.
-	 */
-	void RedLight(bool State);
-
-	/**
-	 * @brief Sets the state of the DIO pin for the blue light.
-	 *
-	 * @param[in] bool If true light is on, else light is off.
-	 */
-	void BlueLight(bool State);
-
 private:
 	// Motor Controllers
 	rev::CANSparkMax m_launchMotor;
 	rev::CANSparkMax m_pushMotor;
-
-	frc::DigitalOutput m_redLight;
-	frc::DigitalOutput m_blueLight;
 };

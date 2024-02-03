@@ -6,16 +6,19 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <frc2/command/button/CommandXboxController.h>
 #include <subsystems/LaunchSubsystem.h>
 
 #include <cmath>
 
 class TeleShoot : public frc2::CommandHelper<frc2::CommandBase, TeleShoot> {
 public:
-	enum Control { kTank, kArcade };
-
-	explicit TeleShoot(LaunchSubsystem* subsystem);
+	/**
+	 * @brief Creates a new Shooter Command
+	 *
+	 * @param[in] subsystem The subsytem to use.
+	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
+	 */
+	explicit TeleShoot(LaunchSubsystem* subsystem, frc::XboxController* controller);
 
 	void Initialize() override;
 
@@ -26,6 +29,6 @@ public:
 	bool IsFinished() override;
 
 private:
-	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
+	frc::XboxController* m_controller;
 	LaunchSubsystem* m_launch;
 };
