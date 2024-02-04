@@ -10,13 +10,17 @@ void TeleShoot::Initialize() { }
 
 void TeleShoot::Execute() {
 	if (m_controller->GetAButton()) {
+		wait = wait + 1;
 		m_controller->SetRumble(frc::GenericHID::kLeftRumble, 1);
 		m_launch->LaunchRing();
-		m_launch->PushRing();
+		if (wait >= 15) {
+			m_launch->PushRing();
+		}
 	} else if (m_controller->GetBButton()) {
 		m_controller->SetRumble(frc::GenericHID::kRightRumble, 1);
 		m_launch->IntakeRing();
 	} else {
+		wait = 0;
 		m_controller->SetRumble(frc::GenericHID::kBothRumble, 0);
 		m_launch->Stop();
 	}

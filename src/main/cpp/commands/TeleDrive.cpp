@@ -24,7 +24,7 @@ void TeleDrive::Execute() {
 
 	if (m_controlType == TeleDrive::Control::kArcade) {
 		m_drive->ArcadeDrive(
-			-(m_speedMult * (m_controller->GetLeftY())), (m_speedMult * (m_controller->GetRightX())), true);
+			-(m_speedMult * (m_controller->GetLeftY())), -(m_speedMult * (m_controller->GetRightX())), true);
 	}
 }
 
