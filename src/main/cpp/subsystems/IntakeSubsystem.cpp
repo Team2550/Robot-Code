@@ -16,6 +16,5 @@ void IntakeSubsystem::ExpellRing() { m_intakeMotor.Set(-1); }
 void IntakeSubsystem::StopInake() { m_intakeMotor.Set(0); }
 
 void IntakeSubsystem::PivotIntake(double upSpeed, double downSpeed) {
-	m_intakePivot.Set(
-		ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, ((0.5 * upSpeed) - (0.5 * downSpeed)));
+	m_intakePivot.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, (upSpeed - downSpeed));
 }
