@@ -13,6 +13,10 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() { }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {};
+frc2::CommandPtr RobotContainer::GetLeftAutonomous() {};
+frc2::CommandPtr RobotContainer::GetMiddleAutonomous() {
+	new frc2::SequentialCommandGroup(AutoDrive(&m_drive, true, 5), AutoTurn(&m_drive, true, 4));
+};
+frc2::CommandPtr RobotContainer::GetRightAutonomous() {};
 
 frc2::CommandPtr RobotContainer::GetTestCommand() {};

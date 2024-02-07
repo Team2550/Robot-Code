@@ -8,6 +8,7 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/RunCommand.h>
+#include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/WaitCommand.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -15,8 +16,10 @@
 #include <units/angle.h>
 
 #include "Constants.h"
+#include "commands/AutoDrive.h"
 #include "commands/AutoIntake.h"
 #include "commands/AutoLaunch.h"
+#include "commands/AutoTurn.h"
 #include "commands/TeleDrive.h"
 #include "commands/TeleIntake.h"
 #include "commands/TeleShoot.h"
@@ -28,7 +31,9 @@ class RobotContainer {
 public:
 	RobotContainer();
 
-	frc2::CommandPtr GetAutonomousCommand();
+	frc2::CommandPtr GetLeftAutonomous();
+	frc2::CommandPtr GetMiddleAutonomous();
+	frc2::CommandPtr GetRightAutonomous();
 
 	frc2::CommandPtr GetTestCommand();
 

@@ -67,7 +67,9 @@ private:
 	 */
 	frc::SendableChooser<std::string> m_chooser;
 
-	const std::string kDefaultAuto = "Default";
+	const std::string kLeftAuto = "Left";
+	const std::string kMiddleAuto = "Middle";
+	const std::string kRightAuto = "Right";
 	const std::string kNoAuto = "No Auto";
 
 	std::string m_autoSelected;
