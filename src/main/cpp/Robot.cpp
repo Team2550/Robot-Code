@@ -10,6 +10,7 @@ void Robot::RobotInit() {
 	m_chooser.AddOption(kRightAuto, kRightAuto);
 	m_chooser.AddOption(kNoAuto, kNoAuto);
 	frc::SmartDashboard::PutData("Autos", &m_chooser);
+	frc::CameraServer::StartAutomaticCapture();
 }
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }

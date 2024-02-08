@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <frc/DriverStation.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
@@ -14,8 +15,11 @@ public:
 	 * @brief Creates a new Turn Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
+	 * @param[in] left Bool left if true right if false.
+	 * @param[in] amount Time, 45 is roughly 180 degrees at 12.5V
+	 * @param[in] ds DriverStation Object
 	 */
-	explicit AutoTurn(DriveSubsystem* subsystem, bool left, int amount);
+	explicit AutoTurn(DriveSubsystem* subsystem, bool left, int amount, frc::DriverStation* ds);
 
 	void Initialize() override;
 
@@ -27,6 +31,7 @@ public:
 
 private:
 	DriveSubsystem* m_drive;
+	frc::DriverStation* m_ds;
 	bool m_left;
 	int m_amount;
 };

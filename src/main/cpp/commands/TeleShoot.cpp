@@ -19,6 +19,9 @@ void TeleShoot::Execute() {
 	} else if (m_controller->GetBButton()) {
 		m_controller->SetRumble(frc::GenericHID::kRightRumble, 1);
 		m_launch->IntakeRing();
+	} else if (m_controller->GetXButton()) {
+		m_controller->SetRumble(frc::GenericHID::kBothRumble, 0.3);
+		m_launch->GentleRing();
 	} else {
 		wait = 0;
 		m_controller->SetRumble(frc::GenericHID::kBothRumble, 0);

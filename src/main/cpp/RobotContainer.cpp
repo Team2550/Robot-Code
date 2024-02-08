@@ -13,10 +13,17 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() { }
 
-frc2::CommandPtr RobotContainer::GetLeftAutonomous() {};
-frc2::CommandPtr RobotContainer::GetMiddleAutonomous() {
-	new frc2::SequentialCommandGroup(AutoDrive(&m_drive, true, 5), AutoTurn(&m_drive, true, 4));
+frc2::CommandPtr RobotContainer::GetLeftAutonomous() {
+	return frc2::cmd::Sequence(AutoDrive(&m_drive, false, 30).ToPtr(), frc2::cmd::Wait(0.5_s),
+		AutoTurn(&m_drive, false, 27, ds).ToPtr(), frc2::cmd::Wait(0.5_s), AutoDrive(&m_drive, true, 10).ToPtr(),
+		AutoLaunch(&m_launch, 30).ToPtr());
 };
-frc2::CommandPtr RobotContainer::GetRightAutonomous() {};
+frc2::CommandPtr RobotContainer::GetMiddleAutonomous() {
+	return frc2::cmd::Sequence(
+		AutoLaunch(&m_launch, 30).ToPtr(), frc2::cmd::Wait(0.5_s), AutoDrive(&m_drive, false, 25).ToPtr());
+};
+frc2::CommandPtr RobotContainer::GetRightAutonomous() {
+	return frc2::cmd::Sequence(AutoDrive(&m_drive, false, 35).ToPtr());
+};
 
 frc2::CommandPtr RobotContainer::GetTestCommand() {};

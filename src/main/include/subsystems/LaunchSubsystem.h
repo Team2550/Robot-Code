@@ -22,6 +22,12 @@ public:
 	void LaunchRing();
 
 	/**
+	 * @brief Spins the flywheels for the launch mechanism
+	 * 		  at 12% speed for low goal
+	 */
+	void GentleRing();
+
+	/**
 	 * @brief Spins the lower wheel for the launch mechanism.
 	 * Sends the ring for launch.
 	 */

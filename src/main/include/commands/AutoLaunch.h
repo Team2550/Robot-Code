@@ -15,8 +15,9 @@ public:
 	 * @brief Creates a new Launch Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
+	 * @param[in] amount Time to run.
 	 */
-	explicit AutoLaunch(LaunchSubsystem* subsystem);
+	explicit AutoLaunch(LaunchSubsystem* subsystem, int amount);
 
 	void Initialize() override;
 
@@ -28,4 +29,5 @@ public:
 
 private:
 	LaunchSubsystem* m_launch;
+	int m_amount;
 };

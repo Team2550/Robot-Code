@@ -1,13 +1,20 @@
 #include "commands/AutoTurn.h"
 
-AutoTurn::AutoTurn(DriveSubsystem* subsytem, bool left, int amount)
+AutoTurn::AutoTurn(DriveSubsystem* subsytem, bool left, int amount, frc::DriverStation* ds)
 	: m_drive(subsytem)
 	, m_left(left)
-	, m_amount(amount) {
+	, m_amount(amount)
+	, m_ds(ds) {
 	AddRequirements({ subsytem });
 }
 
-void AutoTurn::Initialize() { }
+void AutoTurn::Initialize() {
+	// Commands for this were written from the blue perspective,
+	// So all 'Red alliance' autos will need turns inverted.
+	if (m_ds->GetAlliance() == m_ds->kRed) {
+		m_left = !m_left;
+	}
+}
 
 void AutoTurn::Execute() {
 	if (m_left)

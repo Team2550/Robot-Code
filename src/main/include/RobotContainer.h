@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <frc/DriverStation.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -40,6 +41,7 @@ public:
 private:
 	// The driver's controller.
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
+	frc::DriverStation* ds;
 
 	// The robot's subsystem.
 	DriveSubsystem m_drive;
