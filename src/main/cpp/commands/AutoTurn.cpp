@@ -1,6 +1,6 @@
 #include "commands/AutoTurn.h"
 
-AutoTurn::AutoTurn(DriveSubsystem* subsytem, bool left, int amount, frc::DriverStation* ds)
+AutoTurn::AutoTurn(DriveSubsystem* subsytem, bool left, double amount, frc::DriverStation* ds)
 	: m_drive(subsytem)
 	, m_left(left)
 	, m_amount(amount)
@@ -14,6 +14,8 @@ void AutoTurn::Initialize() {
 	if (m_ds->GetAlliance() == m_ds->kRed) {
 		m_left = !m_left;
 	}
+
+	m_drive->ResetAngle();
 }
 
 void AutoTurn::Execute() {
@@ -21,10 +23,13 @@ void AutoTurn::Execute() {
 		m_drive->ArcadeDrive(0, 0.5, false);
 	else
 		m_drive->ArcadeDrive(0, -0.5, false);
-
-	m_amount = m_amount - 1;
 }
 
 void AutoTurn::End(bool interrupted) { }
 
-bool AutoTurn::IsFinished() { return m_amount <= 0; }
+bool AutoTurn::IsFinished() {
+	if (m_left)
+		return m_drive->GetCurrentAngle() <= m_amount;
+	else
+		return m_drive->GetCurrentAngle() >= m_amount;
+}

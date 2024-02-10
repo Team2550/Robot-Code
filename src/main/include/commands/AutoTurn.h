@@ -19,7 +19,7 @@ public:
 	 * @param[in] amount Time, 45 is roughly 180 degrees at 12.5V
 	 * @param[in] ds DriverStation Object
 	 */
-	explicit AutoTurn(DriveSubsystem* subsystem, bool left, int amount, frc::DriverStation* ds);
+	explicit AutoTurn(DriveSubsystem* subsystem, bool left, double amount, frc::DriverStation* ds);
 
 	void Initialize() override;
 
@@ -33,5 +33,5 @@ private:
 	DriveSubsystem* m_drive;
 	frc::DriverStation* m_ds;
 	bool m_left;
-	int m_amount;
+	double m_amount;
 };
