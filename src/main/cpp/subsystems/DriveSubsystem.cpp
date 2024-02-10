@@ -6,7 +6,8 @@ DriveSubsystem::DriveSubsystem()
 	: m_frontLeft { kLeftMotorPorts[0] }
 	, m_rearLeft { kLeftMotorPorts[1] }
 	, m_frontRight { kRightMotorPorts[0] }
-	, m_rearRight { kRightMotorPorts[1] } {
+	, m_rearRight { kRightMotorPorts[1] }
+	, m_gyro {} {
 	// Rear Right motor controller was wired backwards.
 	// Inverting in code.
 	m_rearRight.SetInverted(true);
@@ -57,3 +58,7 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed, bool squareI
 	m_rearLeft.Set(leftSpeed);
 	m_drive.Feed();
 }
+
+void DriveSubsystem::ResetAngle() { m_gyro.Reset(); }
+
+double DriveSubsystem::GetCurrentAngle() { return m_gyro.GetAngle(); }
