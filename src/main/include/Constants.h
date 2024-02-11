@@ -51,5 +51,6 @@ constexpr auto kAutoShootTimeSeconds = 7_s;
  */
 namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
+constexpr int kManipulatorControllerPort = 1;
 constexpr double kDeadzone = 0.2;
 } // namespace OIConstants

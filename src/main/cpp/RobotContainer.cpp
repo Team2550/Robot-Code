@@ -7,8 +7,8 @@
 RobotContainer::RobotContainer() {
 	ConfigureBindings();
 	m_drive.SetDefaultCommand(TeleDrive(&m_drive, TeleDrive::Control::kArcade, &m_driverController));
-	m_launch.SetDefaultCommand(TeleShoot(&m_launch, &m_driverController));
-	m_intake.SetDefaultCommand(TeleIntake(&m_intake, &m_driverController));
+	m_launch.SetDefaultCommand(TeleShoot(&m_launch, &m_manipulatorController));
+	m_intake.SetDefaultCommand(TeleIntake(&m_intake, &m_manipulatorController));
 }
 
 void RobotContainer::ConfigureBindings() { }

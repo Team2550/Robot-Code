@@ -41,6 +41,7 @@ public:
 private:
 	// The driver's controller.
 	frc2::CommandXboxController m_driverController { OIConstants::kDriverControllerPort };
+	frc2::CommandXboxController m_manipulatorController { OIConstants::kManipulatorControllerPort };
 	frc::DriverStation* ds;
 
 	// The robot's subsystem.
