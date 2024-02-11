@@ -29,7 +29,7 @@ void AutoTurn::End(bool interrupted) { }
 
 bool AutoTurn::IsFinished() {
 	if (m_left)
-		return m_drive->GetCurrentAngle() <= m_amount;
+		return m_drive->GetCurrentAngle() <= (360-m_amount);
 	else
 		return m_drive->GetCurrentAngle() >= m_amount;
 }
