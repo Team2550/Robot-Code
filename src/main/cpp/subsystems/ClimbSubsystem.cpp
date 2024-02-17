@@ -4,10 +4,15 @@ using namespace ClimbConstants;
 
 ClimbSubsystem::ClimbSubsystem()
 	: m_climbMotor { kClimbMotor }
-    , m_climbSwitch { kClimbSwitch } { }
+	, m_climbSwitch { kClimbSwitch } { }
 
-void ClimbSubsystem::Climb() { m_climbMotor.Set(-1); }
+bool ClimbSubsystem::GetSwitchValue() { return m_climbSwitch.Get(); }
 
-void ClimbSubsystem::Reach() { m_climbMotor.Set(0.5); }
+void ClimbSubsystem::Climb(double upSpeed, double downSpeed) {
+	if (GetSwitchValue() == true) {
+		downSpeed = 0;
+	}
+	m_climbMotor.Set((upSpeed - downSpeed));
+}
 
 void ClimbSubsystem::Stop() { m_climbMotor.Set(0); }

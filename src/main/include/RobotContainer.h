@@ -21,9 +21,11 @@
 #include "commands/AutoIntake.h"
 #include "commands/AutoLaunch.h"
 #include "commands/AutoTurn.h"
+#include "commands/TeleClimb.h"
 #include "commands/TeleDrive.h"
 #include "commands/TeleIntake.h"
 #include "commands/TeleShoot.h"
+#include "subsystems/ClimbSubsystem.h"
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/LaunchSubsystem.h"
@@ -48,6 +50,7 @@ private:
 	DriveSubsystem m_drive;
 	IntakeSubsystem m_intake;
 	LaunchSubsystem m_launch;
+	ClimbSubsystem m_climber;
 
 	void ConfigureBindings();
 	void ConfigureButtonBindings();
