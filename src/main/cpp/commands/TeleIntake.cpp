@@ -16,7 +16,7 @@ void TeleIntake::Execute() {
 	} else {
 		m_intake->StopInake();
 	}
-	m_intake->PivotIntake((0.5 * m_controller->GetLeftTriggerAxis()), (0.75 * m_controller->GetRightTriggerAxis()));
+	m_intake->PivotIntake((0.5 * m_controller->GetLeftTriggerAxis()), (0.80 * m_controller->GetRightTriggerAxis()));
 }
 
 void TeleIntake::End(bool interrupted) { }
