@@ -6,16 +6,17 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <subsystems/LaunchSubsystem.h>
+#include <subsystems/DriveSubsystem.h>
+#include <subsystems/IntakeSubsystem.h>
 
-class AutoIntake : public frc2::CommandHelper<frc2::Command, AutoIntake> {
+class AutoPickup : public frc2::CommandHelper<frc2::Command, AutoPickup> {
 public:
 	/**
-	 * @brief Creates a new Intake Command.
+	 * @brief Creates a new Drive Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit AutoIntake(LaunchSubsystem* subsystem);
+	explicit AutoPickup(IntakeSubsystem* intakeSubsystem, DriveSubsystem* driveSubsystem, int amount);
 
 	void Initialize() override;
 
@@ -26,5 +27,7 @@ public:
 	bool IsFinished() override;
 
 private:
-	LaunchSubsystem* m_launch;
+	IntakeSubsystem* m_intake;
+    DriveSubsystem* m_drive;
+	int m_amount;
 };

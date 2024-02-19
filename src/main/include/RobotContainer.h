@@ -18,7 +18,8 @@
 
 #include "Constants.h"
 #include "commands/AutoDrive.h"
-#include "commands/AutoIntake.h"
+#include "commands/AutoPickup.h"
+#include "commands/AutoPivot.h"
 #include "commands/AutoLaunch.h"
 #include "commands/AutoTurn.h"
 #include "commands/TeleClimb.h"
