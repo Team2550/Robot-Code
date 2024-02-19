@@ -45,6 +45,20 @@ public:
 	void TankDrive(double leftSpeed, double rightSpeed, bool squareInputs);
 
 	/**
+	 * @brief Drives a meccanum Robot.
+	 *
+	 * Intended so that one stick controls robot's direction
+	 * while the other controls rotation.
+	 *
+	 * @param[in] speedV The speed to drive the robot forward/back.
+	 * @param[in] speedH The speed to drive the robot left/right.
+	 * @param[in] rotation The rotation to steer the robot to.
+	 * @param[in] squareInputs Decreases input sensityivity at low speeds.
+	 *
+	 */
+	void MecanumDrive(double speedV, double speedH, double rotation, bool squareInputs);
+
+	/**
 	 * @brief Resets the double returned by the gyro to 0.
 	 */
 	void ResetAngle();

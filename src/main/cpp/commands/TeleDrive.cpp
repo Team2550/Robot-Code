@@ -26,6 +26,11 @@ void TeleDrive::Execute() {
 		m_drive->ArcadeDrive(
 			-(m_speedMult * (m_controller->GetLeftY())), -(m_speedMult * (m_controller->GetRightX())), true);
 	}
+
+	if (m_controlType == TeleDrive::Control::kMecanum) {
+		m_drive->MecanumDrive(-(m_speedMult * (m_controller->GetLeftY())), -(m_speedMult * (m_controller->GetLeftX())),
+			-(m_speedMult * (m_controller->GetRightX())), true);
+	}
 }
 
 void TeleDrive::End(bool interrupted) { }

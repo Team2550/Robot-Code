@@ -7,11 +7,7 @@ DriveSubsystem::DriveSubsystem()
 	, m_rearLeft { kLeftMotorPorts[1] }
 	, m_frontRight { kRightMotorPorts[0] }
 	, m_rearRight { kRightMotorPorts[1] }
-	, m_gyro {} {
-	// Rear Right motor controller was wired backwards.
-	// Inverting in code.
-	m_rearRight.SetInverted(true);
-}
+	, m_gyro {} { }
 
 /*
  * Drive functions
@@ -56,6 +52,28 @@ void DriveSubsystem::TankDrive(double leftSpeed, double rightSpeed, bool squareI
 	m_rearRight.Set(rightSpeed);
 	m_frontLeft.Set(leftSpeed);
 	m_rearLeft.Set(leftSpeed);
+	m_drive.Feed();
+}
+
+void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation, bool squareInputs) {
+	// Deadzone
+	if (fabs(speedV) < OIConstants::kDeadzone)
+		speedV = 0;
+	if (fabs(speedH) < OIConstants::kDeadzone)
+		speedH = 0;
+	if (fabs(rotation) < OIConstants::kDeadzone)
+		rotation = 0;
+
+	if (squareInputs) {
+		speedV = std::copysign(speedV * speedV, speedV);
+		speedH = std::copysign(speedH * speedH, speedH);
+		rotation = std::copysign(rotation * rotation, rotation);
+	}
+
+	m_frontRight.Set(rotation + (-speedV - speedH));
+	m_rearRight.Set(rotation + (-speedV + speedH));
+	m_frontLeft.Set(rotation + (speedV - speedH));
+	m_rearLeft.Set(rotation + (speedV + speedH));
 	m_drive.Feed();
 }
 
