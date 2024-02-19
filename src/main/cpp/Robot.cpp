@@ -5,9 +5,12 @@
 #include "Robot.h"
 
 void Robot::RobotInit() {
-	m_chooser.SetDefaultOption(kDefaultAuto, kDefaultAuto);
+	m_chooser.SetDefaultOption(kLeftAuto, kLeftAuto);
+	m_chooser.AddOption(kMiddleAuto, kMiddleAuto);
+	m_chooser.AddOption(kRightAuto, kRightAuto);
 	m_chooser.AddOption(kNoAuto, kNoAuto);
 	frc::SmartDashboard::PutData("Autos", &m_chooser);
+	frc::CameraServer::StartAutomaticCapture();
 }
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
@@ -22,12 +25,23 @@ void Robot::AutonomousInit() {
 	m_autoSelected = m_chooser.GetSelected();
 	fmt::print("Auto Selected: {}\n", m_autoSelected);
 	frc::SmartDashboard::PutString("Auto Selected:", m_autoSelected);
-	m_autonomousCommand = m_container.GetAutonomousCommand();
-	if (m_autoSelected == kDefaultAuto) {
+	if (m_autoSelected == kLeftAuto) {
+		m_autonomousCommand = m_container.GetLeftAutonomous();
+		if (m_autonomousCommand) {
+			m_autonomousCommand->Schedule();
+		}
+	} else if (m_autoSelected == kMiddleAuto) {
+		m_autonomousCommand = m_container.GetMiddleAutonomous();
+		if (m_autonomousCommand) {
+			m_autonomousCommand->Schedule();
+		}
+	} else if (m_autoSelected == kRightAuto) {
+		m_autonomousCommand = m_container.GetRightAutonomous();
 		if (m_autonomousCommand) {
 			m_autonomousCommand->Schedule();
 		}
 	} else {
+		// Schedule nothing for 'no auto' option.
 	}
 }
 

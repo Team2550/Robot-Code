@@ -10,6 +10,7 @@ TeleDrive::TeleDrive(DriveSubsystem* subsystem, TeleDrive::Control controlType, 
 void TeleDrive::Initialize() { }
 
 void TeleDrive::Execute() {
+	// Boost
 	if (m_controller->GetLeftBumper()) {
 		m_speedMult = 1.0;
 	} else {
@@ -23,7 +24,7 @@ void TeleDrive::Execute() {
 
 	if (m_controlType == TeleDrive::Control::kArcade) {
 		m_drive->ArcadeDrive(
-			-(m_speedMult * (m_controller->GetLeftY())), (m_speedMult * (m_controller->GetRightX())), true);
+			-(m_speedMult * (m_controller->GetLeftY())), -(m_speedMult * (m_controller->GetRightX())), true);
 	}
 }
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Constants.h"
+#include <frc/ADXRS450_Gyro.h>
 #include <frc/Encoder.h>
 #include <frc/PowerDistribution.h>
 #include <frc/Watchdog.h>
@@ -9,8 +11,6 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
-
-#include "Constants.h"
 
 #include <cmath>
 
@@ -44,6 +44,18 @@ public:
 	 */
 	void TankDrive(double leftSpeed, double rightSpeed, bool squareInputs);
 
+	/**
+	 * @brief Resets the double returned by the gyro to 0.
+	 */
+	void ResetAngle();
+
+	/**
+	 * @brief Returns the current heading of the gyro from 360 -> 361
+	 *
+	 * @param[out] angle double, current angle from the gyro.
+	 */
+	double GetCurrentAngle();
+
 private:
 	// Motor Controllers
 	frc::VictorSP m_frontLeft;
@@ -53,6 +65,9 @@ private:
 	frc::VictorSP m_frontRight;
 	frc::VictorSP m_rearRight;
 	frc::MotorControllerGroup m_right { m_frontRight, m_rearRight };
+
+	// Gyro
+	frc::ADXRS450_Gyro m_gyro;
 
 	// Drive Controller
 	frc::MecanumDrive m_drive { m_frontLeft, m_rearLeft, m_frontRight, m_rearRight };

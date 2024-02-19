@@ -1,6 +1,6 @@
 #pragma once
 
-#include <frc/XboxController.h>
+#include <cmath>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
@@ -8,17 +8,14 @@
 #include <frc2/command/ScheduleCommand.h>
 #include <subsystems/LaunchSubsystem.h>
 
-#include <cmath>
-
-class TeleShoot : public frc2::CommandHelper<frc2::Command, TeleShoot> {
+class AutoIntake : public frc2::CommandHelper<frc2::Command, AutoIntake> {
 public:
 	/**
-	 * @brief Creates a new Shooter Command
+	 * @brief Creates a new Intake Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
 	 */
-	explicit TeleShoot(LaunchSubsystem* subsystem, frc::XboxController* controller);
+	explicit AutoIntake(LaunchSubsystem* subsystem);
 
 	void Initialize() override;
 
@@ -29,7 +26,5 @@ public:
 	bool IsFinished() override;
 
 private:
-	int wait;
-	frc::XboxController* m_controller;
 	LaunchSubsystem* m_launch;
 };

@@ -31,6 +31,22 @@ constexpr int kLaunchMotorPorts[] = { 1, 2 };
 } // namespace LaunchConstants
 
 /**
+ * @brief Contains motor ports, and DIO ports for the Launching system
+ */
+namespace IntakeConstants {
+constexpr int kIntakePivot = 3;
+constexpr int kIntakeMotor = 4;
+} // namespace IntakeConstants
+
+/**
+ * @brief Contains motor port & DIO port for the Climber's limit switch
+ */
+namespace ClimbConstants {
+constexpr int kClimbMotor = 5;
+constexpr int kClimbSwitch = 0;
+} // namespace ClimbConstants
+
+/**
  * @brief Contains the length of time for auto
  */
 namespace AutoConstants {
@@ -43,5 +59,6 @@ constexpr auto kAutoShootTimeSeconds = 7_s;
  */
 namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
+constexpr int kManipulatorControllerPort = 1;
 constexpr double kDeadzone = 0.2;
 } // namespace OIConstants

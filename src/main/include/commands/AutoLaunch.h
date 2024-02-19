@@ -1,6 +1,5 @@
 #pragma once
 
-#include <frc/XboxController.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
@@ -10,15 +9,15 @@
 
 #include <cmath>
 
-class TeleShoot : public frc2::CommandHelper<frc2::Command, TeleShoot> {
+class AutoLaunch : public frc2::CommandHelper<frc2::Command, AutoLaunch> {
 public:
 	/**
-	 * @brief Creates a new Shooter Command
+	 * @brief Creates a new Launch Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
+	 * @param[in] amount Time to run.
 	 */
-	explicit TeleShoot(LaunchSubsystem* subsystem, frc::XboxController* controller);
+	explicit AutoLaunch(LaunchSubsystem* subsystem, int amount);
 
 	void Initialize() override;
 
@@ -29,7 +28,6 @@ public:
 	bool IsFinished() override;
 
 private:
-	int wait;
-	frc::XboxController* m_controller;
 	LaunchSubsystem* m_launch;
+	int m_amount;
 };

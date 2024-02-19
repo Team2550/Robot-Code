@@ -6,16 +6,16 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
-#include <subsystems/LaunchSubsystem.h>
+#include <subsystems/DriveSubsystem.h>
 
-class Intake : public frc2::CommandHelper<frc2::Command, Intake> {
+class AutoDrive : public frc2::CommandHelper<frc2::Command, AutoDrive> {
 public:
 	/**
-	 * @brief Creates a new Intake Command.
+	 * @brief Creates a new Drive Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 */
-	explicit Intake(LaunchSubsystem* subsystem);
+	explicit AutoDrive(DriveSubsystem* subsystem, bool forward, int amount);
 
 	void Initialize() override;
 
@@ -26,5 +26,7 @@ public:
 	bool IsFinished() override;
 
 private:
-	LaunchSubsystem* m_launch;
+	DriveSubsystem* m_drive;
+	bool m_forward;
+	int m_amount;
 };
