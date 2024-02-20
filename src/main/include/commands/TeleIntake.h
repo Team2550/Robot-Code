@@ -29,6 +29,7 @@ public:
 	bool IsFinished() override;
 
 private:
+	int wait;
 	frc::XboxController* m_controller;
 	IntakeSubsystem* m_intake;
 };
