@@ -31,9 +31,12 @@ frc2::CommandPtr RobotContainer::GetMiddleAutonomous() {
 		AutoDrive(&m_drive, false, 25).ToPtr(),
 		AutoPivot(&m_intake, false, 10).ToPtr(),
 		AutoPickup(&m_intake, &m_drive, 30).ToPtr(),
+		frc2::cmd::Wait(0.5_s),
 		AutoPivot(&m_intake, true, 10).ToPtr(),
 		AutoDrive(&m_drive, false, 30).ToPtr(),
+		frc2::cmd::Wait(0.5_s),
 		AutoLaunch(&m_launch, &m_intake, 30).ToPtr(),
+		frc2::cmd::Wait(0.5_s),
 		AutoDrive(&m_drive, true, 20).ToPtr());
 };
 frc2::CommandPtr RobotContainer::GetRightAutonomous() {
