@@ -29,7 +29,7 @@ public:
 	/**
 	 * @brief Stops the motors for the Intake Subsystem.
 	 */
-	void StopInake();
+	void StopIntake();
 
 	/**
 	 * @todo Implement calculation for cancling out both triggers.

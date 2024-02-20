@@ -6,6 +6,7 @@
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/ScheduleCommand.h>
 #include <subsystems/LaunchSubsystem.h>
+#include <subsystems/IntakeSubsystem.h>
 
 #include <cmath>
 
@@ -14,10 +15,11 @@ public:
 	/**
 	 * @brief Creates a new Launch Command.
 	 *
-	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] amount Time to run.
+	 * @param[in] launchSubsystem The Launch subsystem to use.
+	 * @param[in] intakeSubsystem The Intake subsystem to use.
+	 * @param[in] amount command cycles to run the command for.
 	 */
-	explicit AutoLaunch(LaunchSubsystem* subsystem, int amount);
+	explicit AutoLaunch(LaunchSubsystem* launchSubsystem, IntakeSubsystem* intakeSubsystem, int amount);
 
 	void Initialize() override;
 
@@ -29,5 +31,6 @@ public:
 
 private:
 	LaunchSubsystem* m_launch;
+	IntakeSubsystem* m_intake;
 	int m_amount;
 };

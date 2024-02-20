@@ -14,7 +14,7 @@ void TeleIntake::Execute() {
 	} else if (m_controller->GetAButton()) {
 		m_intake->ExpellRing();
 	} else {
-		m_intake->StopInake();
+		m_intake->StopIntake();
 	}
 	m_intake->PivotIntake((0.5 * m_controller->GetLeftTriggerAxis()), (0.80 * m_controller->GetRightTriggerAxis()));
 }
