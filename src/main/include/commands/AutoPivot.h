@@ -14,6 +14,8 @@ public:
 	 * @brief Creates a new Drive Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
+	 * @param[in] up Direction the robot is pivoting.
+	 * @param[in] amount command cycles to run the command for.
 	 */
 	explicit AutoPivot(IntakeSubsystem* subsystem, bool up, int amount);
 

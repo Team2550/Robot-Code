@@ -14,7 +14,9 @@ public:
 	/**
 	 * @brief Creates a new Drive Command.
 	 *
-	 * @param[in] subsystem The subsytem to use.
+	 * @param[in] launchSubsystem The Launch subsystem to use.
+	 * @param[in] intakeSubsystem The Intake subsystem to use.
+	 * @param[in] amount command cycles to run the command for.
 	 */
 	explicit AutoPickup(IntakeSubsystem* intakeSubsystem, DriveSubsystem* driveSubsystem, int amount);
 

@@ -15,8 +15,9 @@ public:
 	/**
 	 * @brief Creates a new Launch Command.
 	 *
-	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] amount Time to run.
+	 * @param[in] launchSubsystem The Launch subsystem to use.
+	 * @param[in] intakeSubsystem The Intake subsystem to use.
+	 * @param[in] amount command cycles to run the command for.
 	 */
 	explicit AutoLaunch(LaunchSubsystem* launchSubsystem, IntakeSubsystem* intakeSubsystem, int amount);
 

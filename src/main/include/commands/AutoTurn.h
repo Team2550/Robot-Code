@@ -16,7 +16,7 @@ public:
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 * @param[in] left Bool left if true right if false.
-	 * @param[in] amount Time, 45 is roughly 180 degrees at 12.5V
+	 * @param[in] amount command cycles to run the command for.
 	 * @param[in] ds DriverStation Object
 	 */
 	explicit AutoTurn(DriveSubsystem* subsystem, bool left, double amount, frc::DriverStation* ds);
