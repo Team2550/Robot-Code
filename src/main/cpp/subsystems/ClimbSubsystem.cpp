@@ -9,9 +9,9 @@ ClimbSubsystem::ClimbSubsystem()
 bool ClimbSubsystem::GetSwitchValue() { return m_climbSwitch.Get(); }
 
 void ClimbSubsystem::Climb(double upSpeed, double downSpeed) {
-	if (GetSwitchValue() == true) {
-		downSpeed = 0;
-	}
+	// if (GetSwitchValue() == true) {
+	//	downSpeed = 0;
+	// }
 	m_climbMotor.Set((upSpeed - downSpeed));
 }
 

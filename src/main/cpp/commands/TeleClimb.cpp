@@ -9,7 +9,7 @@ TeleClimb::TeleClimb(ClimbSubsystem* subsystem, frc::XboxController* controller)
 void TeleClimb::Initialize() { }
 
 void TeleClimb::Execute() {
-	m_climber->Climb((0.5 * m_controller->GetLeftTriggerAxis()), m_controller->GetRightTriggerAxis());
+	m_climber->Climb((m_controller->GetLeftTriggerAxis()), m_controller->GetRightTriggerAxis());
 }
 
 void TeleClimb::End(bool interrupted) { }
