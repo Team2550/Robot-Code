@@ -27,6 +27,12 @@ public:
 	void ExpellRing();
 
 	/**
+	 * @brief Spins the flywheels for the launch mechanism
+	 * 		  at 12% speed for low goal
+	 */
+	void GentleRing();
+
+	/**
 	 * @brief Stops the motors for the Intake Subsystem.
 	 */
 	void StopIntake();

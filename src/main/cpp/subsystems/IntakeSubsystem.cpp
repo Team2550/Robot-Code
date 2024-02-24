@@ -13,6 +13,8 @@ void IntakeSubsystem::IntakeRing() { m_intakeMotor.Set(0.70); }
 
 void IntakeSubsystem::ExpellRing() { m_intakeMotor.Set(-1); }
 
+void IntakeSubsystem::GentleRing() { m_intakeMotor.Set(-0.7); }
+
 void IntakeSubsystem::StopIntake() { m_intakeMotor.Set(0); }
 
 void IntakeSubsystem::PivotIntake(double upSpeed, double downSpeed) {
