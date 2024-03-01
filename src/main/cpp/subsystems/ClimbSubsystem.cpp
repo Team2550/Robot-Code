@@ -8,12 +8,6 @@ ClimbSubsystem::ClimbSubsystem()
 
 bool ClimbSubsystem::GetSwitchValue() { return m_climbSwitch.Get(); }
 
-void ClimbSubsystem::Climb(double upSpeed, double downSpeed) {
-	// Limit switch not currently present causing issues with code.
-	// if (GetSwitchValue() == true) {
-	//	downSpeed = 0;
-	// }
-	m_climbMotor.Set((upSpeed - downSpeed));
-}
+void ClimbSubsystem::Climb(double downSpeed) { m_climbMotor.Set((downSpeed)); }
 
 void ClimbSubsystem::Stop() { m_climbMotor.Set(0); }

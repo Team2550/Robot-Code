@@ -9,7 +9,7 @@ IntakeSubsystem::IntakeSubsystem()
 /*
  * Intake functions
  */
-void IntakeSubsystem::IntakeRing() { m_intakeMotor.Set(0.70); }
+void IntakeSubsystem::IntakeRing() { m_intakeMotor.Set(1); }
 
 void IntakeSubsystem::ExpellRing() { m_intakeMotor.Set(-1); }
 

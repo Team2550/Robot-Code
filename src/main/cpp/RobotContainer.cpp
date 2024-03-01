@@ -7,7 +7,7 @@
 RobotContainer::RobotContainer() {
 	ConfigureBindings();
 	m_drive.SetDefaultCommand(TeleDrive(&m_drive, TeleDrive::Control::kArcade, &m_driverController));
-	m_climber.SetDefaultCommand(TeleClimb(&m_climber, &m_driverController));
+	m_climber.SetDefaultCommand(TeleClimb(&m_climber, &m_driverController, &m_manipulatorController));
 
 	m_launch.SetDefaultCommand(TeleShoot(&m_launch, &m_manipulatorController));
 	m_intake.SetDefaultCommand(TeleIntake(&m_intake, &m_manipulatorController));
@@ -23,7 +23,7 @@ frc2::CommandPtr RobotContainer::GetLeftAutonomous() {
 };
 frc2::CommandPtr RobotContainer::GetMiddleAutonomous() {
 	return frc2::cmd::Sequence(AutoLaunch(&m_launch, &m_intake, 30).ToPtr(), frc2::cmd::Wait(0.5_s),
-		AutoDrive(&m_drive, false, 25).ToPtr(), frc2::cmd::Wait(0.5_s), AutoPivot(&m_intake, false, 35).ToPtr(),
+		AutoPivot(&m_intake, false, 35).ToPtr(), frc2::cmd::Wait(0.5_s), AutoDrive(&m_drive, false, 25).ToPtr(),
 		frc2::cmd::Wait(0.5_s), AutoPickup(&m_intake, &m_drive, 30).ToPtr(), frc2::cmd::Wait(0.5_s),
 		AutoPivot(&m_intake, true, 35).ToPtr(), frc2::cmd::Wait(0.5_s), AutoDrive(&m_drive, true, 30).ToPtr(),
 		frc2::cmd::Wait(0.5_s), AutoLaunch(&m_launch, &m_intake, 30).ToPtr(), frc2::cmd::Wait(0.5_s),

@@ -18,7 +18,8 @@ public:
 	 * @param[in] subsystem The subsytem to use.
 	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
 	 */
-	explicit TeleClimb(ClimbSubsystem* subsystem, frc::XboxController* controller);
+	explicit TeleClimb(
+		ClimbSubsystem* subsystem, frc::XboxController* controller, frc::XboxController* secondController);
 
 	void Initialize() override;
 
@@ -30,5 +31,6 @@ public:
 
 private:
 	frc::XboxController* m_controller;
+	frc::XboxController* m_secondController;
 	ClimbSubsystem* m_climber;
 };

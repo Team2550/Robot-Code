@@ -22,10 +22,9 @@ public:
 	/**
 	 * @brief Raises the climber so that it may climb.
 	 *
-	 * @param[in] upSpeed speed to move the climber up.
 	 * @param[in] downSpeed speed to move the climber down.
 	 */
-	void Climb(double upSpeed, double downSpeed);
+	void Climb(double downSpeed);
 
 	/**
 	 * @brief Stops the motor for the Climb Subsystem.
