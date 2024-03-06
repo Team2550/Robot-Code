@@ -5,8 +5,8 @@
 #include "Robot.h"
 
 void Robot::RobotInit() {
-	m_chooser.SetDefaultOption(kLeftAuto, kLeftAuto);
-	m_chooser.AddOption(kMiddleAuto, kMiddleAuto);
+	m_chooser.SetDefaultOption(kMiddleAuto, kMiddleAuto);
+	m_chooser.AddOption(kLeftAuto, kLeftAuto);
 	m_chooser.AddOption(kRightAuto, kRightAuto);
 	m_chooser.AddOption(kStationaryShoot, kStationaryShoot);
 	m_chooser.AddOption(kBackup, kBackup);
