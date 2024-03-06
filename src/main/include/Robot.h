@@ -71,6 +71,8 @@ private:
 	const std::string kLeftAuto = "Left";
 	const std::string kMiddleAuto = "Middle";
 	const std::string kRightAuto = "Right";
+	const std::string kStationaryShoot = "Stationary Shoot";
+	const std::string kBackup = "Backup Only";
 	const std::string kNoAuto = "No Auto";
 
 	std::string m_autoSelected;

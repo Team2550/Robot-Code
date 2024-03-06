@@ -13,8 +13,11 @@ void TeleIntake::Execute() {
 		m_intake->IntakeRing();
 	} else if (m_controller->GetAButton()) {
 		wait = wait + 1;
-		if (wait >= 15) {
+		if (wait > 15 && wait < 30) {
 			m_intake->ExpellRing();
+		}
+		if (wait >= 30) {
+			m_intake->StopIntake();
 		}
 	} else if (m_controller->GetXButton()) {
 		m_intake->GentleRing();

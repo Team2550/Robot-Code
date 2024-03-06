@@ -11,6 +11,8 @@ LaunchSubsystem::LaunchSubsystem()
  */
 void LaunchSubsystem::LaunchRing() { m_launchMotor.Set(1); }
 
+void LaunchSubsystem::PrimePush() { m_pushMotor.Set(0.12); }
+
 void LaunchSubsystem::GentleRing() {
 	m_launchMotor.Set(0.12);
 	m_pushMotor.Set(0.12);

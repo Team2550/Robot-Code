@@ -33,5 +33,9 @@ frc2::CommandPtr RobotContainer::GetRightAutonomous() {
 	return frc2::cmd::Sequence(AutoLaunch(&m_launch, &m_intake, 30).ToPtr(), frc2::cmd::Wait(0.5_s),
 		AutoTurn(&m_drive, true, 15, ds).ToPtr(), AutoDrive(&m_drive, false, 25).ToPtr());
 };
+frc2::CommandPtr RobotContainer::GetStationaryShoot() {
+	return frc2::cmd::Sequence(AutoLaunch(&m_launch, &m_intake, 30).ToPtr());
+}
+frc2::CommandPtr RobotContainer::GetBackup() { return frc2::cmd::Sequence(AutoDrive(&m_drive, false, 25).ToPtr()); }
 
 frc2::CommandPtr RobotContainer::GetTestCommand() {};

@@ -13,7 +13,7 @@ void TeleShoot::Execute() {
 		wait = wait + 1;
 		m_controller->SetRumble(frc::GenericHID::kLeftRumble, 1);
 		m_launch->LaunchRing();
-		if (wait >= 15) {
+		if (wait >= 40) {
 			m_launch->PushRing();
 		}
 	} else if (m_controller->GetBButton()) {

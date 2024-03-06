@@ -38,6 +38,8 @@ public:
 	frc2::CommandPtr GetLeftAutonomous();
 	frc2::CommandPtr GetMiddleAutonomous();
 	frc2::CommandPtr GetRightAutonomous();
+	frc2::CommandPtr GetStationaryShoot();
+	frc2::CommandPtr GetBackup();
 
 	frc2::CommandPtr GetTestCommand();
 

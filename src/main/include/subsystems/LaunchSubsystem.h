@@ -21,6 +21,8 @@ public:
 	 */
 	void LaunchRing();
 
+	void PrimePush();
+
 	/**
 	 * @brief Spins the flywheels for the launch mechanism
 	 * 		  at 12% speed for low goal

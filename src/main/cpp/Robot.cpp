@@ -8,6 +8,8 @@ void Robot::RobotInit() {
 	m_chooser.SetDefaultOption(kLeftAuto, kLeftAuto);
 	m_chooser.AddOption(kMiddleAuto, kMiddleAuto);
 	m_chooser.AddOption(kRightAuto, kRightAuto);
+	m_chooser.AddOption(kStationaryShoot, kStationaryShoot);
+	m_chooser.AddOption(kBackup, kBackup);
 	m_chooser.AddOption(kNoAuto, kNoAuto);
 	frc::SmartDashboard::PutData("Autos", &m_chooser);
 	frc::CameraServer::StartAutomaticCapture();
@@ -37,6 +39,16 @@ void Robot::AutonomousInit() {
 		}
 	} else if (m_autoSelected == kRightAuto) {
 		m_autonomousCommand = m_container.GetRightAutonomous();
+		if (m_autonomousCommand) {
+			m_autonomousCommand->Schedule();
+		}
+	} else if (m_autoSelected == kStationaryShoot) {
+		m_autonomousCommand = m_container.GetStationaryShoot();
+		if (m_autonomousCommand) {
+			m_autonomousCommand->Schedule();
+		}
+	} else if (m_autoSelected == kBackup) {
+		m_autonomousCommand = m_container.GetBackup();
 		if (m_autonomousCommand) {
 			m_autonomousCommand->Schedule();
 		}
