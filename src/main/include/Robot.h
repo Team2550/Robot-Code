@@ -68,10 +68,6 @@ private:
 	 */
 	frc::SendableChooser<std::string> m_chooser;
 
-	const std::string kMiddleAuto = "2-Note Middle";
-	const std::string kLeftAuto = "Left";
-	const std::string kRightAuto = "Right";
-	const std::string kStationaryShoot = "Stationary Shoot";
 	const std::string kBackup = "Backup Only";
 	const std::string kNoAuto = "No Auto";
 

@@ -24,27 +24,13 @@ constexpr bool kRightEncoderReversed = true;
 } // namespace DriveConstants
 
 /**
- * @brief Contains motor ports, and DIO ports for the Launching system
+ * @brief Contains motor ports, & encoder ports for the Manipulator.
  */
-namespace LaunchConstants {
-constexpr int kLaunchMotorPorts[] = { 1, 2 };
-} // namespace LaunchConstants
-
-/**
- * @brief Contains motor ports, and DIO ports for the Launching system
- */
-namespace IntakeConstants {
-constexpr int kIntakePivot = 3;
-constexpr int kIntakeMotor = 4;
-} // namespace IntakeConstants
-
-/**
- * @brief Contains motor port & DIO port for the Climber's limit switch
- */
-namespace ClimbConstants {
-constexpr int kClimbMotor = 5;
-constexpr int kClimbSwitch = 0;
-} // namespace ClimbConstants
+namespace ManipulatorConstants {
+constexpr int kManiplulatorPort = 4;
+constexpr int kManipulatorWinchPort = 5;
+constexpr int kManiplulatorLimitPort = 4;
+} // namespace ManipulatorConstants
 
 /**
  * @brief Contains the length of time for auto

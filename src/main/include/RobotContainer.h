@@ -18,18 +18,10 @@
 
 #include "Constants.h"
 #include "commands/AutoDrive.h"
-#include "commands/AutoPickup.h"
-#include "commands/AutoPivot.h"
-#include "commands/AutoLaunch.h"
-#include "commands/AutoTurn.h"
-#include "commands/TeleClimb.h"
+#include "commands/TeleArm.h"
 #include "commands/TeleDrive.h"
-#include "commands/TeleIntake.h"
-#include "commands/TeleShoot.h"
-#include "subsystems/ClimbSubsystem.h"
 #include "subsystems/DriveSubsystem.h"
-#include "subsystems/IntakeSubsystem.h"
-#include "subsystems/LaunchSubsystem.h"
+#include "subsystems/ManipulatorSubsystem.h"
 
 class RobotContainer {
 public:
@@ -51,9 +43,7 @@ private:
 
 	// The robot's subsystem.
 	DriveSubsystem m_drive;
-	IntakeSubsystem m_intake;
-	LaunchSubsystem m_launch;
-	ClimbSubsystem m_climber;
+	ManipulatorSubsystem m_manipulator;
 
 	void ConfigureBindings();
 	void ConfigureButtonBindings();
