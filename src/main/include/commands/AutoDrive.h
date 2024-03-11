@@ -14,10 +14,10 @@ public:
 	 * @brief Creates a new Drive Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] forward Is the robot moving forward.
+	 * @param[in] speed The speed to move the robot.
 	 * @param[in] amount command cycles to run the command for.
 	 */
-	explicit AutoDrive(DriveSubsystem* subsystem, bool forward, int amount);
+	explicit AutoDrive(DriveSubsystem* subsystem, double speed, int amount);
 
 	void Initialize() override;
 
@@ -29,6 +29,6 @@ public:
 
 private:
 	DriveSubsystem* m_drive;
-	bool m_forward;
+	double m_speed;
 	int m_amount;
 };

@@ -1,8 +1,8 @@
 #include "commands/AutoDrive.h"
 
-AutoDrive::AutoDrive(DriveSubsystem* subsytem, bool forward, int amount)
+AutoDrive::AutoDrive(DriveSubsystem* subsytem, double speed, int amount)
 	: m_drive(subsytem)
-	, m_forward(forward)
+	, m_speed(speed)
 	, m_amount(amount) {
 	AddRequirements({ subsytem });
 }
@@ -10,10 +10,7 @@ AutoDrive::AutoDrive(DriveSubsystem* subsytem, bool forward, int amount)
 void AutoDrive::Initialize() { }
 
 void AutoDrive::Execute() {
-	if (m_forward)
-		m_drive->ArcadeDrive(0.5, 0, false);
-	else
-		m_drive->ArcadeDrive(-0.5, 0, false);
+	m_drive->ArcadeDrive(m_speed, 0, false);
 
 	m_amount = m_amount - 1;
 }

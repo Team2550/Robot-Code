@@ -15,11 +15,14 @@ public:
 	ManipulatorSubsystem();
 
 	/***
-	 * @brief Moves the manipulator
+	 * @brief Moves the manipulator.
+	 * 		  The down value is subtracted from the up value.
+	 * 		  This allows for the values to cancel out.
 	 *
-	 * @param value The speed of which to move.
+	 * @param[in] upValue The speed of which to move up.
+	 * @param[in] downValue The speed of which to move down.
 	 */
-	void MoveArm(double value);
+	void MoveArm(double upValue, double downValue);
 
 	/***
 	 * @brief Actuates the hand

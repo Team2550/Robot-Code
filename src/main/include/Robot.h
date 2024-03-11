@@ -69,6 +69,7 @@ private:
 	frc::SendableChooser<std::string> m_chooser;
 
 	const std::string kBackup = "Backup Only";
+	const std::string kLow = "Place Lower Cube";
 	const std::string kNoAuto = "No Auto";
 
 	std::string m_autoSelected;

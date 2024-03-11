@@ -1,6 +1,6 @@
 #pragma once
 
-#include <frc/XboxController.h>
+#include <cmath>
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/Commands.h>
@@ -8,17 +8,16 @@
 #include <frc2/command/ScheduleCommand.h>
 #include <subsystems/ManipulatorSubsystem.h>
 
-#include <cmath>
-
-class TeleArm : public frc2::CommandHelper<frc2::Command, TeleArm> {
+class AutoHand : public frc2::CommandHelper<frc2::Command, AutoHand> {
 public:
 	/**
-	 * @brief Creates a new Shooter Command
+	 * @brief Creates a new Hand Command.
 	 *
 	 * @param[in] subsystem The subsytem to use.
-	 * @param[in] controller Accepts a frc::XboxController* object, used to controll the movements.
+	 * @param[in] open Open the Hand.
+	 * @param[in] amount command cycles to run the command for.
 	 */
-	explicit TeleArm(ManipulatorSubsystem* subsystem, frc::XboxController* controller);
+	explicit AutoHand(ManipulatorSubsystem* subsystem, bool open, int amount);
 
 	void Initialize() override;
 
@@ -29,6 +28,7 @@ public:
 	bool IsFinished() override;
 
 private:
-	frc::XboxController* m_controller;
 	ManipulatorSubsystem* m_manipulator;
+	bool m_open;
+	int m_amount;
 };

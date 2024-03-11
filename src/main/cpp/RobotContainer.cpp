@@ -12,6 +12,11 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() { }
 
-frc2::CommandPtr RobotContainer::GetBackup() { return frc2::cmd::Sequence(AutoDrive(&m_drive, false, 25).ToPtr()); }
+frc2::CommandPtr RobotContainer::GetBackup() { return frc2::cmd::Sequence(AutoDrive(&m_drive, -0.5, 25).ToPtr()); }
+
+frc2::CommandPtr RobotContainer::GetLowerPlace() {
+	return frc2::cmd::Sequence(AutoDrive(&m_drive, -0.6, 7).ToPtr(), AutoHand(&m_manipulator, true, 40).ToPtr(),
+		AutoDrive(&m_drive, -0.5, 70).ToPtr());
+}
 
 frc2::CommandPtr RobotContainer::GetTestCommand() {};

@@ -10,42 +10,30 @@ void TeleArm::Initialize() { }
 
 void TeleArm::Execute() {
 	// Arm movement
-	if (m_controller->GetLeftTriggerAxis() < m_controller->GetRightTriggerAxis()) {
-		m_manipulator->MoveArm(-m_controller->GetRightTriggerAxis());
-	} else {
-		if (m_controller->GetLeftTriggerAxis() > m_controller->GetRightTriggerAxis()) {
-			m_manipulator->MoveArm(m_controller->GetLeftTriggerAxis());
-			m_manipulator->DriveWinch(-0.2);
-		};
-	}
-	if (m_controller->GetLeftTriggerAxis() == m_controller->GetRightTriggerAxis()) {
-		m_manipulator->MoveArm(0.0);
+	m_manipulator->MoveArm(m_controller->GetLeftTriggerAxis(), m_controller->GetRightTriggerAxis());
+
+	// The winch is loosened as the arm moves up to prevent damage.
+	// There should absolutly be a cleaner way to do this,
+	// But I cannot think of one right now, so this it is.
+	if (m_controller->GetLeftTriggerAxis() > m_controller->GetRightTriggerAxis()) {
+		m_manipulator->DriveWinch(-0.2);
+	} else if (m_controller->GetLeftTriggerAxis() == m_controller->GetRightTriggerAxis()) {
 		m_manipulator->DriveWinch(0);
 	}
 
-	// THIS IS SO JANK!!!
-	// I would fully rewrite this is I weren't on a time crunch.
-	// The implementation in the 2024 bot is much much nicer.
-	// use that instead.
-	// - G
-
-	// Winch when button
+	// Winch up for balance.
 	if (m_controller->GetXButton()) {
 		m_manipulator->DriveWinch(-0.5);
-	} else if (m_controller->GetYButton()) {
-		m_manipulator->DriveWinch(-0.1);
 	} else {
 		m_manipulator->DriveWinch(0.0);
 	}
 
-	// This is labled ArmTask, but it really is HandTask
-	if (m_controller->GetAButton() == 1 && m_controller->GetBButton() == 0) {
+	// Pneumatic actuation of the Manipulator.
+	if (m_controller->GetAButton()) {
 		m_manipulator->ArmRelease();
-	}
-	if (m_controller->GetBButton() == 1 && m_controller->GetAButton() == 0) {
+	} else if (m_controller->GetBButton()) {
 		m_manipulator->ArmGrab();
-	}
-	if (m_controller->GetBButton() == 0 && m_controller->GetAButton() == 0) {
+	} else {
 		m_manipulator->ArmRest();
 	}
 }

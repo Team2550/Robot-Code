@@ -7,11 +7,7 @@ DriveSubsystem::DriveSubsystem()
 	, m_rearLeft { kLeftMotorPorts[1] }
 	, m_frontRight { kRightMotorPorts[0] }
 	, m_rearRight { kRightMotorPorts[1] }
-	, m_gyro {} {
-	// Rear Right motor controller was wired backwards.
-	// Inverting in code.
-	m_rearRight.SetInverted(true);
-}
+	, m_gyro {} { }
 
 /*
  * Drive functions

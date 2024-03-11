@@ -18,6 +18,7 @@
 
 #include "Constants.h"
 #include "commands/AutoDrive.h"
+#include "commands/AutoHand.h"
 #include "commands/TeleArm.h"
 #include "commands/TeleDrive.h"
 #include "subsystems/DriveSubsystem.h"
@@ -27,10 +28,7 @@ class RobotContainer {
 public:
 	RobotContainer();
 
-	frc2::CommandPtr GetLeftAutonomous();
-	frc2::CommandPtr GetMiddleAutonomous();
-	frc2::CommandPtr GetRightAutonomous();
-	frc2::CommandPtr GetStationaryShoot();
+	frc2::CommandPtr GetLowerPlace();
 	frc2::CommandPtr GetBackup();
 
 	frc2::CommandPtr GetTestCommand();

@@ -6,8 +6,13 @@
 
 void Robot::RobotInit() {
 	m_chooser.SetDefaultOption(kBackup, kBackup);
+	m_chooser.AddOption(kLow, kLow);
 	m_chooser.AddOption(kNoAuto, kNoAuto);
 	frc::SmartDashboard::PutData("Autos", &m_chooser);
+
+	// There are 2 Camera's on this robot,
+	// They can be used for aiming.
+	frc::CameraServer::StartAutomaticCapture();
 	frc::CameraServer::StartAutomaticCapture();
 }
 
@@ -25,6 +30,11 @@ void Robot::AutonomousInit() {
 	frc::SmartDashboard::PutString("Auto Selected:", m_autoSelected);
 	if (m_autoSelected == kBackup) {
 		m_autonomousCommand = m_container.GetBackup();
+		if (m_autonomousCommand) {
+			m_autonomousCommand->Schedule();
+		}
+	} else if (m_autoSelected == kLow) {
+		m_autonomousCommand = m_container.GetLowerPlace();
 		if (m_autonomousCommand) {
 			m_autonomousCommand->Schedule();
 		}
