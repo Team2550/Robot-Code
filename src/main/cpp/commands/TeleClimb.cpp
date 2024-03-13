@@ -12,6 +12,8 @@ void TeleClimb::Initialize() { }
 void TeleClimb::Execute() {
 	if (m_secondController->GetStartButton()) {
 		m_climber->Climb(m_controller->GetLeftTriggerAxis());
+	} else {
+		m_climber->Climb(0);
 	}
 }
 
