@@ -9,10 +9,10 @@ ManipulatorSubsystem::ManipulatorSubsystem()
 
 /// Moves the arm. Refuses to move down if the limit switch is activated.
 void ManipulatorSubsystem::MoveArm(double upValue, double downValue) {
-	double modifiedValue = (upValue - downValue);
 	if ((m_manipulatorLimit.Get())) {
-		modifiedValue = 0;
+		downValue = 0;
 	}
+	double modifiedValue = (upValue - downValue);
 	m_manipulator.Set(modifiedValue);
 }
 
