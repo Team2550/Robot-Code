@@ -12,7 +12,7 @@ void ManipulatorSubsystem::MoveArm(double upValue, double downValue) {
 	if ((m_manipulatorLimit.Get())) {
 		downValue = 0;
 	}
-	double modifiedValue = (upValue - downValue);
+	double modifiedValue = (downValue - upValue);
 	m_manipulator.Set(modifiedValue);
 }
 
