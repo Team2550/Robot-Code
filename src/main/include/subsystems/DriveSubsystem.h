@@ -7,7 +7,7 @@
 #include <frc/Watchdog.h>
 #include <frc/drive/MecanumDrive.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
-#include <frc/motorcontrol/VictorSP.h>
+#include <frc/motorcontrol/Spark.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
@@ -58,12 +58,12 @@ public:
 
 private:
 	// Motor Controllers
-	frc::VictorSP m_frontLeft;
-	frc::VictorSP m_rearLeft;
+	frc::Spark m_frontLeft;
+	frc::Spark m_rearLeft;
 	frc::MotorControllerGroup m_left { m_frontLeft, m_rearLeft };
 
-	frc::VictorSP m_frontRight;
-	frc::VictorSP m_rearRight;
+	frc::Spark m_frontRight;
+	frc::Spark m_rearRight;
 	frc::MotorControllerGroup m_right { m_frontRight, m_rearRight };
 
 	// Gyro
