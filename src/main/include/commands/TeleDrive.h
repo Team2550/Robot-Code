@@ -12,7 +12,7 @@
 
 class TeleDrive : public frc2::CommandHelper<frc2::Command, TeleDrive> {
 public:
-	enum Control { kTank, kArcade };
+	enum Control { kTank, kArcade, kMecanum, kMecanumField };
 
 	/**
 	 * @brief Creates a new Drive Command
@@ -22,6 +22,8 @@ public:
 	 *
 	 * kTank
 	 * kArcade
+	 * kMecanum
+	 * kMecanumField
 	 *
 	 * @param[in] subsystem The subsytem to use.
 	 * @param[in] controlType Accepts one of 2 values to specify which control scheme is used.

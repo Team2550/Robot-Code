@@ -31,6 +31,12 @@ void TeleDrive::Execute() {
 		m_drive->MecanumDrive(-(m_speedMult * (m_controller->GetLeftY())), -(m_speedMult * (m_controller->GetLeftX())),
 			-(m_speedMult * (m_controller->GetRightX())), true);
 	}
+
+	if (m_controlType == TeleDrive::Control::kMecanumField) {
+		m_drive->MecanumDriveField(-(m_speedMult * (m_controller->GetLeftY())),
+			-(m_speedMult * (m_controller->GetLeftX())), -(m_speedMult * (m_controller->GetRightX())), true,
+			m_drive->GetRotation2d());
+	}
 }
 
 void TeleDrive::End(bool interrupted) { }

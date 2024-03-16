@@ -77,6 +77,33 @@ void DriveSubsystem::MecanumDrive(double speedV, double speedH, double rotation,
 	m_drive.Feed();
 }
 
+void DriveSubsystem::MecanumDriveField(
+	double speedV, double speedH, double rotation, bool squareInputs, frc::Rotation2d gyroAngle) {
+	// Deadzone
+	if (fabs(speedV) < OIConstants::kDeadzone)
+		speedV = 0;
+	if (fabs(speedH) < OIConstants::kDeadzone)
+		speedH = 0;
+	if (fabs(rotation) < OIConstants::kDeadzone)
+		rotation = 0;
+
+	if (squareInputs) {
+		speedV = std::copysign(speedV * speedV, speedV);
+		speedH = std::copysign(speedH * speedH, speedH);
+		rotation = std::copysign(rotation * rotation, rotation);
+	}
+	auto [frontLeft, frontRight, rearLeft, rearRight]
+		= frc::MecanumDrive::DriveCartesianIK(speedH, speedV, rotation, gyroAngle);
+
+	m_frontRight.Set(frontRight);
+	m_rearRight.Set(rearRight);
+	m_frontLeft.Set(frontLeft);
+	m_rearLeft.Set(rearLeft);
+	m_drive.Feed();
+}
+
 void DriveSubsystem::ResetAngle() { m_gyro.Reset(); }
 
 double DriveSubsystem::GetCurrentAngle() { return m_gyro.GetAngle(); }
+
+frc::Rotation2d DriveSubsystem::GetRotation2d() { return m_gyro.GetRotation2d(); }

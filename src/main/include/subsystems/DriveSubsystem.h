@@ -1,18 +1,18 @@
 #pragma once
 
 #include "Constants.h"
+#include <cmath>
 #include <frc/ADXRS450_Gyro.h>
 #include <frc/Encoder.h>
 #include <frc/PowerDistribution.h>
 #include <frc/Watchdog.h>
 #include <frc/drive/MecanumDrive.h>
+#include <frc/geometry/Translation2d.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
-
-#include <cmath>
 
 class DriveSubsystem : public frc2::SubsystemBase {
 public:
@@ -59,6 +59,21 @@ public:
 	void MecanumDrive(double speedV, double speedH, double rotation, bool squareInputs);
 
 	/**
+	 * @brief Drives a meccanum Robot with field orientation.
+	 *
+	 * Intended so that one stick controls robot's direction
+	 * while the other controls rotation.
+	 *
+	 * @param[in] speedV The speed to drive the robot forward/back.
+	 * @param[in] speedH The speed to drive the robot left/right.
+	 * @param[in] rotation The rotation to steer the robot to.
+	 * @param[in] squareInputs Decreases input sensityivity at low speeds.
+	 * @param[in] gyroAngle Angle of the robot for field orientation
+	 *
+	 */
+	void MecanumDriveField(double speedV, double speedH, double rotation, bool squareInputs, frc::Rotation2d gyroAngle);
+
+	/**
 	 * @brief Resets the double returned by the gyro to 0.
 	 */
 	void ResetAngle();
@@ -69,6 +84,13 @@ public:
 	 * @param[out] angle double, current angle from the gyro.
 	 */
 	double GetCurrentAngle();
+
+	/**
+	 * @bried Returns the current Rotation2d of the robot
+	 *
+	 * @param[out] angle frc::Rotation2d , current rotation from the gyro.
+	 */
+	frc::Rotation2d DriveSubsystem::GetRotation2d();
 
 private:
 	// Motor Controllers
